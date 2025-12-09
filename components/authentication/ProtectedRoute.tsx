@@ -3,6 +3,7 @@
 import { useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { UserContext } from "./UserProvider";
+import { Loader2 } from "lucide-react";
 
 export default function ProtectedRoute({
   children,
@@ -10,21 +11,21 @@ export default function ProtectedRoute({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  const userContext = useContext(UserContext);
+  const ctx = useContext(UserContext);
 
-  const token = userContext?.token ?? null;
-  const loading = userContext?.loading ?? false;
+  const token = ctx?.token ?? null;
+  const initializing = ctx?.initializing ?? true;
 
   useEffect(() => {
-    if (!loading && !token) {
+    if (!initializing && !token) {
       router.replace("/login");
     }
-  }, [token, loading, router]);
+  }, [initializing, token, router]);
 
-  if (loading || userContext === undefined) {
+  if (initializing) {
     return (
       <div className="h-screen flex items-center justify-center text-lg font-semibold">
-        Loading...
+        <Loader2 className="animate-spin h-10 w-10 text-emerald-600" />
       </div>
     );
   }

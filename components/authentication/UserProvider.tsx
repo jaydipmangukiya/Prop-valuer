@@ -8,6 +8,7 @@ interface UserContextType {
   token: string | null;
   userData: any;
   loading: boolean;
+  initializing: boolean;
   setToken: (token: string | null) => void;
   setUserData: (user: any) => void;
   refetchUserData: () => void;
@@ -21,6 +22,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [token, setToken] = useState<string | null>(null);
   const [userData, setUserData] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [initializing, setInitializing] = useState(true);
 
   /** --------------------------------------------------
    *  FETCH USER DETAILS FROM BACKEND
@@ -69,11 +71,12 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  /** --------------------------------------------------
-   *  ON MOUNT → LOAD USER
-   * -------------------------------------------------- */
   useEffect(() => {
-    refetchUserData();
+    const init = async () => {
+      await refetchUserData(); // ✔ Wait for token + user load
+      setInitializing(false); // ✔ DONE INITIALIZING
+    };
+    init();
   }, []);
 
   /** --------------------------------------------------
@@ -93,6 +96,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
         token,
         userData,
         loading,
+        initializing,
         setToken,
         setUserData,
         refetchUserData,

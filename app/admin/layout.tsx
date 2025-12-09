@@ -36,6 +36,16 @@ export default function AdminLayout({
       icon: EyeOff,
     },
     { name: "Valuations", href: "/admin/valuations", icon: FileText },
+    {
+      name: "Auction Property",
+      href: "/admin/auction-property",
+      icon: Building2,
+    },
+    {
+      name: "Interested Property",
+      href: "/admin/interested-property",
+      icon: Building2,
+    },
     { name: "Staff", href: "/admin/staff", icon: UserCheck },
     { name: "Settings", href: "/admin/settings", icon: Settings },
   ];
@@ -137,7 +147,7 @@ export default function AdminLayout({
 
         {/* Page content */}
         <main className="flex-1 p-6 overflow-auto">
-          <div className="max-w-7xl mx-auto">{children}</div>
+          <div className="max-w-full mx-auto">{children}</div>
         </main>
       </div>
     </div>
