@@ -13,6 +13,10 @@ import {
   Hash,
   CheckCircle2,
   XCircle,
+  Building2,
+  Ruler,
+  LandPlot,
+  Construction,
 } from "lucide-react";
 import { getAuctionPropertyById } from "@/app/api/auctionProperty";
 import PropertyImageSlider from "@/app/views/admin/Auction-Property/PropertyImageSlider/PropertyImageSlider";
@@ -107,26 +111,45 @@ export default function AuctionPropertyDetails({ params }: any) {
             />
 
             <Info
+              label="Built-Up Area"
+              value={
+                property.builtUpArea ? `${property.builtUpArea} sq ft` : "—"
+              }
+              icon={<Ruler />}
+            />
+
+            <Info
+              label="Carpet Area"
+              value={property.carpetArea ? `${property.carpetArea} sq ft` : "—"}
+              icon={<Ruler />}
+            />
+
+            <Info
               label="Property ID"
               value={property.propertyId || "Not Provided"}
+              icon={<Hash />}
+            />
+            <Info
+              label="Auction ID"
+              value={property?.auctionDetails?.auctionId || "—"}
               icon={<Hash />}
             />
 
             <Info
               label="Auction Start"
-              value={formatDate(property.auctionStart)}
+              value={formatDate(property?.auctionDetails?.auctionStart)}
               icon={<Calendar />}
             />
 
             <Info
               label="Auction End"
-              value={formatDate(property.auctionEnd)}
+              value={formatDate(property?.auctionDetails?.auctionEnd)}
               icon={<Calendar />}
             />
 
             <Info
               label="EMD End"
-              value={formatDate(property.emdEnd)}
+              value={formatDate(property?.auctionDetails?.emdEnd)}
               icon={<Calendar />}
             />
 
@@ -156,13 +179,13 @@ export default function AuctionPropertyDetails({ params }: any) {
             <Info
               label="Pincode"
               value={property.pinCode || "—"}
-              icon={<Hash />}
+              icon={<MapPin />}
             />
 
             <Info
               label="Ownership of Property"
               value={property.ownershipOfProperty || "—"}
-              icon={<Hash />}
+              icon={<LandPlot />}
             />
 
             <Info
@@ -174,7 +197,7 @@ export default function AuctionPropertyDetails({ params }: any) {
             <Info
               label="Ownership Type"
               value={property.ownershipType || "—"}
-              icon={<Hash />}
+              icon={<LandPlot />}
             />
 
             <Info
@@ -212,19 +235,19 @@ export default function AuctionPropertyDetails({ params }: any) {
             <Info
               label="Age of Construction"
               value={property.ageOfConstruction ?? "—"}
-              icon={<Hash />}
+              icon={<Construction />}
             />
 
             <Info
               label="Nearby Educational Institutes"
               value={property.nearbyEducationalInstitutes || "—"}
-              icon={<Hash />}
+              icon={<MapPin />}
             />
 
             <Info
               label="Nearby Shopping Centers"
               value={property.nearbyShoppingCenters || "—"}
-              icon={<Hash />}
+              icon={<MapPin />}
             />
 
             <Info
@@ -243,6 +266,11 @@ export default function AuctionPropertyDetails({ params }: any) {
               label="Facing"
               value={property.facing || "—"}
               icon={<Hash />}
+            />
+            <Info
+              label="Property Views"
+              value={property?.views || 0}
+              icon={<Building2 />}
             />
           </div>
           <div className="mb-6">

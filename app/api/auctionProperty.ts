@@ -12,9 +12,14 @@ export interface AuctionProperty {
   cityId: string;
   city: string;
 
-  auctionStart: string;
-  auctionEnd: string;
-  emdEnd: string;
+  auctionDetails: {
+    auctionStart: string;
+    auctionEnd: string;
+    emdEnd: string;
+    auctionId: string;
+  };
+  builtUpArea: number;
+  carpetArea: number;
 
   bankName: string;
   price: number;
@@ -40,6 +45,7 @@ export interface AuctionProperty {
   facing: string;
   images: { public_id: string; url: string }[];
   saleNoticePdf?: { originalName: string; url: string };
+  views?: number;
 }
 
 export interface AuctionPagination {
@@ -132,5 +138,14 @@ export const addPropertyInterest = async (data: Partial<any>): Promise<any> => {
     return res.data;
   } catch (err: any) {
     throw new Error(err.response?.data?.message || "Failed to add interest");
+  }
+};
+
+export const incrementAuctionPropertyView = async (id: string, data: any) => {
+  try {
+    const res = await axiosInstance.post(`/auction-property/view/${id}`, data);
+    return res.data;
+  } catch (err: any) {
+    throw new Error(err.response?.data?.message || "Failed to view property");
   }
 };

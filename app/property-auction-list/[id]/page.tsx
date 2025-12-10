@@ -1,9 +1,13 @@
 "use client";
 
-import { getAuctionPropertyById } from "@/app/api/auctionProperty";
+import {
+  getAuctionPropertyById,
+  incrementAuctionPropertyView,
+} from "@/app/api/auctionProperty";
 import InterestedModal from "@/app/views/property-auction/Form/InterestedModal";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { getBrowserFingerprint } from "@/lib/getFingerprint";
 import {
   Calendar,
   MapPin,
@@ -13,6 +17,7 @@ import {
   Heart,
   Share2,
   Loader2,
+  Ruler,
 } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -27,9 +32,11 @@ export default function PropertyDetailsPage({ params }: any) {
   const [modalIndex, setModalIndex] = useState(0);
 
   useEffect(() => {
+    if (!id) return;
     fetchDetails();
+    recordView();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [id]);
 
   const fetchDetails = async () => {
     try {
@@ -39,6 +46,16 @@ export default function PropertyDetailsPage({ params }: any) {
       console.error("Failed loading:", error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const recordView = async () => {
+    try {
+      const fingerprint = getBrowserFingerprint();
+
+      await incrementAuctionPropertyView(id, { fingerprint });
+    } catch (err) {
+      console.log("View count failed", err);
     }
   };
   const hasImages = property?.images && property.images.length > 0;
@@ -138,6 +155,16 @@ export default function PropertyDetailsPage({ params }: any) {
                   {/* FIELD GRID */}
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4 bg-slate-50 rounded-xl p-5">
                     <Info
+                      label="Carpet Area"
+                      value={property.carpetArea}
+                      icon={<Ruler />}
+                    />
+                    <Info
+                      label="Built-Up Area"
+                      value={property.builtUpArea}
+                      icon={<Ruler />}
+                    />
+                    <Info
                       label="Possession Status"
                       value={property.possessionStatus}
                       icon={<Home />}
@@ -164,17 +191,17 @@ export default function PropertyDetailsPage({ params }: any) {
                     />
                     <Info
                       label="Auction Start"
-                      value={formatDate(property.auctionStart)}
+                      value={formatDate(property?.auctionDetails?.auctionStart)}
                       icon={<Calendar />}
                     />
                     <Info
                       label="Auction End"
-                      value={formatDate(property.auctionEnd)}
+                      value={formatDate(property?.auctionDetails?.auctionEnd)}
                       icon={<Calendar />}
                     />
                     <Info
                       label="End Date"
-                      value={formatDate(property.emdEnd)}
+                      value={formatDate(property?.auctionDetails?.emdEnd)}
                       icon={<Calendar />}
                     />
                   </div>
@@ -288,14 +315,21 @@ export default function PropertyDetailsPage({ params }: any) {
               {/* RIGHT SIDE – AUCTION DETAILS */}
               <div className="space-y-6">
                 <Section title="Auction Details">
-                  <Details label="Auction ID" value="209337" />
+                  <Details
+                    label="Auction ID"
+                    value={property?.auctionDetails?.auctionId}
+                  />
                   <Details
                     label="Auction Start"
-                    value={formatDate(property.auctionStart)}
+                    value={formatDate(property?.auctionDetails?.auctionStart)}
                   />
                   <Details
                     label="Auction End"
-                    value={formatDate(property.auctionEnd)}
+                    value={formatDate(property?.auctionDetails?.auctionStart)}
+                  />
+                  <Details
+                    label="End Date"
+                    value={formatDate(property?.auctionDetails?.emdEnd)}
                   />
                   <Details
                     label="EMD"
@@ -309,7 +343,9 @@ export default function PropertyDetailsPage({ params }: any) {
 
                 <div className="bg-white rounded-xl border border-slate-100 p-6 text-center shadow">
                   <p className="text-slate-600 text-sm">Property Views</p>
-                  <p className="text-3xl font-bold text-emerald-600">627</p>
+                  <p className="text-3xl font-bold text-emerald-600">
+                    {property?.views}
+                  </p>
                 </div>
               </div>
             </div>

@@ -43,6 +43,9 @@ const validationSchema = Yup.object({
   auctionStart: Yup.string().required("Auction start date required"),
   auctionEnd: Yup.string().required("Auction end date required"),
   emdEnd: Yup.string().required("EMD end date required"),
+  auctionId: Yup.string().required("Auction ID is required"),
+  builtUpArea: Yup.number().typeError("Invalid").nullable(),
+  carpetArea: Yup.number().typeError("Invalid").nullable(),
 
   bankName: Yup.string().required("Bank Name required"),
   price: Yup.number()
@@ -70,8 +73,10 @@ const AuctionPropertyForm = ({
     []
   );
 
-  const [existingPdf, setExistingPdf] = useState<any | null>(null); // from DB
-  const [removeExistingPdf, setRemoveExistingPdf] = useState(false); //
+  const [existingPdf, setExistingPdf] = useState<any | null>(null);
+  const [removeExistingPdf, setRemoveExistingPdf] = useState(false);
+  const [pdfError, setPdfError] = useState("");
+  const [imageError, setImageError] = useState("");
 
   useEffect(() => {
     if (open) {
@@ -89,9 +94,12 @@ const AuctionPropertyForm = ({
     cityId: "",
     city: "",
 
+    auctionId: "",
     auctionStart: "",
     auctionEnd: "",
     emdEnd: "",
+    builtUpArea: 0,
+    carpetArea: 0,
 
     bankName: "",
     price: 0,
@@ -223,9 +231,13 @@ const AuctionPropertyForm = ({
           state: data.state,
           cityId: data.cityId,
           city: data.city,
-          auctionStart: formatDate(data.auctionStart),
-          auctionEnd: formatDate(data.auctionEnd),
-          emdEnd: formatDate(data.emdEnd),
+          auctionId: data.auctionDetails?.auctionId || "",
+          auctionStart: formatDate(data.auctionDetails?.auctionStart),
+          auctionEnd: formatDate(data.auctionDetails?.auctionEnd),
+          emdEnd: formatDate(data.auctionDetails?.emdEnd),
+
+          builtUpArea: data.builtUpArea || 0,
+          carpetArea: data.carpetArea || 0,
           bankName: data.bankName,
           price: data.price,
           propertyId: data.propertyId,
@@ -273,6 +285,8 @@ const AuctionPropertyForm = ({
     setRemovedImagePublicIds([]);
     setExistingPdf(null);
     setRemoveExistingPdf(false);
+    setImageError("");
+    setPdfError("");
     onClose();
   };
 
@@ -283,7 +297,30 @@ const AuctionPropertyForm = ({
 
   const handleNewImagesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files ?? []);
-    setImages(files);
+    const validImages: File[] = [];
+    let err = "";
+
+    files.forEach((file) => {
+      if (!["image/png", "image/jpg", "image/jpeg"].includes(file.type)) {
+        err = "Only PNG, JPG, and JPEG images are allowed.";
+        return;
+      }
+
+      if (file.size > 5 * 1024 * 1024) {
+        err = "Each image must be less than 5 MB.";
+        return;
+      }
+
+      validImages.push(file);
+    });
+
+    if (err) {
+      setImageError(err);
+      e.target.value = "";
+      return;
+    }
+    setImageError("");
+    setImages(validImages);
   };
 
   const handleRemoveNewImage = (index: number) => {
@@ -298,12 +335,6 @@ const AuctionPropertyForm = ({
       prev.includes(publicId) ? prev : [...prev, publicId]
     );
   };
-
-  const handleRemoveExistingPdf = () => {
-    setRemoveExistingPdf(true);
-    setExistingPdf(null);
-  };
-  console.log(values.saleNoticePdf, "values.saleNoticePdf");
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
@@ -431,6 +462,22 @@ const AuctionPropertyForm = ({
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
+                  <Label>Auction ID</Label>
+                  <Input
+                    id="auctionId"
+                    name="auctionId"
+                    type="number"
+                    value={values.auctionId}
+                    onChange={handleChange}
+                    placeholder="Enter Auction ID"
+                  />
+                  {touched.auctionId && errors.auctionId && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.auctionId}
+                    </p>
+                  )}
+                </div>
+                <div>
                   <Label className="mb-2 flex">Auction Start Date</Label>
                   <Input
                     id="auctionStart"
@@ -462,6 +509,8 @@ const AuctionPropertyForm = ({
                     </p>
                   )}
                 </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
                   <Label className="mb-2 flex">EMD End Date</Label>
                   <Input
@@ -476,7 +525,27 @@ const AuctionPropertyForm = ({
                     <p className="text-red-500 text-sm mt-1">{errors.emdEnd}</p>
                   )}
                 </div>
+                <div>
+                  <Label>Built-Up Area (sqft)</Label>
+                  <Input
+                    type="number"
+                    name="builtUpArea"
+                    value={values.builtUpArea}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div>
+                  <Label>Carpet Area (sqft)</Label>
+                  <Input
+                    type="number"
+                    name="carpetArea"
+                    value={values.carpetArea}
+                    onChange={handleChange}
+                  />
+                </div>
               </div>
+
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* State */}
                 <div>
@@ -655,25 +724,42 @@ const AuctionPropertyForm = ({
                   />
                 </div>
               </div>
-              <div>
-                <Label>Property Images</Label>
-                <Input type="file" multiple onChange={handleNewImagesChange} />
-                <p className="text-gray-500 text-sm">
-                  Single or multiple files allowed
-                </p>
+              <div className="space-y-3">
+                <Label className="font-medium">Property Images</Label>
+                <label
+                  htmlFor="propertyImages"
+                  className="border-2 border-dashed border-gray-300 rounded-lg p-6 flex flex-col items-center justify-center cursor-pointer hover:border-emerald-600 transition"
+                >
+                  <span className="text-gray-600 text-sm">
+                    Click or Drop images here
+                  </span>
+                  <span className="text-xs text-gray-400 mt-1">
+                    PNG, JPG — Multiple allowed
+                  </span>
+                </label>
+                <Input
+                  id="propertyImages"
+                  type="file"
+                  multiple
+                  className="hidden"
+                  onChange={handleNewImagesChange}
+                />
+                {imageError && (
+                  <p className="text-red-600 text-xs mt-1">{imageError}</p>
+                )}
                 {existingImages.length > 0 && (
                   <div className="mt-3">
                     <p className="text-sm font-medium mb-2">Existing Images</p>
-                    <div className="flex flex-wrap gap-3">
+                    <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
                       {existingImages.map((img: any, idx: number) => (
                         <div
                           key={img.public_id || idx}
-                          className="relative w-24 h-24 border rounded overflow-hidden"
+                          className="relative rounded-lg overflow-hidden border shadow-sm group"
                         >
                           <img
                             src={img.url}
                             alt={`Property ${idx + 1}`}
-                            className="w-full h-full object-cover"
+                            className="h-28 w-full object-cover"
                           />
                           <button
                             type="button"
@@ -693,16 +779,16 @@ const AuctionPropertyForm = ({
                 {images.length > 0 && (
                   <div className="mt-3">
                     <p className="text-sm font-medium mb-2">New Images</p>
-                    <div className="flex flex-wrap gap-3">
+                    <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
                       {images.map((file, idx) => (
                         <div
                           key={idx}
-                          className="relative w-24 h-24 border rounded overflow-hidden"
+                          className="relative rounded-lg overflow-hidden border shadow-sm group"
                         >
                           <img
                             src={URL.createObjectURL(file)}
                             alt={`New ${idx + 1}`}
-                            className="w-full h-full object-cover"
+                            className="h-28 w-full object-cover"
                           />
                           <button
                             type="button"
@@ -717,34 +803,64 @@ const AuctionPropertyForm = ({
                   </div>
                 )}
               </div>
-              <div>
-                <Label>Sale Notice PDF</Label>
+              <div className="space-y-3 mt-6">
+                <Label className="font-medium">Sale Notice PDF</Label>
+                <label
+                  htmlFor="saleNoticePdf"
+                  className="border-2 border-dashed border-gray-300 rounded-lg p-6 flex flex-col items-center justify-center cursor-pointer hover:border-emerald-600 transition"
+                >
+                  <span className="text-gray-600 text-sm">
+                    Click or Drop PDF here
+                  </span>
+                  <span className="text-xs text-gray-400 mt-1">
+                    Only PDF allowed
+                  </span>
+                </label>
                 <Input
+                  id="saleNoticePdf"
                   type="file"
                   accept="application/pdf"
+                  className="hidden"
                   onChange={(e) => {
                     const file = e.target.files?.[0];
-                    if (file) {
-                      setExistingPdf(null);
-                      setRemoveExistingPdf(true);
-                      setFieldValue("saleNoticePdf", file);
+                    if (!file) return;
+
+                    setPdfError("");
+                    if (file.type !== "application/pdf") {
+                      setPdfError("Only PDF files are allowed.");
+                      e.target.value = "";
+                      return;
                     }
+
+                    // Validate size < 5 MB
+                    const maxSize = 5 * 1024 * 1024;
+                    if (file.size > maxSize) {
+                      setPdfError("PDF must be less than 5 MB.");
+                      e.target.value = "";
+                      return;
+                    }
+                    setExistingPdf(null);
+                    setRemoveExistingPdf(true);
+                    setFieldValue("saleNoticePdf", file);
                   }}
                 />
-                <p className="text-gray-500 text-xs mt-1">
-                  Only PDF allowed (Sale Notice Document)
-                </p>
-                {!values.saleNoticePdf && existingPdf && !removeExistingPdf && (
-                  <div className="mt-2 flex items-center gap-3 text-sm">
-                    <a
-                      href={existingPdf.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="underline text-blue-600"
-                    >
-                      {existingPdf.originalName}
-                    </a>
-
+                {pdfError && (
+                  <p className="text-red-600 text-xs mt-1">{pdfError}</p>
+                )}
+                {existingPdf && !removeExistingPdf && (
+                  <div className="flex items-center justify-between bg-gray-100 p-3 rounded border">
+                    <div className="flex items-center gap-3">
+                      <div className="bg-red-600 text-white text-sm px-2 py-1 rounded">
+                        PDF
+                      </div>
+                      <a
+                        href={existingPdf.url}
+                        target="_blank"
+                        className="text-blue-600 underline text-sm"
+                      >
+                        {existingPdf.originalName}
+                      </a>
+                    </div>
                     <button
                       type="button"
                       onClick={() => {
@@ -760,8 +876,13 @@ const AuctionPropertyForm = ({
 
                 {/* New PDF file info */}
                 {values.saleNoticePdf instanceof File && (
-                  <div className="mt-2 flex items-center gap-3 text-sm">
-                    <span>{values.saleNoticePdf.name}</span>
+                  <div className="flex items-center justify-between bg-gray-100 p-3 rounded border">
+                    <div className="flex items-center gap-3">
+                      <div className="bg-red-600 text-white text-sm px-2 py-1 rounded">
+                        PDF
+                      </div>
+                      <span>{values.saleNoticePdf.name}</span>
+                    </div>
                     <button
                       type="button"
                       onClick={() => setFieldValue("saleNoticePdf", null)}

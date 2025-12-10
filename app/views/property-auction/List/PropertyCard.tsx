@@ -132,7 +132,16 @@ export default function PropertyCard({ data }: any) {
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 bg-slate-50 p-4 rounded-xl">
-              <Info label="Carpet Area" value="957 sq ft" icon={<Ruler />} />
+              <Info
+                label="Carpet Area"
+                value={data.carpetArea}
+                icon={<Ruler />}
+              />
+              <Info
+                label="Built-Up Area"
+                value={data.builtUpArea}
+                icon={<Ruler />}
+              />
               <Info
                 label="Type Of Action"
                 value={data.actionType}
@@ -148,17 +157,17 @@ export default function PropertyCard({ data }: any) {
               <Info label="Bank" value={data.bankName} icon={<Building />} />
               <Info
                 label="Auction Start"
-                value={formatDate(data.auctionStart)}
+                value={formatDate(data?.auctionDetails?.auctionStart)}
                 icon={<Calendar />}
               />
               <Info
                 label="Auction End"
-                value={formatDate(data.auctionEnd)}
+                value={formatDate(data?.auctionDetails?.auctionEnd)}
                 icon={<Calendar />}
               />
               <Info
                 label="End Date"
-                value={formatDate(data.emdEnd)}
+                value={formatDate(data?.auctionDetails?.emdEnd)}
                 icon={<Calendar />}
               />
             </div>

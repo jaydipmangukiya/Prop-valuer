@@ -11,14 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Users,
-  Plus,
-  CreditCard as Edit,
-  Trash2,
-  Loader2,
-  Eye,
-} from "lucide-react";
+import { Users, Plus, Pencil, Trash2, Loader2, Eye } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Pagination } from "@/components/common/Pagination";
 import { rowPerPage } from "@/lib/constant";
@@ -154,6 +147,7 @@ const AuctionPropertyList = () => {
                     <TableHead className="hidden lg:table-cell">City</TableHead>
                     <TableHead>Bank</TableHead>
                     <TableHead>Price</TableHead>
+                    <TableHead>Views</TableHead>
                     <TableHead>Auction Start</TableHead>
                     <TableHead>Auction End</TableHead>
                     <TableHead>Images</TableHead>
@@ -172,11 +166,21 @@ const AuctionPropertyList = () => {
                       <TableCell>
                         ₹ {properties.price?.toLocaleString()}
                       </TableCell>
+                      <TableCell>{properties.views ?? 0}</TableCell>
                       <TableCell>
-                        {new Date(properties.auctionStart).toLocaleString()}
+                        {properties.auctionDetails?.auctionStart
+                          ? new Date(
+                              properties.auctionDetails.auctionStart
+                            ).toLocaleString()
+                          : "--"}
                       </TableCell>
+
                       <TableCell>
-                        {new Date(properties.auctionEnd).toLocaleString()}
+                        {properties.auctionDetails?.auctionEnd
+                          ? new Date(
+                              properties.auctionDetails.auctionEnd
+                            ).toLocaleString()
+                          : "--"}
                       </TableCell>
                       <TableCell>
                         {properties.images && properties.images.length > 0 ? (
@@ -213,7 +217,7 @@ const AuctionPropertyList = () => {
                               setSelectedPropertyId(properties._id);
                             }}
                           >
-                            <Edit className="h-3 w-3" />
+                            <Pencil className="h-3 w-3" />
                           </Button>
                           <Button
                             size="sm"
