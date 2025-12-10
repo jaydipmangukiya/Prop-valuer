@@ -34,9 +34,7 @@ export const getProperties = async (
     );
     return response.data;
   } catch (error: any) {
-    throw new Error(
-      error.response?.data?.message || "Failed to fetch Properties"
-    );
+    throw new Error(error?.message || "Failed to fetch Properties");
   }
 };
 
@@ -47,9 +45,7 @@ export const deleteProperty = async (
     const response = await axiosInstance.delete(`/property/${propertyId}`);
     return response.data;
   } catch (error: any) {
-    throw new Error(
-      error.response?.data?.message || "Failed to delete property"
-    );
+    throw new Error(error?.message || "Failed to delete property");
   }
 };
 
@@ -60,9 +56,7 @@ export const getPropertyById = async (
     const response = await axiosInstance.get(`/property/${propertyId}`);
     return response.data.property;
   } catch (error: any) {
-    throw new Error(
-      error.response?.data?.message || "Failed to fetch property"
-    );
+    throw new Error(error?.message || "Failed to fetch property");
   }
 };
 
@@ -71,9 +65,7 @@ export const createProperty = async (payload: any) => {
     const response = await axiosInstance.post("/property", payload);
     return response.data;
   } catch (error: any) {
-    throw new Error(
-      error.response?.data?.message || "Failed to create property"
-    );
+    throw new Error(error?.message || "Failed to create property");
   }
 };
 
@@ -85,8 +77,6 @@ export const updateProperty = async (propertyId: string, payload: any) => {
     );
     return response.data;
   } catch (error: any) {
-    throw new Error(
-      error.response?.data?.message || "Failed to update property"
-    );
+    throw new Error(error?.message || "Failed to update property");
   }
 };

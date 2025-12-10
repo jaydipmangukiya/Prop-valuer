@@ -60,7 +60,7 @@ const StaffList = () => {
     } catch (err: any) {
       toast({
         title: "Failed to load Staff ❌",
-        description: err,
+        description: err.message,
         variant: "destructive",
       });
     } finally {

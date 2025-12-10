@@ -7,7 +7,7 @@ export const loginUser = async (email: string, password: string) => {
 
     return res.data;
   } catch (error: any) {
-    throw new Error(error.response?.data?.message || "Login failed");
+    throw new Error(error?.message || "Login failed");
   }
 };
 
@@ -20,7 +20,7 @@ export const registerUser = async (payload: any) => {
 
     return res.data;
   } catch (error: any) {
-    throw new Error(error?.response?.data?.message || "Registration failed");
+    throw new Error(error?.message || "Registration failed");
   }
 };
 
@@ -29,8 +29,6 @@ export const verifyOtp = async (payload: any) => {
     const res = await axiosInstance.post("/verify", payload);
     return res.data;
   } catch (error: any) {
-    throw new Error(
-      error?.response?.data?.message || "OTP verification failed"
-    );
+    throw new Error(error?.message || "OTP verification failed");
   }
 };

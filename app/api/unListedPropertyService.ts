@@ -43,9 +43,7 @@ export const getUnListedProperty = async (
     );
     return response.data;
   } catch (error: any) {
-    throw new Error(
-      error.response?.data?.message || "Failed to fetch UnListed Property"
-    );
+    throw new Error(error?.message || "Failed to fetch UnListed Property");
   }
 };
 
@@ -58,7 +56,7 @@ export const deleteUnlistedProperties = async (
     );
     return response.data;
   } catch (error: any) {
-    throw new Error(error.response?.data?.message || "Failed to delete Staff");
+    throw new Error(error?.message || "Failed to delete Staff");
   }
 };
 
@@ -71,8 +69,6 @@ export const getUnListedPropertyById = async (
     );
     return response.data.unListedProperty;
   } catch (error: any) {
-    throw new Error(
-      error.response?.data?.message || "Failed to fetch UnListed Property"
-    );
+    throw new Error(error?.message || "Failed to fetch UnListed Property");
   }
 };

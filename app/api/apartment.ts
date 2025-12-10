@@ -8,9 +8,7 @@ export const nearestLocationReport = async (payload: any) => {
     );
     return response;
   } catch (error: any) {
-    throw new Error(
-      error.response?.data?.message || "Failed to create property"
-    );
+    throw new Error(error?.message || "Failed to create property");
   }
 };
 
@@ -19,7 +17,7 @@ export const getReportById = async (id: string): Promise<any> => {
     const response = await axiosInstance.get(`/report/${id}`);
     return response.data;
   } catch (error: any) {
-    throw new Error(error.response?.data?.message || "Failed to fetch Report");
+    throw new Error(error?.message || "Failed to fetch Report");
   }
 };
 
@@ -34,6 +32,6 @@ export const getReportByUsers = async (
     );
     return response.data;
   } catch (error: any) {
-    throw new Error(error.response?.data?.message || "Failed to fetch report");
+    throw new Error(error?.message || "Failed to fetch report");
   }
 };

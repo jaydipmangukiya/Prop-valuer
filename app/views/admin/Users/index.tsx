@@ -57,7 +57,7 @@ const UsersList = () => {
     } catch (err: any) {
       toast({
         title: "Failed to load users ❌",
-        description: err,
+        description: err?.message,
         variant: "destructive",
       });
     } finally {

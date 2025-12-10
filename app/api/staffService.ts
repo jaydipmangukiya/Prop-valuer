@@ -36,7 +36,7 @@ export const getStaffs = async (
     );
     return response.data;
   } catch (error: any) {
-    throw new Error(error.response?.data?.message || "Failed to fetch Staff");
+    throw new Error(error?.message || "Failed to fetch Staff");
   }
 };
 
@@ -45,7 +45,7 @@ export const getStaffById = async (staffId: string): Promise<Staff> => {
     const response = await axiosInstance.get(`/user/${staffId}`);
     return response?.data?.user;
   } catch (error: any) {
-    throw new Error(error.response?.data?.message || "Failed to fetch Staff");
+    throw new Error(error?.message || "Failed to fetch Staff");
   }
 };
 
@@ -54,7 +54,7 @@ export const addStaff = async (staffData: Partial<Staff>): Promise<Staff> => {
     const response = await axiosInstance.post("/user/staff", staffData);
     return response.data.staff;
   } catch (error: any) {
-    throw new Error(error.response?.data?.error || "Failed to add Staff");
+    throw new Error(error?.message || "Failed to add Staff");
   }
 };
 
@@ -66,7 +66,7 @@ export const updateStaff = async (
     const response = await axiosInstance.put(`/user/${staffId}`, staffData);
     return response.data.staff;
   } catch (error: any) {
-    throw new Error(error.response?.data?.error || "Failed to update Staff");
+    throw new Error(error?.message || "Failed to update Staff");
   }
 };
 
@@ -77,6 +77,6 @@ export const deleteStaff = async (
     const response = await axiosInstance.delete(`/user/${staffId}`);
     return response.data;
   } catch (error: any) {
-    throw new Error(error.response?.data?.message || "Failed to delete Staff");
+    throw new Error(error?.message || "Failed to delete Staff");
   }
 };

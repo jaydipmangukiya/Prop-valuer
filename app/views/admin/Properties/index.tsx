@@ -72,7 +72,7 @@ const PropertiesList = () => {
     } catch (err: any) {
       toast({
         title: "Failed to load Properties ❌",
-        description: err,
+        description: err?.message,
         variant: "destructive",
       });
     } finally {

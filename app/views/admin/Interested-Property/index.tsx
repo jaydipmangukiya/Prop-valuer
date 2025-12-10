@@ -42,7 +42,7 @@ const InterestedPropertyList = () => {
     } catch (err: any) {
       toast({
         title: "Failed to load interests ❌",
-        description: err,
+        description: err?.message,
         variant: "destructive",
       });
     } finally {

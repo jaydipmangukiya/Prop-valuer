@@ -5,8 +5,6 @@ export const getSubscription = async (): Promise<any> => {
     const response = await axiosInstance.get("subscription");
     return response.data;
   } catch (error: any) {
-    throw new Error(
-      error.response?.data?.message || "Failed to fetch subscription"
-    );
+    throw new Error(error?.message || "Failed to fetch subscription");
   }
 };

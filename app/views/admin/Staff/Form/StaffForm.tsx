@@ -119,7 +119,6 @@ const StaffForm = ({
         toast({
           title: "Failed ❌",
           description:
-            err?.response?.data?.error ||
             err?.response?.data?.message ||
             err.message ||
             "Something went wrong",

@@ -74,9 +74,7 @@ export const getAuctionProperties = async (
     );
     return res.data;
   } catch (err: any) {
-    throw new Error(
-      err.response?.data?.message || "Failed to fetch properties"
-    );
+    throw new Error(err?.message || "Failed to fetch properties");
   }
 };
 
@@ -88,7 +86,7 @@ export const getAuctionPropertyById = async (
     const res = await axiosInstance.get(`/auction-property/${id}`);
     return res?.data?.data;
   } catch (err: any) {
-    throw new Error(err.response?.data?.message || "Failed to fetch property");
+    throw new Error(err?.message || "Failed to fetch property");
   }
 };
 
@@ -102,7 +100,7 @@ export const addAuctionProperty = async (data: FormData) => {
     });
     return res.data;
   } catch (err: any) {
-    throw new Error(err.response?.data?.message || "Failed to add property");
+    throw new Error(err?.message || "Failed to add property");
   }
 };
 
@@ -116,7 +114,7 @@ export const updateAuctionProperty = async (id: string, data: FormData) => {
     });
     return res.data.property;
   } catch (err: any) {
-    throw new Error(err.response?.data?.message || "Failed to update property");
+    throw new Error(err?.message || "Failed to update property");
   }
 };
 
@@ -128,7 +126,7 @@ export const deleteAuctionProperty = async (
     const res = await axiosInstance.delete(`/auction-property/${id}`);
     return res.data;
   } catch (err: any) {
-    throw new Error(err.response?.data?.message || "Failed to delete property");
+    throw new Error(err?.message || "Failed to delete property");
   }
 };
 
@@ -137,7 +135,7 @@ export const addPropertyInterest = async (data: Partial<any>): Promise<any> => {
     const res = await axiosInstance.post("/property-interest", data);
     return res.data;
   } catch (err: any) {
-    throw new Error(err.response?.data?.message || "Failed to add interest");
+    throw new Error(err?.message || "Failed to add interest");
   }
 };
 
@@ -146,6 +144,6 @@ export const incrementAuctionPropertyView = async (id: string, data: any) => {
     const res = await axiosInstance.post(`/auction-property/view/${id}`, data);
     return res.data;
   } catch (err: any) {
-    throw new Error(err.response?.data?.message || "Failed to view property");
+    throw new Error(err?.message || "Failed to view property");
   }
 };

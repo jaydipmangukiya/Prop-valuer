@@ -6,11 +6,8 @@ export const getPropertyInterests = async (limit = 10, skip = 0) => {
       `/property-interest?limit=${limit}&skip=${skip}`
     );
     return res.data;
-  } catch (err: any) {
-    if (err.response) {
-      throw new Error(err.response.data.message || "Failed to load interests");
-    }
-    throw new Error("Network error");
+  } catch (error: any) {
+    throw new Error(error?.message || "Failed to load interests");
   }
 };
 
@@ -19,9 +16,6 @@ export const updatePropertyInterest = async (id: string, payload: any) => {
     const res = await axiosInstance.put(`/property-interest/${id}`, payload);
     return res.data;
   } catch (err: any) {
-    if (err.response) {
-      throw new Error(err.response.data.message || "Failed to update status");
-    }
-    throw new Error("Network error");
+    throw new Error(err?.message || "Failed to update interest");
   }
 };

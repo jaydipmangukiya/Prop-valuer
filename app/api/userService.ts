@@ -51,7 +51,7 @@ export const getUsers = async (
     );
     return response.data;
   } catch (error: any) {
-    throw new Error(error.response?.data?.message || "Failed to fetch users");
+    throw new Error(error?.message || "Failed to fetch users");
   }
 };
 
@@ -60,7 +60,7 @@ export const getUserById = async (userId: string): Promise<User> => {
     const response = await axiosInstance.get(`/user/${userId}`);
     return response.data.user;
   } catch (error: any) {
-    throw new Error(error.response?.data?.message || "Failed to fetch user");
+    throw new Error(error?.message || "Failed to fetch user");
   }
 };
 
@@ -69,7 +69,7 @@ export const createUser = async (userData: UserFormData) => {
     const response = await axiosInstance.post("/user", userData);
     return response.data;
   } catch (error: any) {
-    throw new Error(error.response?.data?.message || "Failed to create user");
+    throw new Error(error?.message || "Failed to create user");
   }
 };
 
@@ -80,6 +80,6 @@ export const deleteUser = async (
     const response = await axiosInstance.delete(`/user/${userId}`);
     return response.data;
   } catch (error: any) {
-    throw new Error(error.response?.data?.message || "Failed to delete user");
+    throw new Error(error?.message || "Failed to delete user");
   }
 };
