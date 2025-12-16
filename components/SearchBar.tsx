@@ -6,99 +6,56 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
-// import { geocode, RequestType, setKey } from "react-geocode";
-import * as Geocode from "react-geocode";
 
 interface Suggestion {
   description: string;
   place_id: string;
-  structured_formatting: {
-    main_text: string;
-    secondary_text: string;
-  };
 }
 
 declare global {
   interface Window {
-    google: {
-      maps: {
-        places: {
-          AutocompleteService: new () => AutocompleteService;
-          PlacesServiceStatus: {
-            OK: string;
-            ZERO_RESULTS: string;
-            ERROR: string;
-            INVALID_REQUEST: string;
-            OVER_QUERY_LIMIT: string;
-            REQUEST_DENIED: string;
-            UNKNOWN_ERROR: string;
-          };
-        };
-      };
-    };
+    google: any;
   }
 }
 
-interface AutocompleteService {
-  getPlacePredictions: (
-    request: {
-      input: string;
-      componentRestrictions?: { country: string };
-      types?: string[];
-    },
-    callback: (predictions: Suggestion[] | null, status: string) => void
-  ) => void;
-}
-
 export function SearchBar() {
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [placeId, setPlaceId] = useState("");
-  // setKey(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string);
-  Geocode.setKey(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string);
-  const router = useRouter();
 
   useEffect(() => {
-    if (searchQuery.length > 2 && window.google) {
-      const service = new window.google.maps.places.AutocompleteService();
+    if (typeof window === "undefined") return;
+    if (!window.google) return;
 
-      service.getPlacePredictions(
-        {
-          input: searchQuery,
-          componentRestrictions: { country: "in" },
-        },
-        (predictions, status) => {
-          if (
-            status === window.google.maps.places.PlacesServiceStatus.OK &&
-            predictions
-          ) {
-            setSuggestions(predictions);
-          } else {
-            setSuggestions([]);
-          }
-        }
-      );
-    } else {
+    if (searchQuery.length <= 2) {
       setSuggestions([]);
+      return;
     }
+    const service = new window.google.maps.places.AutocompleteService();
+    service.getPlacePredictions(
+      {
+        input: searchQuery,
+        componentRestrictions: { country: "in" },
+      },
+      (predictions: any[], status: string) => {
+        if (
+          status === window.google.maps.places.PlacesServiceStatus.OK &&
+          predictions
+        ) {
+          setSuggestions(predictions);
+        } else {
+          setSuggestions([]);
+        }
+      }
+    );
   }, [searchQuery]);
 
-  const fetchPlaceId = async (address: string) => {
-    try {
-      // const response = await geocode(RequestType.ADDRESS, address);
-      const response = await Geocode.fromAddress(address);
-      const id = response?.results?.[0]?.place_id || "";
-      setPlaceId(id);
-    } catch (err) {
-      console.error("Geocode error:", err);
-    }
-  };
-
-  const handleSelect = (description: string) => {
-    setSearchQuery(description);
+  const handleSelect = (item: Suggestion) => {
+    setSearchQuery(item.description);
+    setPlaceId(item.place_id);
     setSuggestions([]);
-    localStorage.setItem("fullAddress", description);
-    fetchPlaceId(description);
+    localStorage.setItem("fullAddress", item.description);
   };
 
   const handleFinalSearch = () => {
@@ -150,7 +107,7 @@ export function SearchBar() {
                 <div
                   key={index}
                   className="p-3 hover:bg-slate-50 cursor-pointer border-b border-slate-100 last:border-b-0 flex items-center space-x-3"
-                  onClick={() => handleSelect(item.description)}
+                  onClick={() => handleSelect(item)}
                 >
                   <MapPin className="h-4 w-4 text-slate-400" />
                   <span className="text-slate-700">{item.description}</span>

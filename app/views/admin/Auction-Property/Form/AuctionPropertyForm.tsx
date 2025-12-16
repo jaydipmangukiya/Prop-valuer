@@ -122,7 +122,7 @@ const AuctionPropertyForm = ({
     nearbyLocalities: "",
     nearbyCommercialHub: "",
     facing: "",
-    saleNoticePdf: null,
+    saleNoticePdf: null as File | null,
   };
 
   const formik = useFormik({
