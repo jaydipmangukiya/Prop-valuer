@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getDashboardStats } from "../api/dashboard";
+import { useToast } from "@/hooks/use-toast";
 
 export default function AdminDashboard() {
   const recentActivities = [
@@ -30,7 +31,7 @@ export default function AdminDashboard() {
       time: "2 hours ago",
     },
   ];
-
+  const { toast } = useToast();
   const [stats, setStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
@@ -39,8 +40,12 @@ export default function AdminDashboard() {
       try {
         const res = await getDashboardStats();
         setStats(res.data);
-      } catch (err) {
-        console.error(err);
+      } catch (err: any) {
+        toast({
+          title: "Failed to load dashboard data ❌",
+          description: err?.message,
+          variant: "destructive",
+        });
       } finally {
         setLoading(false);
       }
@@ -71,10 +76,6 @@ export default function AdminDashboard() {
         },
       ]
     : [];
-
-  if (!loading && !stats) {
-    return <div className="text-red-500">Failed to load dashboard data</div>;
-  }
 
   return (
     <div className="space-y-6">
