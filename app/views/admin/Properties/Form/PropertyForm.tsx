@@ -57,8 +57,8 @@ const initialValues = {
   address: "",
   latitude: "",
   longitude: "",
-  area_rate_considered_per_sq_ft: "",
-  land_rate_per_sq_mtr_Sq_yard: "",
+  area_rate_considered_per_sq_ft: 0,
+  land_rate_per_sq_mtr_Sq_yard: 0,
   location: { type: "Point", coordinates: [0, 0] },
 
   //   fields for edit mode only
@@ -163,8 +163,8 @@ export default function PropertyForm({
           setValues({
             ...initialValues,
             ...data,
-            latitude: data?.location?.coordinates?.[0] ?? "",
-            longitude: data?.location?.coordinates?.[1] ?? "",
+            latitude: data?.location?.coordinates?.[0]?.toString() ?? "",
+            longitude: data?.location?.coordinates?.[1]?.toString() ?? "",
           });
         } catch (err: any) {
           toast({
