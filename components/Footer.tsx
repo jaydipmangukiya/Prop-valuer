@@ -12,7 +12,7 @@ export function Footer() {
               <Building2 className="h-8 w-8 text-blue-400" />
               <span className="text-2xl font-bold">PropValuer</span>
             </div>
-            <p className="text-gray-400 max-w-md mb-6">
+            <p className="text-gray-400 md:max-w-md md:mb-6 mb-3">
               Your trusted partner for accurate property valuations. We provide
               instant, reliable property estimates powered by advanced market
               analysis and real-time data.

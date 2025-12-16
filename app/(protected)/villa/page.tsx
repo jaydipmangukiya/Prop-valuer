@@ -180,7 +180,7 @@ const Villa = () => {
         <CardContent className="p-8">
           <form onSubmit={formik.handleSubmit}>
             {/* OWNER FIELDS */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label className="flex pb-2">Owner Name</Label>
                 <Input
@@ -219,7 +219,7 @@ const Villa = () => {
             </div>
 
             {/* AREA FIELDS */}
-            <div className="grid grid-cols-2 gap-4 mt-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
               <div>
                 <Label className="flex pb-2" htmlFor="land_area">
                   Land Area
@@ -259,7 +259,7 @@ const Villa = () => {
             </div>
 
             {/* UNIT SIZE */}
-            <div className="grid grid-cols-2 gap-4 mt-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
               <div>
                 <Label className="flex pb-2">Age of Property</Label>
                 <Input
@@ -296,7 +296,7 @@ const Villa = () => {
             </div>
 
             {/* FLOORS */}
-            <div className="grid grid-cols-2 gap-4 mt-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
               <div>
                 <Label className="flex pb-2">House / Villa No</Label>
                 <Input

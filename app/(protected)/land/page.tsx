@@ -173,7 +173,39 @@ const Land = () => {
         </CardHeader>
         <CardContent className="p-8">
           <form onSubmit={formik.handleSubmit}>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <Label className="flex pb-2">Owner Name</Label>
+                <Input
+                  name="owner"
+                  type="text"
+                  value={values.owner}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder="Enter owner name"
+                  className="border-b p-3 w-full"
+                />
+                {touched.owner && errors.owner && (
+                  <p className="text-red-500 text-sm">{errors.owner}</p>
+                )}
+              </div>
+              <div>
+                <Label className="flex pb-2">Owner Address</Label>
+                <Input
+                  name="address"
+                  type="text"
+                  value={values.address}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder="Enter owner address"
+                  className="border-b p-3 w-full"
+                />
+                {touched.address && errors.address && (
+                  <p className="text-red-500 text-sm">{errors.address}</p>
+                )}
+              </div>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
               <div>
                 <Label className="flex pb-2">Land Area</Label>
                 <Input
@@ -190,7 +222,6 @@ const Land = () => {
                   <p className="text-red-500 text-sm">{errors.landArea}</p>
                 )}
               </div>
-
               <div>
                 <Label className="flex pb-2" htmlFor="mesurment">
                   Measurement
@@ -213,8 +244,7 @@ const Land = () => {
               </div>
             </div>
 
-            {/* AREA FIELDS */}
-            <div className="grid grid-cols-2 gap-4 mt-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
               <div>
                 <Label className="flex pb-2" htmlFor="land_area">
                   Select Location
@@ -233,42 +263,9 @@ const Land = () => {
                   <p className="text-red-500 text-sm">{errors.location}</p>
                 )}
               </div>
-
-              <div>
-                <Label className="flex pb-2">Owner Name</Label>
-                <Input
-                  name="owner"
-                  type="text"
-                  value={values.owner}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  placeholder="Enter owner name"
-                  className="border-b p-3 w-full"
-                />
-                {touched.owner && errors.owner && (
-                  <p className="text-red-500 text-sm">{errors.owner}</p>
-                )}
-              </div>
             </div>
 
             {/* UNIT SIZE */}
-            <div className="grid grid-cols-2 gap-4 mt-4">
-              <div>
-                <Label className="flex pb-2">Owner Address</Label>
-                <Input
-                  name="address"
-                  type="text"
-                  value={values.address}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  placeholder="Enter owner address"
-                  className="border-b p-3 w-full"
-                />
-                {touched.address && errors.address && (
-                  <p className="text-red-500 text-sm">{errors.address}</p>
-                )}
-              </div>
-            </div>
 
             <div className="flex justify-center mt-8">
               <Button

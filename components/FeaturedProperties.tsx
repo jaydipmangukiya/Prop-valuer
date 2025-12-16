@@ -54,7 +54,7 @@ export function FeaturedProperties() {
           <div className="flex items-center justify-center min-h-[200px]">
             <div className="text-center">
               <Loader2 className="h-12 w-12 animate-spin text-emerald-600 mx-auto mb-4" />
-              <p className="text-slate-600">Loading properties...</p>
+              <p className="text-slate-600">Loading Properties...</p>
             </div>
           </div>
         ) : properties.length === 0 ? (

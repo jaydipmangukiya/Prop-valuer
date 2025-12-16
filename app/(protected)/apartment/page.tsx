@@ -215,7 +215,7 @@ const Apartment = () => {
         <CardContent className="p-8">
           <form onSubmit={formik.handleSubmit}>
             {/* OWNER FIELDS */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label className="flex pb-2">Owner Name</Label>
                 <Input
@@ -254,7 +254,7 @@ const Apartment = () => {
             </div>
 
             {/* AREA FIELDS */}
-            <div className="grid grid-cols-2 gap-4 mt-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
               <div>
                 <Label className="flex pb-2">Select Type Of Area</Label>
                 <select
@@ -288,7 +288,7 @@ const Apartment = () => {
             </div>
 
             {/* UNIT SIZE */}
-            <div className="grid grid-cols-2 gap-4 mt-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
               <div>
                 <Label className="flex pb-2">Unit Size</Label>
                 <Input
@@ -326,7 +326,7 @@ const Apartment = () => {
             </div>
 
             {/* FLOORS */}
-            <div className="grid grid-cols-2 gap-4 mt-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
               <div>
                 <Label className="flex pb-2">Total No. of Floors</Label>
                 <Input
@@ -359,7 +359,7 @@ const Apartment = () => {
             </div>
 
             {/* EXTRA */}
-            <div className="grid grid-cols-3 gap-4 mt-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
               <div>
                 <Label className="flex pb-2">Flat No</Label>
                 <Input

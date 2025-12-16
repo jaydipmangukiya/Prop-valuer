@@ -64,23 +64,12 @@ export default function LocationConfirmationPage({
     }
   };
 
-  //   const handleNext = () => {
-  //     if (selectedPropertyType) {
-  //       // Redirect to property details form with confirmed location and type
-  //       route.push(
-  //         `/valuation?location=${encodeURIComponent(
-  //           locationData?.address || ""
-  //         )}&type=${selectedPropertyType}`
-  //       );
-  //     }
-  //   };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <Header />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-6 sm:mb-8">
           <Link
             href="/"
             className="flex items-center space-x-2 text-emerald-600 hover:text-emerald-700"
@@ -88,11 +77,11 @@ export default function LocationConfirmationPage({
             <ArrowLeft className="h-5 w-5" />
             <span>Back to Search</span>
           </Link>
-          <div className="text-center">
-            <h1 className="text-2xl font-bold text-slate-800">
+          <div className="text-center sm:text-right">
+            <h1 className="text-lg md:text-2xl font-bold text-slate-800">
               Confirm Property Location
             </h1>
-            <p className="text-slate-600">
+            <p className="text-slate-600 text-sm md:text-lg">
               Please verify the location is correct
             </p>
           </div>
@@ -104,7 +93,7 @@ export default function LocationConfirmationPage({
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <MapPin className="h-5 w-5 text-emerald-600" />
-                <span>Property Location</span>
+                <span className="md:text-2xl text-xl">Property Location</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
