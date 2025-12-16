@@ -101,7 +101,7 @@ const ValuationsList = () => {
             <div className="flex items-center space-x-2">
               <Users className="h-5 w-5 text-blue-600" />
               <div>
-                <p className="text-sm text-slate-600">Total Reportsf</p>
+                <p className="text-sm text-slate-600">Total Reports</p>
                 <p className="text-xl font-bold">{totalReports}</p>
               </div>
             </div>
@@ -112,7 +112,7 @@ const ValuationsList = () => {
             <div className="flex items-center space-x-2">
               <UserCheck className="h-5 w-5 text-emerald-600" />
               <div>
-                <p className="text-sm text-slate-600">Verifiedf</p>
+                <p className="text-sm text-slate-600">Verified</p>
                 <p className="text-xl font-bold">
                   {reports?.filter((r) => r.is_verified).length}
                 </p>

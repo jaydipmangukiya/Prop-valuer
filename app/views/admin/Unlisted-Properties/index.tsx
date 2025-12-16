@@ -46,8 +46,8 @@ const UnlistedPropertiesList = () => {
   const [viewId, setViewId] = useState<string | null>(null);
 
   useEffect(() => {
-    fetchProperties();
-  }, [currentPage]);
+    setCurrentPage(1);
+  }, [searchTerm]);
 
   const fetchProperties = async () => {
     try {
@@ -71,12 +71,11 @@ const UnlistedPropertiesList = () => {
 
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
-      setCurrentPage(1);
       fetchProperties();
     }, 400);
 
     return () => clearTimeout(delayDebounce);
-  }, [searchTerm]);
+  }, [currentPage, searchTerm]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);

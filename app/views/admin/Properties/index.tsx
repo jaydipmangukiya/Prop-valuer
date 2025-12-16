@@ -157,28 +157,17 @@ const PropertiesList = () => {
             </div>
           </CardContent>
         </Card>
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center space-x-2">
-              <Building2 className="h-5 w-5 text-orange-600" />
-              <div>
-                <p className="text-sm text-slate-600">Pending Review</p>
-                {/* <p className="text-xl font-bold">89</p> */}
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-        <Card>
+        {/* <Card>
           <CardContent className="p-4">
             <div className="flex items-center space-x-2">
               <Building2 className="h-5 w-5 text-purple-600" />
               <div>
                 <p className="text-sm text-slate-600">This Month</p>
-                {/* <p className="text-xl font-bold">45</p> */}
+                <p className="text-xl font-bold">9</p>
               </div>
             </div>
           </CardContent>
-        </Card>
+        </Card> */}
       </div>
 
       {/* Properties Table */}
