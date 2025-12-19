@@ -14,73 +14,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  MapPin,
-  Mail,
-  Clock,
-  MessageSquare,
-  Headphones,
-  FileText,
-  Users,
-} from "lucide-react";
+import { MapPin } from "lucide-react";
 import FaqAccordion from "@/components/common/FaqAccordion";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { sendContactMessage } from "../api/contact";
+import { contactInfo, supportOptions } from "@/lib/siteContent";
 
 export default function ContactPage() {
-  const contactInfo = [
-    {
-      icon: <MapPin className="h-6 w-6 text-emerald-600" />,
-      title: "Office Address",
-      details: ["Surat, Gujarat, 395003", "India"],
-    },
-    {
-      icon: <Mail className="h-6 w-6 text-orange-600" />,
-      title: "Email Addresses",
-      details: [
-        "info@propvaluer.com",
-        "support@propvaluer.com",
-        "sales@propvaluer.com",
-      ],
-    },
-    {
-      icon: <Clock className="h-6 w-6 text-purple-600" />,
-      title: "Business Hours",
-      details: [
-        "Monday - Friday: 9:00 AM - 7:00 PM",
-        "Saturday: 10:00 AM - 5:00 PM",
-        "Sunday: Closed",
-      ],
-    },
-  ];
-
-  const supportOptions = [
-    {
-      icon: <MessageSquare className="h-8 w-8 text-emerald-600" />,
-      title: "Live Chat",
-      description: "Get instant help from our support team",
-      action: "Start Chat",
-    },
-    {
-      icon: <Headphones className="h-8 w-8 text-blue-600" />,
-      title: "Phone Support",
-      description: "Speak directly with our experts",
-      action: "Call Now",
-    },
-    {
-      icon: <FileText className="h-8 w-8 text-orange-600" />,
-      title: "Help Center",
-      description: "Browse our comprehensive FAQ section",
-      action: "View FAQs",
-    },
-    {
-      icon: <Users className="h-8 w-8 text-purple-600" />,
-      title: "Schedule Meeting",
-      description: "Book a consultation with our team",
-      action: "Book Now",
-    },
-  ];
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
@@ -289,29 +230,35 @@ export default function ContactPage() {
               </div>
 
               <div className="grid grid-cols-1 gap-6">
-                {contactInfo.map((info, index) => (
-                  <Card
-                    key={index}
-                    className="p-6 hover:shadow-lg transition-all duration-300 border-0 shadow-md"
-                  >
-                    <CardContent className="flex items-start space-x-4">
-                      <div className="flex-shrink-0">{info.icon}</div>
-                      <div>
-                        <h3 className="font-semibold text-slate-800 mb-2">
-                          {info.title}
-                        </h3>
-                        {info.details.map((detail, detailIndex) => (
-                          <p
-                            key={detailIndex}
-                            className="text-slate-600 text-sm"
-                          >
-                            {detail}
-                          </p>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
+                {contactInfo.map((info, index) => {
+                  const Icon = info.icon;
+                  return (
+                    <Card
+                      key={index}
+                      className="p-6 hover:shadow-lg transition-all duration-300 border-0 shadow-md"
+                    >
+                      <CardContent className="flex items-start space-x-4">
+                        <div className="flex-shrink-0">
+                          {" "}
+                          <Icon className={`h-6 w-6 ${info.colorClass}`} />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-slate-800 mb-2">
+                            {info.title}
+                          </h3>
+                          {info.details.map((detail, detailIndex) => (
+                            <p
+                              key={detailIndex}
+                              className="text-slate-600 text-sm"
+                            >
+                              {detail}
+                            </p>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -331,26 +278,33 @@ export default function ContactPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {supportOptions.map((option, index) => (
-              <Card
-                key={index}
-                className="text-center p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg"
-              >
-                <CardContent className="space-y-4">
-                  <div className="flex justify-center">{option.icon}</div>
-                  <h3 className="text-lg font-semibold text-slate-800">
-                    {option.title}
-                  </h3>
-                  <p className="text-slate-600 text-sm">{option.description}</p>
-                  <Button
-                    variant="outline"
-                    className="w-full border-2 border-slate-200 hover:border-emerald-500 hover:text-emerald-600"
-                  >
-                    {option.action}
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+            {supportOptions.map((option, index) => {
+              const Icon = option.icon;
+              return (
+                <Card
+                  key={index}
+                  className="text-center p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg"
+                >
+                  <CardContent className="space-y-4">
+                    <div className="flex justify-center">
+                      <Icon className={`h-8 w-8 ${option.colorClass}`} />
+                    </div>
+                    <h3 className="text-lg font-semibold text-slate-800">
+                      {option.title}
+                    </h3>
+                    <p className="text-slate-600 text-sm">
+                      {option.description}
+                    </p>
+                    <Button
+                      variant="outline"
+                      className="w-full border-2 border-slate-200 hover:border-emerald-500 hover:text-emerald-600"
+                    >
+                      {option.action}
+                    </Button>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>

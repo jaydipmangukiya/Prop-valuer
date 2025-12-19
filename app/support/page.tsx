@@ -16,88 +16,17 @@ import {
 } from "@/components/ui/select";
 import {
   Headphones,
-  MessageSquare,
   Mail,
   Phone,
-  Clock,
   CircleHelp as HelpCircle,
-  FileText,
   Users,
-  Zap,
 } from "lucide-react";
 import * as Yup from "yup";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useFormik } from "formik";
 import { createSupportQuery } from "../api/support";
-
-const supportOptions = [
-  {
-    icon: <MessageSquare className="h-8 w-8 text-emerald-600" />,
-    title: "Live Chat",
-    description: "Get instant help from our support team",
-    availability: "24/7 Available",
-    action: "Start Chat",
-    response: "Immediate",
-  },
-  {
-    icon: <Mail className="h-8 w-8 text-blue-600" />,
-    title: "Email Support",
-    description: "Send us detailed queries via email",
-    availability: "Always Open",
-    action: "Send Email",
-    response: "Within 4 hours",
-  },
-  {
-    icon: <Phone className="h-8 w-8 text-orange-600" />,
-    title: "Phone Support",
-    description: "Speak directly with our experts",
-    availability: "Mon-Sat, 9 AM - 7 PM",
-    action: "Call Now",
-    response: "Immediate",
-  },
-  {
-    icon: <FileText className="h-8 w-8 text-purple-600" />,
-    title: "Help Center",
-    description: "Browse our comprehensive FAQ section",
-    availability: "Always Available",
-    action: "Browse FAQs",
-    response: "Self-service",
-  },
-];
-
-const faqs = [
-  {
-    question: "How accurate are your property valuations?",
-    answer:
-      "Our AI-powered valuations have a 95% accuracy rate, validated against actual market transactions and expert assessments. We continuously update our algorithms with the latest market data.",
-  },
-  {
-    question: "How long does it take to get a valuation report?",
-    answer:
-      "Basic property valuations are instant. Detailed PDF reports with comprehensive market analysis are generated within 2-3 minutes of form submission.",
-  },
-  {
-    question: "Can I get valuations for commercial properties?",
-    answer:
-      "Yes, we provide valuations for both residential and commercial properties including offices, retail spaces, warehouses, and industrial properties.",
-  },
-  {
-    question: "Do you cover all cities in India?",
-    answer:
-      "We currently cover 50+ major cities across India including Surat, Delhi, Bangalore, Hyderabad, Chennai, Pune, and more. We're continuously expanding our coverage.",
-  },
-  {
-    question: "Is my property information secure?",
-    answer:
-      "Absolutely. We use bank-level encryption and security measures to protect all your property and personal information. Your data is never shared with third parties.",
-  },
-  {
-    question: "Can I download my valuation report?",
-    answer:
-      "Yes, all valuation reports are available as downloadable PDFs with detailed analysis, comparable properties, and market insights.",
-  },
-];
+import { faqs, supportOptions } from "@/lib/siteContent";
 
 const validationSchema = Yup.object({
   firstName: Yup.string().required("First name required"),
@@ -181,33 +110,30 @@ export default function SupportPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {supportOptions.map((option, index) => (
-              <Card
-                key={index}
-                className="text-center p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg"
-              >
-                <CardContent className="space-y-4">
-                  <div className="flex justify-center">{option.icon}</div>
-                  <h3 className="text-xl font-semibold text-slate-800">
-                    {option.title}
-                  </h3>
-                  <p className="text-slate-600 text-sm">{option.description}</p>
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-center space-x-2 text-sm text-slate-500">
-                      <Clock className="h-4 w-4" />
-                      <span>{option.availability}</span>
+            {supportOptions.map((option, index) => {
+              const Icon = option.icon;
+              return (
+                <Card
+                  key={index}
+                  className="text-center p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-0 shadow-lg"
+                >
+                  <CardContent className="space-y-4">
+                    <div className="flex justify-center">
+                      <Icon className={`h-8 w-8 ${option.colorClass}`} />
                     </div>
-                    <div className="flex items-center justify-center space-x-2 text-sm text-emerald-600">
-                      <Zap className="h-4 w-4" />
-                      <span>{option.response}</span>
-                    </div>
-                  </div>
-                  <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700">
-                    {option.action}
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+                    <h3 className="text-xl font-semibold text-slate-800">
+                      {option.title}
+                    </h3>
+                    <p className="text-slate-600 text-sm">
+                      {option.description}
+                    </p>
+                    <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700">
+                      {option.action}
+                    </Button>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>

@@ -1,86 +1,11 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Building2,
-  Users,
-  Award,
-  TrendingUp,
-  Shield,
-  Clock,
-} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { stats, teamMember, features } from "@/lib/siteContent";
 
 export default function AboutPage() {
-  const stats = [
-    {
-      icon: <Building2 className="h-8 w-8" />,
-      value: "50,000+",
-      label: "Properties Valued",
-    },
-    {
-      icon: <Users className="h-8 w-8" />,
-      value: "25,000+",
-      label: "Happy Customers",
-    },
-    {
-      icon: <Award className="h-8 w-8" />,
-      value: "95%",
-      label: "Accuracy Rate",
-    },
-    {
-      icon: <TrendingUp className="h-8 w-8" />,
-      value: "5+",
-      label: "Years Experience",
-    },
-  ];
-
-  const features = [
-    {
-      icon: <Shield className="h-12 w-12 text-emerald-600" />,
-      title: "Trusted & Secure",
-      description:
-        "Your data is protected with bank-level security. We ensure complete privacy and confidentiality of your property information.",
-    },
-    {
-      icon: <TrendingUp className="h-12 w-12 text-blue-600" />,
-      title: "Market Intelligence",
-      description:
-        "Our AI-powered algorithms analyze millions of data points including recent sales, market trends, and location factors.",
-    },
-    {
-      icon: <Clock className="h-12 w-12 text-orange-600" />,
-      title: "Instant Results",
-      description:
-        "Get comprehensive property valuation reports in seconds, not days. No waiting, no delays, just accurate results.",
-    },
-  ];
-
-  const team = [
-    {
-      name: "Rajesh Kumar",
-      role: "CEO & Founder",
-      image:
-        "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=300",
-      description: "15+ years in real estate and technology",
-    },
-    {
-      name: "Priya Sharma",
-      role: "Head of Data Science",
-      image:
-        "https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=300",
-      description: "PhD in Machine Learning, ex-Google",
-    },
-    {
-      name: "Amit Patel",
-      role: "VP Engineering",
-      image:
-        "https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=300",
-      description: "Former CTO at leading PropTech companies",
-    },
-  ];
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <Header />
@@ -101,17 +26,20 @@ export default function AboutPage() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-emerald-600 mb-4 flex justify-center">
-                  {stat.icon}
+            {stats.map((stat, index) => {
+              const Icon = stat.icon;
+              return (
+                <div key={index} className="text-center">
+                  <div className="text-emerald-600 mb-4 flex justify-center">
+                    <Icon className="w-8 h-8" />
+                  </div>
+                  <div className="text-3xl font-bold text-slate-800 mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-slate-600">{stat.label}</div>
                 </div>
-                <div className="text-3xl font-bold text-slate-800 mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-slate-600">{stat.label}</div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -164,22 +92,27 @@ export default function AboutPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <Card
-                key={index}
-                className="text-center p-8 hover:shadow-xl transition-all duration-300 border-0 shadow-lg"
-              >
-                <CardContent className="space-y-4">
-                  <div className="flex justify-center">{feature.icon}</div>
-                  <h3 className="text-xl font-semibold text-slate-800">
-                    {feature.title}
-                  </h3>
-                  <p className="text-slate-600 leading-relaxed">
-                    {feature.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
+            {features.map((feature, index) => {
+              const Icon = feature.icon;
+              return (
+                <Card
+                  key={index}
+                  className="text-center p-8 hover:shadow-xl transition-all duration-300 border-0 shadow-lg"
+                >
+                  <CardContent className="space-y-4">
+                    <div className="flex justify-center">
+                      <Icon className={`h-12 w-12 ${feature.colorClass}`} />
+                    </div>
+                    <h3 className="text-xl font-semibold text-slate-800">
+                      {feature.title}
+                    </h3>
+                    <p className="text-slate-600 leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -198,7 +131,7 @@ export default function AboutPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {team.map((member, index) => (
+            {teamMember.map((member, index) => (
               <Card
                 key={index}
                 className="text-center overflow-hidden hover:shadow-xl transition-all duration-300 border-0 shadow-lg"

@@ -1,63 +1,10 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  FileText,
-  Scale,
-  Shield,
-  TriangleAlert as AlertTriangle,
-  Users,
-  Gavel,
-} from "lucide-react";
+import { FileText, Gavel } from "lucide-react";
+import { termsSections } from "@/lib/siteContent";
 
 export default function TermsPage() {
-  const sections = [
-    {
-      icon: <Users className="h-6 w-6 text-emerald-600" />,
-      title: "User Responsibilities",
-      content: [
-        "Provide accurate and complete property information for valuation purposes.",
-        "Use the service only for legitimate property valuation needs.",
-        "Maintain the confidentiality of your account credentials.",
-        "Comply with all applicable laws and regulations when using our services.",
-        "Not attempt to reverse engineer or manipulate our valuation algorithms.",
-      ],
-    },
-    {
-      icon: <Shield className="h-6 w-6 text-blue-600" />,
-      title: "Service Limitations",
-      content: [
-        "Valuations are estimates based on available data and market analysis.",
-        "We do not guarantee the accuracy of third-party data sources.",
-        "Property values may fluctuate due to market conditions.",
-        "Our service is not a substitute for professional property appraisal.",
-        "We reserve the right to refuse service for any property or location.",
-      ],
-    },
-    {
-      icon: <Scale className="h-6 w-6 text-orange-600" />,
-      title: "Intellectual Property",
-      content: [
-        "All content, algorithms, and technology are proprietary to PropValuer.",
-        "Users may not copy, distribute, or reproduce our valuation reports for commercial purposes.",
-        "Our trademarks, logos, and brand elements are protected intellectual property.",
-        "User-generated content remains the property of the user but grants us usage rights.",
-        "We respect third-party intellectual property rights and expect users to do the same.",
-      ],
-    },
-    {
-      icon: <AlertTriangle className="h-6 w-6 text-red-600" />,
-      title: "Liability and Disclaimers",
-      content: [
-        "PropValuer is not liable for decisions made based on our valuation reports.",
-        "We disclaim all warranties, express or implied, regarding service accuracy.",
-        "Our liability is limited to the amount paid for the specific service.",
-        "We are not responsible for losses due to market fluctuations or external factors.",
-        "Users assume full responsibility for their property investment decisions.",
-      ],
-    },
-  ];
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <Header />
@@ -105,34 +52,37 @@ export default function TermsPage() {
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {sections.map((section, index) => (
-              <Card
-                key={index}
-                className="hover:shadow-xl transition-all duration-300 border-0 shadow-lg"
-              >
-                <CardHeader>
-                  <CardTitle className="flex items-center space-x-3">
-                    {section.icon}
-                    <span>{section.title}</span>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3">
-                    {section.content.map((item, itemIndex) => (
-                      <li
-                        key={itemIndex}
-                        className="flex items-start space-x-3"
-                      >
-                        <div className="w-2 h-2 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-slate-700 leading-relaxed">
-                          {item}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
+            {termsSections.map((section, index) => {
+              const Icon = section.icon;
+              return (
+                <Card
+                  key={index}
+                  className="hover:shadow-xl transition-all duration-300 border-0 shadow-lg"
+                >
+                  <CardHeader>
+                    <CardTitle className="flex items-center space-x-3">
+                      <Icon className={`h-6 w-6 ${section.colorClass}`} />
+                      <span>{section.title}</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-3">
+                      {section.content.map((item, itemIndex) => (
+                        <li
+                          key={itemIndex}
+                          className="flex items-start space-x-3"
+                        >
+                          <div className="w-2 h-2 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-slate-700 leading-relaxed">
+                            {item}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>

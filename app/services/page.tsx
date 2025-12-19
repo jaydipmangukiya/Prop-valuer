@@ -2,75 +2,13 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import {
-  Chrome as Home,
-  TrendingUp,
-  FileText,
-  Calculator,
-  Shield,
-  Clock,
-  CircleCheck as CheckCircle,
-} from "lucide-react";
+import { TrendingUp, Shield, Clock } from "lucide-react";
 import Image from "next/image";
 import SubscriptionPlans from "../views/subscription/SubscriptionPlans";
 import Link from "next/link";
+import { additionalServices, ourProcess } from "@/lib/siteContent";
 
 export default function ServicesPage() {
-  const additionalServices = [
-    {
-      icon: <TrendingUp className="h-8 w-8 text-emerald-600" />,
-      title: "Market Analysis Reports",
-      description:
-        "Comprehensive market trends and investment opportunities in your area",
-    },
-    {
-      icon: <FileText className="h-8 w-8 text-emerald-600" />,
-      title: "Property Documentation",
-      description:
-        "Legal document verification and property title analysis services",
-    },
-    {
-      icon: <Calculator className="h-8 w-8 text-emerald-600" />,
-      title: "Investment Advisory",
-      description:
-        "Expert guidance on property investment decisions and portfolio optimization",
-    },
-    {
-      icon: <Shield className="h-8 w-8 text-emerald-600" />,
-      title: "Property Insurance Valuation",
-      description:
-        "Accurate property valuation for insurance claims and coverage assessment",
-    },
-  ];
-
-  const process = [
-    {
-      step: "1",
-      title: "Property Details",
-      description:
-        "Provide basic information about your property including location, type, and specifications",
-    },
-    {
-      step: "2",
-      title: "AI Analysis",
-      description:
-        "Our advanced algorithms analyze market data, comparable sales, and location factors",
-    },
-    {
-      step: "3",
-      title: "Expert Review",
-      description:
-        "Real estate experts validate the AI results for maximum accuracy",
-    },
-    {
-      step: "4",
-      title: "Detailed Report",
-      description:
-        "Receive comprehensive valuation report with market insights and recommendations",
-    },
-  ];
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <Header />
@@ -114,22 +52,27 @@ export default function ServicesPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {additionalServices.map((service, index) => (
-              <Card
-                key={index}
-                className="p-6 hover:shadow-xl transition-all duration-300 border-0 shadow-lg"
-              >
-                <CardContent className="flex items-start space-x-4">
-                  <div className="flex-shrink-0">{service.icon}</div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-slate-800 mb-2">
-                      {service.title}
-                    </h3>
-                    <p className="text-slate-600">{service.description}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+            {additionalServices.map((service, index) => {
+              const Icon = service.icon;
+              return (
+                <Card
+                  key={index}
+                  className="p-6 hover:shadow-xl transition-all duration-300 border-0 shadow-lg"
+                >
+                  <CardContent className="flex items-start space-x-4">
+                    <div className="flex-shrink-0">
+                      <Icon className="h-8 w-8 text-emerald-600" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-slate-800 mb-2">
+                        {service.title}
+                      </h3>
+                      <p className="text-slate-600">{service.description}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -148,15 +91,11 @@ export default function ServicesPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {process.map((step, index) => (
+            {ourProcess.map((step, index) => (
               <div key={index} className="text-center relative">
                 <div className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6 text-xl font-bold shadow-lg">
                   {step.step}
                 </div>
-
-                {/* {index < process.length - 1 && (
-                  <div className="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-emerald-200 to-transparent -translate-x-8"></div>
-                )} */}
 
                 <h3 className="text-xl font-semibold text-slate-800 mb-3">
                   {step.title}

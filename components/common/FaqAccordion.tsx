@@ -6,6 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { contactFaqs } from "@/lib/siteContent";
 
 export interface FaqItem {
   question: string;
@@ -16,29 +17,6 @@ interface FaqAccordionProps {
   title?: string;
   subtitle?: string;
 }
-
-const contactFaqs = [
-  {
-    question: "How accurate are your property valuations?",
-    answer:
-      "Our AI-powered valuations have a 95% accuracy rate, validated against actual market transactions and expert assessments.",
-  },
-  {
-    question: "How long does it take to get a valuation report?",
-    answer:
-      "Basic property valuations are instant. Detailed reports with market analysis are generated within 24 hours.",
-  },
-  {
-    question: "Do you cover all cities in India?",
-    answer:
-      "We currently cover 50+ major cities across India, with plans to expand to more locations soon.",
-  },
-  {
-    question: "Is my property information secure?",
-    answer:
-      "Yes, we use bank-level encryption and security measures to protect all your property and personal information.",
-  },
-];
 
 export default function FaqAccordion({
   title = "Frequently Asked Questions",
