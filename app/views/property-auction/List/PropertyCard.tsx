@@ -1,13 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import {
-  Calendar,
-  MapPin,
-  Home,
-  Building,
-  Ruler,
-  Heart,
-  Share2,
-} from "lucide-react";
+import { Calendar, MapPin, Home, Building, Ruler, Share2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import InterestedModal from "../Form/InterestedModal";
@@ -131,17 +123,30 @@ export default function PropertyCard({ data }: any) {
                 </button>
               </div>
             </div>
-
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-slate-50 md:p-4 p-3 rounded-xl">
+              <div className="grid grid-cols-2 gap-4 sm:hidden">
+                <Info
+                  label="Carpet Area"
+                  value={data.carpetArea}
+                  icon={<Ruler />}
+                />
+                <Info
+                  label="Built-Up Area"
+                  value={data.builtUpArea}
+                  icon={<Ruler />}
+                />
+              </div>
               <Info
                 label="Carpet Area"
                 value={data.carpetArea}
                 icon={<Ruler />}
+                className="hidden sm:flex"
               />
               <Info
                 label="Built-Up Area"
                 value={data.builtUpArea}
                 icon={<Ruler />}
+                className="hidden sm:flex"
               />
               <Info
                 label="Type Of Action"
@@ -155,7 +160,6 @@ export default function PropertyCard({ data }: any) {
               />
               <Info label="State" value={data.state} icon={<MapPin />} />
               <Info label="City" value={data.city} icon={<MapPin />} />
-              {/* <Info label="Bank" value={data.bankName} icon={<Building />} /> */}
               <Info
                 label="Auction Start"
                 value={formatDate(data?.auctionDetails?.auctionStart)}
@@ -167,7 +171,7 @@ export default function PropertyCard({ data }: any) {
                 icon={<Calendar />}
               />
               <Info
-                label="End Date"
+                label="EMD End Date"
                 value={formatDate(data?.auctionDetails?.emdEnd)}
                 icon={<Calendar />}
               />
@@ -212,8 +216,8 @@ export default function PropertyCard({ data }: any) {
   );
 }
 
-const Info = ({ label, value, icon }: any) => (
-  <div className="flex items-start gap-2">
+const Info = ({ label, value, icon, className = "" }: any) => (
+  <div className={`flex items-start gap-2 ${className}`}>
     <div className="text-emerald-600 mt-1">{icon}</div>
     <div>
       <p className="text-xs text-slate-500">{label}</p>

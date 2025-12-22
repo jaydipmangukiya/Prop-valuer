@@ -155,16 +155,31 @@ export default function PropertyDetailsPage({ params }: any) {
 
                   {/* FIELD GRID */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-slate-50 rounded-xl md:p-5 p-4">
+                    <div className="grid grid-cols-2 gap-4 sm:hidden">
+                      <Info
+                        label="Carpet Area"
+                        value={property.carpetArea}
+                        icon={<Ruler />}
+                      />
+                      <Info
+                        label="Built-Up Area"
+                        value={property.builtUpArea}
+                        icon={<Ruler />}
+                      />
+                    </div>
                     <Info
                       label="Carpet Area"
                       value={property.carpetArea}
                       icon={<Ruler />}
+                      className="hidden sm:flex"
                     />
                     <Info
                       label="Built-Up Area"
                       value={property.builtUpArea}
                       icon={<Ruler />}
+                      className="hidden sm:flex"
                     />
+
                     <Info
                       label="Possession Status"
                       value={property.possessionStatus}
@@ -196,7 +211,7 @@ export default function PropertyDetailsPage({ params }: any) {
                       icon={<Calendar />}
                     />
                     <Info
-                      label="End Date"
+                      label="EMD End Date"
                       value={formatDate(property?.auctionDetails?.emdEnd)}
                       icon={<Calendar />}
                     />
@@ -430,8 +445,8 @@ export default function PropertyDetailsPage({ params }: any) {
 
 /* SUB COMPONENTS (CLEAN & REUSABLE) */
 
-const Info = ({ label, value, icon }: any) => (
-  <div className="flex items-start gap-2">
+const Info = ({ label, value, icon, className }: any) => (
+  <div className={`flex items-start gap-2 ${className}`}>
     <div className="text-emerald-600 mt-0.5">{icon}</div>
     <div>
       <p className="text-xs text-slate-500">{label}</p>
