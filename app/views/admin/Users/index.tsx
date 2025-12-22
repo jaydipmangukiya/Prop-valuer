@@ -229,7 +229,7 @@ const UsersList = () => {
       {/* Users Table */}
       <Card>
         <CardHeader>
-          <CardTitle>All Usersss</CardTitle>
+          <CardTitle>All Users</CardTitle>
         </CardHeader>
         <CardContent>
           {/* <div className="flex items-center space-x-4 mb-6">
