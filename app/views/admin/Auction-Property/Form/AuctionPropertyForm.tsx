@@ -896,7 +896,7 @@ const AuctionPropertyForm = ({
             </form>
           </div>
         )}
-        <DialogFooter className="pt-4">
+        <DialogFooter className="pt-4 gap-2">
           <Button
             type="submit"
             form="auctionForm"

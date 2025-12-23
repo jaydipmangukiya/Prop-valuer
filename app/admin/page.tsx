@@ -4,9 +4,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Building2, Users, FileText, TrendingUp, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getDashboardStats } from "../api/dashboard";
 import { useToast } from "@/hooks/use-toast";
+import { UserContext } from "@/components/authentication/UserProvider";
+import { PERMISSIONS } from "@/lib/constant";
+import { hasAccess } from "@/lib/permissions";
 
 export default function AdminDashboard() {
   const recentActivities = [
@@ -34,25 +37,35 @@ export default function AdminDashboard() {
   const { toast } = useToast();
   const [stats, setStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const { userData } = useContext(UserContext)!;
 
   useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const res = await getDashboardStats();
-        setStats(res.data);
-      } catch (err: any) {
-        toast({
-          title: "Failed to load dashboard data ❌",
-          description: err?.message,
-          variant: "destructive",
-        });
-      } finally {
-        setLoading(false);
-      }
-    };
-
+    if (
+      !hasAccess(
+        userData?.permissions,
+        PERMISSIONS.DASHBOARD.actions.VIEW,
+        userData?.role
+      )
+    ) {
+      return;
+    }
     fetchStats();
-  }, []);
+  }, [userData]);
+
+  const fetchStats = async () => {
+    try {
+      const res = await getDashboardStats();
+      setStats(res.data);
+    } catch (err: any) {
+      toast({
+        title: "Failed to load dashboard data ❌",
+        description: err?.message,
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const cards = stats
     ? [

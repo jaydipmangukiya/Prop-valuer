@@ -16,6 +16,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useEffect, useState } from "react";
 import { addStaff, getStaffById, updateStaff } from "@/app/api/staffService";
 import { Loader2 } from "lucide-react";
+import { PERMISSIONS } from "@/lib/constant";
 
 interface AddStaffFormProps {
   open: boolean;
@@ -23,16 +24,6 @@ interface AddStaffFormProps {
   onSuccess?: () => void;
   staffId?: string | null;
 }
-
-const accessOptions = [
-  "User",
-  "Staff",
-  "Property",
-  "Add Property",
-  "Edit Property",
-  "Delete Property",
-  "Unlisted Property",
-];
 
 const getValidationSchema = (isEditMode: boolean) => {
   return Yup.object({
@@ -52,7 +43,7 @@ const getValidationSchema = (isEditMode: boolean) => {
           .required("Password is required"),
       otherwise: (schema) => schema.notRequired(),
     }),
-    module: Yup.array().when([], {
+    permissions: Yup.array().when([], {
       is: () => !isEditMode,
       then: (schema) =>
         schema
@@ -75,7 +66,7 @@ const StaffForm = ({
   const isEditMode = !!staffId;
 
   const initialValues = {
-    module: [] as string[],
+    permissions: [] as string[],
     role: "",
     email: "",
     name: "",
@@ -91,7 +82,7 @@ const StaffForm = ({
       setLoading(true);
       try {
         const payload = {
-          module: values.module,
+          permissions: values.permissions,
           role: values.role,
           email: values.email,
           name: values.name,
@@ -153,7 +144,9 @@ const StaffForm = ({
             email: data?.email || "",
             name: data?.name || "",
             phone: data?.phone || "",
-            module: Array.isArray(data?.module) ? data.module : [],
+            permissions: Array.isArray(data?.permissions)
+              ? data.permissions
+              : [],
             password: "",
             isEditMode: true,
           });
@@ -173,13 +166,13 @@ const StaffForm = ({
   }, [staffId, open]);
 
   const handleCheckboxChange = (value: string) => {
-    if (values.module.includes(value)) {
+    if (values.permissions.includes(value)) {
       setFieldValue(
-        "module",
-        values.module.filter((item) => item !== value)
+        "permissions",
+        values.permissions.filter((item) => item !== value)
       );
     } else {
-      setFieldValue("module", [...values.module, value]);
+      setFieldValue("permissions", [...values.permissions, value]);
     }
   };
 
@@ -202,7 +195,10 @@ const StaffForm = ({
             <p className="text-slate-600">Loading property data...</p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-6 max-h-[70vh] overflow-y-auto"
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Role */}
               <div>
@@ -276,17 +272,17 @@ const StaffForm = ({
             {!isEditMode && (
               <div>
                 <Label>Access</Label>
-                <div className="flex flex-wrap gap-4 mt-2">
+                {/* <div className="flex flex-wrap gap-4 mt-2">
                   {accessOptions.map((access, idx) => (
                     <label key={idx} className="flex items-center">
                       <input
                         type="checkbox"
                         className="mr-2"
-                        value={access}
-                        checked={values.module.includes(access)}
-                        onChange={() => handleCheckboxChange(access)}
+                        value={access.value}
+                        checked={values.module.includes(access.value)}
+                        onChange={() => handleCheckboxChange(access.value)}
                       />
-                      {access}
+                      {access.label}
                     </label>
                   ))}
                 </div>
@@ -294,7 +290,38 @@ const StaffForm = ({
                   <p className="text-red-500 text-sm mt-1">
                     {errors.module as string}
                   </p>
-                )}
+                )} */}
+                <div className="mt-3 space-y-4">
+                  {Object.values(PERMISSIONS).map((section) => (
+                    <div key={section.label} className="rounded-lg border p-2">
+                      <div className="font-semibold text-slate-800 mb-3">
+                        {section.label}
+                      </div>
+
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        {Object.entries(section.actions).map(
+                          ([actionKey, actionValue]) => (
+                            <label
+                              key={actionValue}
+                              className="flex items-center gap-2"
+                            >
+                              <input
+                                type="checkbox"
+                                checked={values.permissions.includes(
+                                  actionValue
+                                )}
+                                onChange={() =>
+                                  handleCheckboxChange(actionValue)
+                                }
+                              />
+                              <span className="text-sm">{actionKey}</span>
+                            </label>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
 

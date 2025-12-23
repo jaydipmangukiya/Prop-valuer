@@ -16,6 +16,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { DASHBOARD_ROLES } from "@/lib/constant";
 
 export default function ProfilePage() {
   const { userData, loading } = useContext(UserContext)!;
@@ -118,15 +119,19 @@ export default function ProfilePage() {
                 </div>
               </div>
             </div>
-            <div className="bg-white shadow-xl rounded-xl p-6 border border-slate-200">
-              <h3 className="text-lg font-semibold mb-4">Login to Dashboard</h3>
-              <Button
-                onClick={() => router.push("/admin")}
-                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-lg transition"
-              >
-                Go to Admin Dashboard
-              </Button>
-            </div>
+            {DASHBOARD_ROLES.includes(userData.role) && (
+              <div className="bg-white shadow-xl rounded-xl p-6 border border-slate-200">
+                <h3 className="text-lg font-semibold mb-4">
+                  Login to Dashboard
+                </h3>
+                <Button
+                  onClick={() => router.push("/admin")}
+                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-lg transition"
+                >
+                  Go to Admin Dashboard
+                </Button>
+              </div>
+            )}
           </div>
 
           {/* RIGHT SIDE — SUBSCRIPTION INFO */}
@@ -191,7 +196,7 @@ export default function ProfilePage() {
               </h3>
 
               <div className="flex flex-wrap gap-3">
-                {userData?.module?.map((mod: string) => (
+                {userData?.permissions?.map((mod: string) => (
                   <span
                     key={mod}
                     className="px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full font-medium text-sm"

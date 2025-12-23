@@ -4,7 +4,7 @@ export interface Staff {
   _id: string;
   role: string;
   email: string;
-  module: any[];
+  permissions: any[];
   is_paid: boolean;
   no_of_report: number;
   login_attempts: number;

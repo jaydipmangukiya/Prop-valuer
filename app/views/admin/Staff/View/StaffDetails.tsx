@@ -106,7 +106,7 @@ export default function ViewStaffModal({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
                 <p>
                   <span className="font-medium">Modules:</span>{" "}
-                  {staffDetails.module?.join(", ") || "—"}
+                  {staffDetails.permissions?.join(", ") || "—"}
                 </p>
               </div>
             </div>
