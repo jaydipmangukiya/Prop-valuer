@@ -22,20 +22,26 @@ import {
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Pagination } from "@/components/common/Pagination";
-import { rowPerPage } from "@/lib/constant";
+import { PERMISSIONS, rowPerPage } from "@/lib/constant";
 import StatusBadge from "@/components/common/StatusBadge";
 import { getReports, ValuationReport } from "@/app/api/valuationService";
 import ViewReportModal from "./View/ViewReportModal";
 import { generateReportPDF } from "@/components/DownloadPDF";
 import { getReportById } from "@/app/api/apartment";
+import { useAuth } from "@/components/authentication/AuthProvider";
+import { hasAccess } from "@/lib/permissions";
 
 const ValuationsList = () => {
   const { toast } = useToast();
+  const { user: userData } = useAuth();
+  const perms = userData?.permissions || [];
+  const role = userData?.role;
   const [loading, setLoading] = useState(false);
   const [reports, setReports] = useState<ValuationReport[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalReports, setTotalReports] = useState(0);
   const [reportId, setReportId] = useState<string | null>(null);
+  const canEdit = hasAccess(perms, PERMISSIONS.VALUATION.actions.EDIT, role);
 
   useEffect(() => {
     fetchReports();
@@ -193,6 +199,7 @@ const ValuationsList = () => {
                             <Eye className="h-3 w-3" />
                           </Button>
                           <Button
+                            disabled={!canEdit}
                             size="sm"
                             variant="outline"
                             className="h-8 w-8 p-0"

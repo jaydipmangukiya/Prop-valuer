@@ -13,13 +13,18 @@ import {
 import { Loader2, Pencil, HandshakeIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Pagination } from "@/components/common/Pagination";
-import { rowPerPage } from "@/lib/constant";
+import { PERMISSIONS, rowPerPage } from "@/lib/constant";
 import { getSupportQueries } from "@/app/api/support";
 import { Button } from "@/components/ui/button";
 import UpdateStatusModal from "./Form/UpdateStatusModal";
+import { hasAccess } from "@/lib/permissions";
+import { useAuth } from "@/components/authentication/AuthProvider";
 
 const SupportQueriesList = () => {
   const { toast } = useToast();
+  const { user: userData } = useAuth();
+  const perms = userData?.permissions || [];
+  const role = userData?.role;
   const [loading, setLoading] = useState(false);
 
   const [totalItems, setTotalItems] = useState(0);
@@ -28,6 +33,11 @@ const SupportQueriesList = () => {
 
   const [openModal, setOpenModal] = useState(false);
   const [selectedQuery, setSelectedQuery] = useState<any>(null);
+  const canEdit = hasAccess(
+    perms,
+    PERMISSIONS.SUPPORT_QUERIES.actions.EDIT,
+    role
+  );
 
   useEffect(() => {
     fetchSupportQueries();
@@ -126,6 +136,7 @@ const SupportQueriesList = () => {
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end space-x-2">
                           <Button
+                            disabled={!canEdit}
                             size="sm"
                             variant="outline"
                             className="h-8 w-8 p-0"

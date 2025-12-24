@@ -15,7 +15,7 @@ import {
 import { Users, Plus, Pencil, Trash2, Loader2, Eye } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Pagination } from "@/components/common/Pagination";
-import { rowPerPage } from "@/lib/constant";
+import { PERMISSIONS, rowPerPage } from "@/lib/constant";
 import DeleteDialog from "@/components/common/DeleteDialog";
 
 // Dynamically import AuctionPropertyForm to reduce initial bundle size
@@ -32,10 +32,31 @@ import {
   getAuctionProperties,
 } from "@/app/api/auctionProperty";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/components/authentication/AuthProvider";
+import { hasAccess } from "@/lib/permissions";
 
 const AuctionPropertyList = () => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
+  const { user: userData } = useAuth();
+  const perms = userData?.permissions || [];
+  const role = userData?.role;
+
+  const canAdd = hasAccess(
+    perms,
+    PERMISSIONS.AUCTION_PROPERTY.actions.ADD,
+    role
+  );
+  const canEdit = hasAccess(
+    perms,
+    PERMISSIONS.AUCTION_PROPERTY.actions.EDIT,
+    role
+  );
+  const canDelete = hasAccess(
+    perms,
+    PERMISSIONS.AUCTION_PROPERTY.actions.DELETE,
+    role
+  );
 
   const [auctionproperties, setAuctionProperties] = useState<AuctionProperty[]>(
     []
@@ -117,6 +138,7 @@ const AuctionPropertyList = () => {
           </h1>
         </div>
         <Button
+          disabled={!canAdd}
           className="bg-emerald-600 hover:bg-emerald-700"
           onClick={() => setIsAddModalOpen(true)}
         >
@@ -228,6 +250,7 @@ const AuctionPropertyList = () => {
                           </Button>
                           <Button
                             size="sm"
+                            disabled={!canEdit}
                             variant="outline"
                             className="h-8 w-8 p-0"
                             onClick={() => {
@@ -237,6 +260,7 @@ const AuctionPropertyList = () => {
                             <Pencil className="h-3 w-3" />
                           </Button>
                           <Button
+                            disabled={!canDelete}
                             size="sm"
                             variant="outline"
                             className="h-8 w-8 p-0 text-red-600 hover:text-red-700"

@@ -91,6 +91,7 @@ export const PERMISSIONS = {
     label: "Support Queries",
     actions: {
       VIEW: "SUPPORT_QUERIES_VIEW",
+      EDIT: "SUPPORT_QUERIES_EDIT",
     },
   },
 

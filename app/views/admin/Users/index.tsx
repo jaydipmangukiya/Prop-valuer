@@ -18,9 +18,11 @@ import { Users, Plus, Trash2, Eye, Loader2, Pencil } from "lucide-react";
 import { deleteUser, getUsers, User } from "@/app/api/userService";
 import { useToast } from "@/hooks/use-toast";
 import { Pagination } from "@/components/common/Pagination";
-import { rowPerPage } from "@/lib/constant";
+import { PERMISSIONS, rowPerPage } from "@/lib/constant";
 import StatusBadge from "@/components/common/StatusBadge";
 import DeleteDialog from "@/components/common/DeleteDialog";
+import { useAuth } from "@/components/authentication/AuthProvider";
+import { hasAccess } from "@/lib/permissions";
 
 // Dynamically import modals to reduce initial bundle size
 const UserDetailsModal = dynamic(() => import("./View/UserDetails"), {
@@ -35,6 +37,9 @@ const UserForm = dynamic(() => import("./Form/UserForm"), {
 
 const UsersList = () => {
   const { toast } = useToast();
+  const { user: userData } = useAuth();
+  const perms = userData?.permissions || [];
+  const role = userData?.role;
   const [currentPage, setCurrentPage] = useState(1);
   const [users, setUsers] = useState<User[]>([]);
   const [totalUsers, setTotalUsers] = useState(0);
@@ -45,6 +50,9 @@ const UsersList = () => {
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [userToDelete, setUserToDelete] = useState<string | null>(null);
+
+  const canDelete = hasAccess(perms, PERMISSIONS.USER.actions.DELETE, role);
+  const canAdd = hasAccess(perms, PERMISSIONS.USER.actions.ADD, role);
 
   useEffect(() => {
     fetchUsers();
@@ -164,6 +172,7 @@ const UsersList = () => {
           </p>
         </div>
         <Button
+          disabled={!canAdd}
           className="bg-emerald-600 hover:bg-emerald-700"
           onClick={() => setAddEditOpen(true)}
         >
@@ -333,6 +342,7 @@ const UsersList = () => {
                             <Eye className="h-3 w-3" />
                           </Button>
                           <Button
+                            disabled={!canDelete}
                             size="sm"
                             variant="outline"
                             onClick={() => handleDeleteClick(user._id)}

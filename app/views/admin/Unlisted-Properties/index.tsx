@@ -29,13 +29,18 @@ import {
   unListedProperty,
 } from "@/app/api/unListedPropertyService";
 import { Pagination } from "@/components/common/Pagination";
-import { rowPerPage } from "@/lib/constant";
+import { PERMISSIONS, rowPerPage } from "@/lib/constant";
 import StatusBadge from "@/components/common/StatusBadge";
 import DeleteDialog from "@/components/common/DeleteDialog";
 import UnlistedPropertyDetails from "./View/UnlistedPropertiesUserDetails";
+import { useAuth } from "@/components/authentication/AuthProvider";
+import { hasAccess } from "@/lib/permissions";
 
 const UnlistedPropertiesList = () => {
   const { toast } = useToast();
+  const { user: userData } = useAuth();
+  const perms = userData?.permissions || [];
+  const role = userData?.role;
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [properties, setProperties] = useState<unListedProperty[]>([]);
@@ -44,6 +49,12 @@ const UnlistedPropertiesList = () => {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [propertyToDelete, setPropertyToDelete] = useState<string | null>(null);
   const [viewId, setViewId] = useState<string | null>(null);
+
+  const canDelete = hasAccess(
+    perms,
+    PERMISSIONS.UNLISTED_PROPERTY.actions.DELETE,
+    role
+  );
 
   useEffect(() => {
     setCurrentPage(1);
@@ -287,6 +298,7 @@ const UnlistedPropertiesList = () => {
                             variant="outline"
                             className="h-8 w-8 p-0 text-red-600 hover:text-red-700"
                             onClick={() => handleDeleteClick(property._id)}
+                            disabled={!canDelete}
                           >
                             <Trash2 className="h-3 w-3" />
                           </Button>

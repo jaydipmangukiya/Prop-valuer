@@ -28,9 +28,11 @@ import {
 import { deleteStaff, getStaffs, Staff } from "@/app/api/staffService";
 import { useToast } from "@/hooks/use-toast";
 import { Pagination } from "@/components/common/Pagination";
-import { rowPerPage } from "@/lib/constant";
+import { PERMISSIONS, rowPerPage } from "@/lib/constant";
 import StatusBadge from "@/components/common/StatusBadge";
 import DeleteDialog from "@/components/common/DeleteDialog";
+import { useAuth } from "@/components/authentication/AuthProvider";
+import { hasAccess } from "@/lib/permissions";
 
 // Dynamically import forms to reduce initial bundle size
 const StaffForm = dynamic(() => import("./Form/StaffForm"), {
@@ -45,6 +47,9 @@ const ViewStaffModal = dynamic(() => import("./View/StaffDetails"), {
 
 const StaffList = () => {
   const { toast } = useToast();
+  const { user: userData } = useAuth();
+  const perms = userData?.permissions || [];
+  const role = userData?.role;
   const [loading, setLoading] = useState(false);
   const [staff, setStaff] = useState<Staff[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -54,6 +59,10 @@ const StaffList = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [selectedStaffId, setSelectedStaffId] = useState<string | null>(null);
   const [viewId, setViewId] = useState<string | null>(null);
+
+  const canDelete = hasAccess(perms, PERMISSIONS.STAFF.actions.DELETE, role);
+  const canAdd = hasAccess(perms, PERMISSIONS.STAFF.actions.ADD, role);
+  const canEdit = hasAccess(perms, PERMISSIONS.STAFF.actions.EDIT, role);
 
   useEffect(() => {
     fetchStaffs();
@@ -124,6 +133,7 @@ const StaffList = () => {
           </p>
         </div>
         <Button
+          disabled={!canAdd}
           className="bg-emerald-600 hover:bg-emerald-700"
           onClick={() => setIsAddModalOpen(true)}
         >
@@ -251,6 +261,7 @@ const StaffList = () => {
                             <Eye className="h-3 w-3" />
                           </Button>
                           <Button
+                            disabled={!canEdit}
                             size="sm"
                             variant="outline"
                             className="h-8 w-8 p-0"
@@ -261,6 +272,7 @@ const StaffList = () => {
                             <Pencil className="h-3 w-3" />
                           </Button>
                           <Button
+                            disabled={!canDelete}
                             size="sm"
                             variant="outline"
                             className="h-8 w-8 p-0 text-red-600 hover:text-red-700"

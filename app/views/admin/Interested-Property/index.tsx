@@ -14,19 +14,30 @@ import {
 import { Users, Loader2, Pencil } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Pagination } from "@/components/common/Pagination";
-import { rowPerPage } from "@/lib/constant";
+import { PERMISSIONS, rowPerPage } from "@/lib/constant";
 import { getPropertyInterests } from "@/app/api/interestedProperty";
 import InterestStatusModal from "./Form/InterestStatusModal";
+import { hasAccess } from "@/lib/permissions";
+import { useAuth } from "@/components/authentication/AuthProvider";
 
 const InterestedPropertyList = () => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
+  const { user: userData } = useAuth();
+  const perms = userData?.permissions || [];
+  const role = userData?.role;
 
   const [interests, setInterests] = useState<any[]>([]);
   const [totalItems, setTotalItems] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [openStatusModal, setOpenStatusModal] = useState(false);
   const [selectedInterest, setSelectedInterest] = useState(null);
+
+  const canEdit = hasAccess(
+    perms,
+    PERMISSIONS.INTERESTED_PROPERTY.actions.EDIT,
+    role
+  );
 
   useEffect(() => {
     fetchInterests();
@@ -118,6 +129,7 @@ const InterestedPropertyList = () => {
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end space-x-2">
                           <Button
+                            disabled={!canEdit}
                             size="sm"
                             variant="outline"
                             className="h-8 w-8 p-0"

@@ -29,9 +29,11 @@ import {
 } from "@/app/api/properties";
 import { useToast } from "@/hooks/use-toast";
 import { Pagination } from "@/components/common/Pagination";
-import { rowPerPage } from "@/lib/constant";
+import { PERMISSIONS, rowPerPage } from "@/lib/constant";
 import StatusBadge from "@/components/common/StatusBadge";
 import DeleteDialog from "@/components/common/DeleteDialog";
+import { useAuth } from "@/components/authentication/AuthProvider";
+import { hasAccess } from "@/lib/permissions";
 
 // Dynamically import forms to reduce initial bundle size
 const PropertyForm = dynamic(() => import("./Form/PropertyForm"), {
@@ -54,6 +56,9 @@ const BulkPropertyUpload = dynamic(
 
 const PropertiesList = () => {
   const { toast } = useToast();
+  const { user: userData } = useAuth();
+  const perms = userData?.permissions || [];
+  const role = userData?.role;
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [totalProperties, setTotalProperties] = useState(0);
@@ -69,6 +74,10 @@ const PropertiesList = () => {
   const [bulkModalOpen, setBulkModalOpen] = useState(false);
   const [bulkFile, setBulkFile] = useState<File | null>(null);
   const [bulkUploading, setBulkUploading] = useState(false);
+
+  const canDelete = hasAccess(perms, PERMISSIONS.PROPERTY.actions.DELETE, role);
+  const canAdd = hasAccess(perms, PERMISSIONS.PROPERTY.actions.ADD, role);
+  const canEdit = hasAccess(perms, PERMISSIONS.PROPERTY.actions.EDIT, role);
 
   useEffect(() => {
     fetchProperties();
@@ -178,6 +187,7 @@ const PropertiesList = () => {
         </div>
         <div className="flex flex-col sm:flex-row sm:items-center gap-2">
           <Button
+            disabled={!canAdd}
             className="bg-emerald-600 hover:bg-emerald-700"
             onClick={() => setBulkModalOpen(true)}
           >
@@ -185,6 +195,7 @@ const PropertiesList = () => {
             Add Bulk Property
           </Button>
           <Button
+            disabled={!canAdd}
             className="bg-emerald-600 hover:bg-emerald-700"
             onClick={() => setIsAddModalOpen(true)}
           >
@@ -310,6 +321,7 @@ const PropertiesList = () => {
                               <Eye className="h-3 w-3" />
                             </Button>
                             <Button
+                              disabled={!canEdit}
                               size="sm"
                               variant="outline"
                               className="h-8 w-8 p-0"
@@ -318,6 +330,7 @@ const PropertiesList = () => {
                               <Pencil className="h-3 w-3" />
                             </Button>
                             <Button
+                              disabled={!canDelete}
                               size="sm"
                               variant="outline"
                               onClick={() => handleDeleteProperty(property._id)}
