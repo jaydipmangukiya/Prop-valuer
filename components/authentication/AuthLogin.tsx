@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,7 +10,7 @@ import Link from "next/link";
 import { loginUser } from "@/app/api/authService";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
-import { UserContext } from "./UserProvider";
+import { useAuth } from "./AuthProvider";
 
 export default function AuthLogin() {
   const [showPassword, setShowPassword] = useState(false);
@@ -21,13 +21,13 @@ export default function AuthLogin() {
   });
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
-  const { userData, refetchUserData } = useContext(UserContext)!;
+  const { user, refetch } = useAuth();
 
   useEffect(() => {
-    if (userData && userData._id) {
+    if (user && user._id) {
       router.replace("/");
     }
-  }, [userData]);
+  }, [user]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,7 +42,7 @@ export default function AuthLogin() {
           title: "Login Successful 🎉",
           description: `Welcome ${res.email}`,
         });
-        await refetchUserData();
+        await refetch();
 
         // Redirect after short delay
         setTimeout(() => {

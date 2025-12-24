@@ -165,14 +165,45 @@ const StaffForm = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [staffId, open]);
 
-  const handleCheckboxChange = (value: string) => {
-    if (values.permissions.includes(value)) {
+  const togglePermission = (
+    section: { actions: Record<string, string> },
+    actionValue: string
+  ) => {
+    const sectionActions = Object.values(section.actions);
+    const viewValue = section.actions.VIEW; // exists in every module in your PERMISSIONS
+    const has = (p: string) => values.permissions.includes(p);
+
+    // If user toggles VIEW
+    if (actionValue === viewValue) {
+      if (has(viewValue)) {
+        // turning VIEW OFF => remove VIEW + all other actions from that section
+        setFieldValue(
+          "permissions",
+          values.permissions.filter((p) => !sectionActions.includes(p))
+        );
+      } else {
+        // turning VIEW ON => add only VIEW
+        setFieldValue(
+          "permissions",
+          Array.from(new Set([...values.permissions, viewValue]))
+        );
+      }
+      return;
+    }
+
+    // If user toggles ADD/EDIT/DELETE
+    if (has(actionValue)) {
+      // turning it OFF => remove only that action
       setFieldValue(
         "permissions",
-        values.permissions.filter((item) => item !== value)
+        values.permissions.filter((p) => p !== actionValue)
       );
     } else {
-      setFieldValue("permissions", [...values.permissions, value]);
+      // turning it ON => ensure VIEW is ON too
+      setFieldValue(
+        "permissions",
+        Array.from(new Set([...values.permissions, viewValue, actionValue]))
+      );
     }
   };
 
@@ -269,30 +300,15 @@ const StaffForm = ({
             </div>
 
             {/* Access */}
-            {!isEditMode && (
-              <div>
-                <Label>Access</Label>
-                {/* <div className="flex flex-wrap gap-4 mt-2">
-                  {accessOptions.map((access, idx) => (
-                    <label key={idx} className="flex items-center">
-                      <input
-                        type="checkbox"
-                        className="mr-2"
-                        value={access.value}
-                        checked={values.module.includes(access.value)}
-                        onChange={() => handleCheckboxChange(access.value)}
-                      />
-                      {access.label}
-                    </label>
-                  ))}
-                </div>
-                {touched.module && errors.module && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.module as string}
-                  </p>
-                )} */}
-                <div className="mt-3 space-y-4">
-                  {Object.values(PERMISSIONS).map((section) => (
+            <div>
+              <Label>Access</Label>
+              <div className="mt-3 space-y-4">
+                {Object.values(PERMISSIONS).map((section) => {
+                  const viewSelected = values.permissions.includes(
+                    section.actions.VIEW
+                  );
+
+                  return (
                     <div key={section.label} className="rounded-lg border p-2">
                       <div className="font-semibold text-slate-800 mb-3">
                         {section.label}
@@ -300,30 +316,40 @@ const StaffForm = ({
 
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                         {Object.entries(section.actions).map(
-                          ([actionKey, actionValue]) => (
-                            <label
-                              key={actionValue}
-                              className="flex items-center gap-2"
-                            >
-                              <input
-                                type="checkbox"
-                                checked={values.permissions.includes(
-                                  actionValue
-                                )}
-                                onChange={() =>
-                                  handleCheckboxChange(actionValue)
-                                }
-                              />
-                              <span className="text-sm">{actionKey}</span>
-                            </label>
-                          )
+                          ([actionKey, actionValue]) => {
+                            const isView = actionKey === "VIEW";
+                            const disabled = !isView && !viewSelected;
+
+                            return (
+                              <label
+                                key={actionValue}
+                                className={`flex items-center gap-2 ${
+                                  disabled
+                                    ? "opacity-50 cursor-not-allowed"
+                                    : ""
+                                }`}
+                              >
+                                <input
+                                  type="checkbox"
+                                  checked={values.permissions.includes(
+                                    actionValue
+                                  )}
+                                  disabled={disabled}
+                                  onChange={() =>
+                                    togglePermission(section, actionValue)
+                                  }
+                                />
+                                <span className="text-sm">{actionKey}</span>
+                              </label>
+                            );
+                          }
                         )}
                       </div>
                     </div>
-                  ))}
-                </div>
+                  );
+                })}
               </div>
-            )}
+            </div>
 
             {/* Password */}
             {!isEditMode && (

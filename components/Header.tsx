@@ -1,22 +1,21 @@
 "use client";
 
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Building2, Menu, X, User, History } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import LogoutButton from "./authentication/LogoutButton";
-import { UserContext } from "./authentication/UserProvider";
+import { LogoutButton } from "./authentication/LogoutButton";
+import { useAuth } from "./authentication/AuthProvider";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openProfileMenu, setOpenProfileMenu] = useState(false);
   const profileRef = useRef<HTMLDivElement>(null);
 
-  const userContext = useContext(UserContext);
-  const token = userContext?.token ?? null;
-  const userName = userContext?.userData?.name ?? "User";
+  const { user, isAuth } = useAuth();
+  const userName = user?.name ?? "User";
 
-  const isLoggedIn = !!token;
+  const isLoggedIn = isAuth;
 
   const navigation = [
     { name: "Home", href: "/" },

@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -18,10 +18,10 @@ import {
   HandshakeIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import LogoutButton from "@/components/authentication/LogoutButton";
-import { UserContext } from "@/components/authentication/UserProvider";
+import { LogoutButton } from "@/components/authentication/LogoutButton";
+import { useAuth } from "@/components/authentication/AuthProvider";
 import { ADMIN_ROUTE_PERMISSION_MAP, hasAccess } from "@/lib/permissions";
-import AdminGuard from "@/components/authentication/AdminGuard";
+import { AdminGuard } from "@/components/authentication/AdminGuard";
 
 export default function AdminLayout({
   children,
@@ -29,7 +29,7 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const { userData } = useContext(UserContext)!;
+  const { user } = useAuth();
   const pathname = usePathname();
 
   const allNavigation = [
@@ -62,16 +62,16 @@ export default function AdminLayout({
   ];
 
   const navigation = useMemo(() => {
-    if (!userData) return [];
+    if (!user) return [];
 
     return allNavigation.filter((item) =>
       hasAccess(
-        userData.permissions,
+        user.permissions,
         ADMIN_ROUTE_PERMISSION_MAP[item.href],
-        userData.role
+        user.role
       )
     );
-  }, [userData]);
+  }, [user]);
 
   const homeHref = navigation.length > 0 ? navigation[0].href : "/";
 

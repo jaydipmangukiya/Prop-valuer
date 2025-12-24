@@ -1,13 +1,12 @@
 "use client";
 
-import { useContext, useEffect, useState } from "react";
-
+import { useEffect, useState, useCallback } from "react";
 import { useToast } from "@/hooks/use-toast";
 import PricingBox from "./PricingBox";
 import { getSubscription } from "@/app/api/subscription";
 import { Loader } from "lucide-react";
 import axiosInstance from "@/lib/axiosInstance";
-import { UserContext } from "@/components/authentication/UserProvider";
+import { useAuth } from "@/components/authentication/AuthProvider";
 import { RazorpayOrderOptions } from "react-razorpay";
 import { useRouter } from "next/navigation";
 
@@ -20,9 +19,9 @@ const SubscriptionPlans = ({ handleClose }: SubscriptionPlansProps) => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const { userData, refetchUserData } = useContext(UserContext)!;
+  const { user, refetch } = useAuth();
 
-  const fetchPlans = async () => {
+  const fetchPlans = useCallback(async () => {
     setLoading(true);
     try {
       const res = await getSubscription();
@@ -39,11 +38,11 @@ const SubscriptionPlans = ({ handleClose }: SubscriptionPlansProps) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [toast]);
 
   useEffect(() => {
     fetchPlans();
-  }, []);
+  }, [fetchPlans]);
 
   const handlePlanClick = async (plan: any) => {
     try {
@@ -72,7 +71,7 @@ const SubscriptionPlans = ({ handleClose }: SubscriptionPlansProps) => {
         handler: async (response: any) => {
           try {
             const paymentres = await axiosInstance.post("/razorpay", {
-              user_id: userData?._id,
+              user_id: user?._id,
               subscriptions_id: plan._id,
               razor_pay_response: response.razorpay_payment_id,
               order_id: order.id,
@@ -83,7 +82,7 @@ const SubscriptionPlans = ({ handleClose }: SubscriptionPlansProps) => {
                 description: "Your subscription has been activated.",
               });
               router.push("/");
-              refetchUserData();
+              await refetch();
             }
           } catch (error) {
             toast({
@@ -95,9 +94,9 @@ const SubscriptionPlans = ({ handleClose }: SubscriptionPlansProps) => {
         },
 
         prefill: {
-          name: userData?.name || "",
-          contact: userData?.phone || "",
-          email: userData?.email || "",
+          name: user?.name || "",
+          contact: user?.phone || "",
+          email: user?.email || "",
         },
 
         theme: { color: "#0d9488", hide_topbar: false },

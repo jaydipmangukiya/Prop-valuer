@@ -3,6 +3,7 @@
 import { jwtDecode } from "jwt-decode";
 import React, { createContext, useEffect, useState, ReactNode } from "react";
 import axiosInstance from "@/lib/axiosInstance";
+import { subscribe } from "@/lib/authEvents";
 
 interface UserContextType {
   token: string | null;
@@ -84,10 +85,33 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
    * -------------------------------------------------- */
   useEffect(() => {
     const sync = (e: StorageEvent) => {
-      if (e.key === "token") refetchUserData();
+      if (e.key === "token") {
+        // If token was removed (logout/token expired), clear user data
+        if (!e.newValue) {
+          setToken(null);
+          setUserData(null);
+        } else {
+          refetchUserData();
+        }
+      }
     };
     window.addEventListener("storage", sync);
     return () => window.removeEventListener("storage", sync);
+  }, []);
+
+  /** --------------------------------------------------
+   *  LISTEN TO TOKEN EXPIRATION EVENTS (same tab)
+   * -------------------------------------------------- */
+  useEffect(() => {
+    const unsubscribe = subscribe((event) => {
+      if (event.type === "TOKEN_EXPIRED" || event.type === "LOGOUT") {
+        setToken(null);
+        setUserData(null);
+      }
+    });
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   return (

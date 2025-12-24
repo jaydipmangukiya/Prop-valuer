@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,7 +19,7 @@ import { rowPerPage } from "@/lib/constant";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getReportByUsers } from "@/app/api/apartment";
-import { UserContext } from "@/components/authentication/UserProvider";
+import { useAuth } from "@/components/authentication/AuthProvider";
 import { useRouter } from "next/navigation";
 
 const HistoryList = () => {
@@ -29,14 +29,14 @@ const HistoryList = () => {
   const [reports, setReports] = useState<any[]>([]);
   const [totalReports, setTotalReports] = useState(0);
   const [loading, setLoading] = useState(false);
-  const { userData, loading: userLoading } = useContext(UserContext)!;
-  const userId = userData?._id;
+  const { user, isLoading } = useAuth();
+  const userId = user?._id;
 
   useEffect(() => {
-    if (!userLoading && userId) {
+    if (!isLoading && userId) {
       fetchReports();
     }
-  }, [userId, currentPage, userLoading]);
+  }, [userId, currentPage, isLoading]);
 
   const fetchReports = async () => {
     try {

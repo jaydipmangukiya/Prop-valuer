@@ -4,10 +4,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Building2, Users, FileText, TrendingUp, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getDashboardStats } from "../api/dashboard";
 import { useToast } from "@/hooks/use-toast";
-import { UserContext } from "@/components/authentication/UserProvider";
+import { useAuth } from "@/components/authentication/AuthProvider";
 import { PERMISSIONS } from "@/lib/constant";
 import { hasAccess } from "@/lib/permissions";
 
@@ -37,22 +37,9 @@ export default function AdminDashboard() {
   const { toast } = useToast();
   const [stats, setStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const { userData } = useContext(UserContext)!;
+  const { user } = useAuth();
 
-  useEffect(() => {
-    if (
-      !hasAccess(
-        userData?.permissions,
-        PERMISSIONS.DASHBOARD.actions.VIEW,
-        userData?.role
-      )
-    ) {
-      return;
-    }
-    fetchStats();
-  }, [userData]);
-
-  const fetchStats = async () => {
+  const fetchStats = useCallback(async () => {
     try {
       const res = await getDashboardStats();
       setStats(res.data);
@@ -65,7 +52,20 @@ export default function AdminDashboard() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [toast]);
+
+  useEffect(() => {
+    if (
+      !hasAccess(
+        user?.permissions,
+        PERMISSIONS.DASHBOARD.actions.VIEW,
+        user?.role
+      )
+    ) {
+      return;
+    }
+    fetchStats();
+  }, [user, fetchStats]);
 
   const cards = stats
     ? [

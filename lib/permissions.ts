@@ -22,3 +22,16 @@ export const hasAccess = (
   if (!requiredPermission) return true;
   return userPermissions.includes(requiredPermission);
 };
+
+export function getFirstAllowedAdminRoute(userData: {
+  permissions?: string[];
+  role?: string;
+}) {
+  if (!userData) return "/";
+
+  const entry = Object.entries(ADMIN_ROUTE_PERMISSION_MAP).find(([_, perm]) =>
+    hasAccess(userData.permissions, perm, userData.role)
+  );
+
+  return entry?.[0] || "/";
+}

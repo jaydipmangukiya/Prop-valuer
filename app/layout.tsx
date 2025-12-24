@@ -3,8 +3,9 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
-import { UserProvider } from "@/components/authentication/UserProvider";
+import { AuthProvider } from "@/components/authentication/AuthProvider";
 import RazorpayScriptLoader from "./views/subscription/RazorpayScriptLoader";
+import NavigationInitializer from "@/components/navigation/NavigationInitializer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,11 +35,12 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <UserProvider>
+        <AuthProvider>
+          <NavigationInitializer />
           <RazorpayScriptLoader />
           {children}
           <Toaster />
-        </UserProvider>
+        </AuthProvider>
       </body>
     </html>
   );

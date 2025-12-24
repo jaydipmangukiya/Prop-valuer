@@ -1,7 +1,6 @@
 "use client";
 
-import { useContext } from "react";
-import { UserContext } from "@/components/authentication/UserProvider";
+import { useAuth } from "@/components/authentication/AuthProvider";
 import {
   Phone,
   Mail,
@@ -17,9 +16,10 @@ import Footer from "@/components/Footer";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { DASHBOARD_ROLES } from "@/lib/constant";
+import { getFirstAllowedAdminRoute } from "@/lib/permissions";
 
 export default function ProfilePage() {
-  const { userData, loading } = useContext(UserContext)!;
+  const { user: userData, isLoading: loading } = useAuth();
   const router = useRouter();
 
   if (loading || !userData) {
@@ -119,19 +119,23 @@ export default function ProfilePage() {
                 </div>
               </div>
             </div>
-            {DASHBOARD_ROLES.includes(userData.role) && (
-              <div className="bg-white shadow-xl rounded-xl p-6 border border-slate-200">
-                <h3 className="text-lg font-semibold mb-4">
-                  Login to Dashboard
-                </h3>
-                <Button
-                  onClick={() => router.push("/admin")}
-                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-lg transition"
-                >
-                  Go to Admin Dashboard
-                </Button>
-              </div>
-            )}
+            {userData?.role &&
+              DASHBOARD_ROLES.includes(userData.role as string) && (
+                <div className="bg-white shadow-xl rounded-xl p-6 border border-slate-200">
+                  <h3 className="text-lg font-semibold mb-4">
+                    Login to Dashboard
+                  </h3>
+                  <Button
+                    onClick={() => {
+                      const route = getFirstAllowedAdminRoute(userData);
+                      router.push(route);
+                    }}
+                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-lg transition"
+                  >
+                    Go to Admin Dashboard
+                  </Button>
+                </div>
+              )}
           </div>
 
           {/* RIGHT SIDE — SUBSCRIPTION INFO */}
