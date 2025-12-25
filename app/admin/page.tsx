@@ -11,6 +11,33 @@ import { useAuth } from "@/components/authentication/AuthProvider";
 import { PERMISSIONS } from "@/lib/constant";
 import { hasAccess } from "@/lib/permissions";
 
+const quickActions = [
+  {
+    name: "Manage Users",
+    href: "/admin/users",
+    icon: Users,
+    permission: PERMISSIONS.USER.actions.VIEW,
+  },
+  {
+    name: "View Properties",
+    href: "/admin/properties",
+    icon: Building2,
+    permission: PERMISSIONS.PROPERTY.actions.VIEW,
+  },
+  {
+    name: "Review Valuations",
+    href: "/admin/valuations",
+    icon: FileText,
+    permission: PERMISSIONS.VALUATION.actions.VIEW,
+  },
+  {
+    name: "System Settings",
+    href: "/admin/settings",
+    icon: Eye,
+    permission: PERMISSIONS.SETTINGS.actions.VIEW,
+  },
+];
+
 export default function AdminDashboard() {
   const recentActivities = [
     {
@@ -90,6 +117,10 @@ export default function AdminDashboard() {
       ]
     : [];
 
+  const allowedQuickActions = quickActions.filter((action) =>
+    hasAccess(user?.permissions, action.permission, user?.role)
+  );
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -164,7 +195,7 @@ export default function AdminDashboard() {
           <CardHeader>
             <CardTitle>Quick Actions</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3">
+          {/* <CardContent className="space-y-3">
             <Link href="/admin/users">
               <Button variant="outline" className="w-full justify-start">
                 <Users className="h-4 w-4 mr-2" />
@@ -189,6 +220,16 @@ export default function AdminDashboard() {
                 System Settings
               </Button>
             </Link>
+          </CardContent> */}
+          <CardContent className="space-y-3">
+            {allowedQuickActions.map((action) => (
+              <Link key={action.href} href={action.href}>
+                <Button variant="outline" className="w-full justify-start">
+                  <action.icon className="h-4 w-4 mr-2" />
+                  {action.name}
+                </Button>
+              </Link>
+            ))}
           </CardContent>
         </Card>
       </div>
