@@ -21,6 +21,7 @@ import {
   updateAuctionProperty,
 } from "@/app/api/auctionProperty";
 import { getStates, getCitiesByState } from "@/lib/locationService";
+import { areaMeasurementOptions, bankOptions, propertyTypeOptions } from "@/lib/constant";
 
 interface AddStaffFormProps {
   open: boolean;
@@ -31,7 +32,10 @@ interface AddStaffFormProps {
 
 const validationSchema = Yup.object({
   title: Yup.string().required("Title is required"),
-  possessionStatus: Yup.string().required("Possession is required"),
+  possessionStatus: Yup.string()
+    .oneOf(["symbolic", "physical"], "Invalid possession status")
+    .required("Possession is required"),
+  type_of_property: Yup.string().required("Property type is required"),
   actionType: Yup.string().required("Action type is required"),
 
   stateId: Yup.number().required("State is required"),
@@ -48,6 +52,7 @@ const validationSchema = Yup.object({
   carpetArea: Yup.number().typeError("Invalid").nullable(),
 
   bankName: Yup.string().required("Bank Name required"),
+  propertyArea: Yup.string().required("Property area is required"),
   price: Yup.number()
     .typeError("Price must be a valid number")
     .required("Price is required")
@@ -100,6 +105,9 @@ const AuctionPropertyForm = ({
     emdEnd: "",
     builtUpArea: 0,
     carpetArea: 0,
+    propertyArea: "",
+    type_of_property: "",
+    areaMesurment: "",
 
     bankName: "",
     price: 0,
@@ -163,6 +171,7 @@ const AuctionPropertyForm = ({
         if (removeExistingPdf) {
           formData.append("removeSaleNoticePdf", "true");
         }
+        console.log("Submitting form with values:", values);
         if (isEditMode) {
           await updateAuctionProperty(propertyId!, formData);
           toast({
@@ -238,9 +247,12 @@ const AuctionPropertyForm = ({
 
           builtUpArea: data.builtUpArea || 0,
           carpetArea: data.carpetArea || 0,
+          propertyArea: data.propertyArea,
           bankName: data.bankName,
           price: data.price,
           propertyId: data.propertyId,
+          type_of_property: data.type_of_property || "",
+          areaMesurment: data.areaMesurment || "",
 
           pinCode: data.pinCode || "",
           ownershipOfProperty: data.ownershipOfProperty || "",
@@ -373,13 +385,17 @@ const AuctionPropertyForm = ({
                 </div>
                 <div>
                   <Label className="mb-2 flex">Possession Status</Label>
-                  <Input
+                  <select
                     id="possessionStatus"
                     name="possessionStatus"
                     value={values.possessionStatus}
                     onChange={handleChange}
-                    placeholder="Possession Status"
-                  />
+                    className="border rounded p-2 w-full bg-white"
+                  >
+                    <option value="">Select Possession Status</option>
+                    <option value="symbolic">Symbolic</option>
+                    <option value="physical">Physical</option>
+                  </select>
                   {touched.possessionStatus && errors.possessionStatus && (
                     <p className="text-red-500 text-sm mt-1">
                       {errors.possessionStatus}
@@ -545,19 +561,91 @@ const AuctionPropertyForm = ({
                   />
                 </div>
               </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                  <Label>Property Area</Label>
+                  <Input
+                    type="text"
+                    name="propertyArea"
+                    value={values.propertyArea}
+                    onChange={handleChange}
+                    placeholder="Property Area"
+                  />
+                  {touched.propertyArea && errors.propertyArea && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.propertyArea}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  <Label htmlFor="type_of_property" className="mb-2 flex">
+                    Type of Property
+                  </Label>
+                  <select
+                    id="type_of_property"
+                    name="type_of_property"
+                    className="w-full rounded border px-3 py-2"
+                    onChange={handleChange}
+                    value={values.type_of_property}
+                  >
+                    <option value="">Select Property Type</option>
+                    {propertyTypeOptions.map((opt) => (
+                      <option key={opt.value} value={opt.value}>
+                        {opt.label}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.type_of_property && touched.type_of_property && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.type_of_property}
+                    </p>
+                  )}
+                </div>
+                <div className="div">
+                  <Label className="mb-2 flex">Input Area Measurement</Label>
+                  <select
+                    id="areaMesurment"
+                    name="areaMesurment"
+                    value={values.areaMesurment}
+                    onChange={handleChange}
+                    className="border rounded p-2 w-full bg-white"
+                  >
+                    <option value="">Select Area Measurement</option>
+                    {areaMeasurementOptions.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                  {touched.areaMesurment && errors.areaMesurment && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.areaMesurment}
+                    </p>
+                  )}
+                </div>
+
+              </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* State */}
                 <div>
                   <Label className="mb-2 flex">Bank Name</Label>
-                  <Input
+                  <select
                     id="bankName"
                     name="bankName"
                     value={values.bankName}
                     onChange={handleChange}
-                    placeholder="bankName"
-                    type="string"
-                  />
+                    className="w-full rounded border px-3 py-2 bg-white"
+                  >
+                    <option value="">Select Bank</option>
+
+                    {bankOptions?.map((bank) => (
+                      <option key={bank.value} value={bank.value}>
+                        {bank.label}
+                      </option>
+                    ))}
+                  </select>
+
                   {touched.bankName && errors.bankName && (
                     <p className="text-red-500 text-sm mt-1">
                       {errors.bankName}
@@ -908,8 +996,8 @@ const AuctionPropertyForm = ({
                 ? "Updating..."
                 : "Adding..."
               : isEditMode
-              ? "Update"
-              : "Add"}
+                ? "Update"
+                : "Add"}
           </Button>
           <Button
             type="button"

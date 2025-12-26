@@ -97,6 +97,21 @@ export default function AuctionPropertyDetails({ params }: any) {
               value={`${property.city} (ID: ${property.cityId})`}
               icon={<MapPin />}
             />
+            <Info
+              label="Property Area"
+              value={`${property.propertyArea}`}
+              icon={<MapPin />}
+            />
+            <Info
+              label="Type of Property"
+              value={`${property.type_of_property}`}
+              icon={<Building2 />}
+            />
+            <Info
+              label="Area Measurement"
+              value={`${property.areaMesurment}`}
+              icon={<Ruler />}
+            />
 
             <Info
               label="Bank Name"

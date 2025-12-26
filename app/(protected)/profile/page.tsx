@@ -194,7 +194,7 @@ export default function ProfilePage() {
             </div>
 
             {/* MODULE PERMISSIONS */}
-            <div className="bg-white shadow-xl rounded-xl p-6 border border-slate-200">
+            {/* <div className="bg-white shadow-xl rounded-xl p-6 border border-slate-200">
               <h3 className="text-xl font-bold text-slate-800 mb-4">
                 Assigned Modules
               </h3>
@@ -209,7 +209,7 @@ export default function ProfilePage() {
                   </span>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

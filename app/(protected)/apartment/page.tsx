@@ -16,6 +16,7 @@ import { useAuth } from "@/components/authentication/AuthProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SubscriptionModal from "@/app/views/subscription/SubscriptionModal";
+import { areaMeasurementOptions } from "@/lib/constant";
 
 const Apartment = () => {
   const router = useRouter();
@@ -277,9 +278,11 @@ const Apartment = () => {
                   className="border p-2 w-full rounded-md"
                 >
                   <option value="">Choose</option>
-                  <option value="sqmt">SQMT</option>
-                  <option value="yard area">Yard Area</option>
-                  <option value="sqft">SQFT</option>
+                  {areaMeasurementOptions?.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
                 </select>
                 {touched.areaMesurment && errors.areaMesurment && (
                   <p className="text-red-500 text-sm">{errors.areaMesurment}</p>

@@ -46,6 +46,9 @@ export interface AuctionProperty {
   images: { public_id: string; url: string }[];
   saleNoticePdf?: { originalName: string; url: string };
   views?: number;
+  type_of_property: string;
+  propertyArea: string;
+  areaMesurment: string;
 }
 
 export interface AuctionPagination {
@@ -63,14 +66,38 @@ export interface AuctionPropertyResponse {
   pagination: AuctionPagination;
 }
 
+export interface AuctionPropertyFilters {
+  limit?: number;
+  skip?: number;
+  state?: string;
+  city?: string;
+  location?: string;
+  type?: string;
+}
+
 /* GET ALL */
 export const getAuctionProperties = async (
-  limit: number = 10,
-  skip: number = 0
+  arg1?: number | AuctionPropertyFilters,
+  arg2?: number
 ): Promise<AuctionPropertyResponse> => {
   try {
+    const query = new URLSearchParams();
+
+    if (typeof arg1 === "number") {
+      query.append("limit", String(arg1));
+      query.append("skip", String(arg2 || 0));
+    }
+
+    // ✅ Website usage: getAuctionProperties({ filters })
+    else if (typeof arg1 === "object") {
+      Object.entries(arg1).forEach(([key, value]) => {
+        if (value !== undefined && value !== "") {
+          query.append(key, String(value));
+        }
+      });
+    }
     const res = await axiosInstance.get(
-      `/auction-property?limit=${limit}&skip=${skip}`
+      `/auction-property?${query.toString()}`
     );
     return res.data;
   } catch (err: any) {

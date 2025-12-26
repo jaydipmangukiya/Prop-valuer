@@ -103,3 +103,36 @@ export const PERMISSIONS = {
     },
   },
 } as const;
+
+export const propertyTypeOptions = [
+  { label: "Residential Flat", value: "Residential Flat" },
+  { label: "Residential Plot", value: "Residential Plot" },
+  { label: "Residential House", value: "Residential House" },
+  { label: "Commercial Shop", value: "Commercial Shop" },
+  { label: "Office", value: "Office" },
+  { label: "Industrial Plot", value: "Industrial Plot" },
+  { label: "Agricultural Land", value: "Agricultural Land" },
+  { label: "NA Land", value: "NA Land" },
+];
+
+export const bankOptions = [
+  { label: "Bank of Baroda", value: "Bank of Baroda" },
+  { label: "Central Bank of India", value: "Central Bank of India" },
+  { label: "Bank of India", value: "Bank of India" },
+  { label: "Punjab National Bank", value: "Punjab National Bank" },
+  { label: "Indian Bank", value: "Indian Bank" },
+  { label: "Bank of Maharashtra", value: "Bank of Maharashtra" },
+  { label: "UCO Bank", value: "UCO Bank" },
+  { label: "Union Bank of India", value: "Union Bank of India" },
+  {
+    label: "Tata Capital Finance Limited",
+    value: "Tata Capital Finance Limited",
+  },
+  { label: "Canara Bank", value: "Canara Bank" },
+];
+
+export const areaMeasurementOptions = [
+  { label: "SQFT", value: "sqft" },
+  { label: "SQMT", value: "sqmt" },
+  { label: "Yard Area", value: "yard area" },
+];

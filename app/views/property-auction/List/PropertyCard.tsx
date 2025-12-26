@@ -15,14 +15,6 @@ export default function PropertyCard({ data }: any) {
       <div className="w-full bg-white rounded-2xl shadow-md hover:shadow-lg transition-all border border-slate-100 overflow-hidden">
         <div className="flex flex-col md:flex-row">
           <div className="md:w-1/3 relative">
-            {/* <img
-              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
-              className="w-full h-60 md:h-full object-cover"
-              alt="Property"
-              alt={data.title}
-            />
-            */}
-
             {data.images?.length > 0 ? (
               <div className="relative w-full h-full overflow-hidden rounded-xl">
                 {/* SLIDER IMAGES */}
@@ -91,11 +83,6 @@ export default function PropertyCard({ data }: any) {
               </h2>
 
               <div className="flex items-center gap-3">
-                {/* LOVE ICON */}
-                {/* <button className="p-2 rounded-full border border-slate-200 hover:bg-slate-100">
-                  <Heart className="h-5 w-5 text-slate-600" />
-                </button> */}
-
                 {/* SHARE ICON */}
                 <button
                   className="p-2 rounded-full border border-slate-200 hover:bg-slate-100"
@@ -160,6 +147,11 @@ export default function PropertyCard({ data }: any) {
               />
               <Info label="State" value={data.state} icon={<MapPin />} />
               <Info label="City" value={data.city} icon={<MapPin />} />
+              <Info
+                label="Location (Area)"
+                value={data.propertyArea}
+                icon={<MapPin />}
+              />
               <Info
                 label="Auction Start"
                 value={formatDate(data?.auctionDetails?.auctionStart)}
