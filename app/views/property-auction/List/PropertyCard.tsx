@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import InterestedModal from "../Form/InterestedModal";
 import { formatPriceINR } from "@/lib/utils";
+import Image from "next/image";
 
 export default function PropertyCard({ data }: any) {
   const router = useRouter();
@@ -23,11 +24,13 @@ export default function PropertyCard({ data }: any) {
                   style={{ transform: `translateX(-${currentIndex * 100}%)` }}
                 >
                   {data.images.map((img: any, idx: number) => (
-                    <img
+                    <Image
                       key={idx}
                       src={img.url}
-                      className="inline-block w-full h-full object-cover rounded-xl"
+                      fill
+                      className="w-full object-cover rounded-xl"
                       alt={`Property Image ${idx + 1}`}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
                     />
                   ))}
                 </div>
