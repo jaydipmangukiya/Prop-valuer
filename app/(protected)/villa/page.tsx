@@ -15,7 +15,7 @@ import { useAuth } from "@/components/authentication/AuthProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SubscriptionModal from "@/app/views/subscription/SubscriptionModal";
-import { areaMeasurementOptions } from "@/lib/constant";
+import { areaMeasurementOptions, bathroomOptions, facingOptions, furnishingStatusOptions, overlookingOptions, possessionStatusOptions } from "@/lib/constant";
 
 const Villa = () => {
   const router = useRouter();
@@ -42,6 +42,18 @@ const Villa = () => {
     address: yup.string().required("Owner Address is required"),
     type: yup.string().required("Property Type is required"),
     house_no: yup.string().required("House / Villa No is required"),
+
+    open_parking: yup.number().min(0),
+    covered_parking: yup.number().min(0),
+
+    interior_age: yup.string().nullable(),
+
+    interior_spend: yup.string().when("interior_age", {
+      is: (val: string) => !!val,
+      then: (schema) =>
+        schema.required("Please enter interior spend amount"),
+      otherwise: (schema) => schema.notRequired(),
+    }),
   });
 
   const formik = useFormik({
@@ -54,6 +66,18 @@ const Villa = () => {
       type: "",
       areaMesurment: "",
       house_no: "",
+
+      open_parking: 0,
+      covered_parking: 0,
+      interior_age: "",
+      interior_spend: "",
+      additional_details: {
+        facing: "",
+        overlooking: "",
+        possession_status: "",
+        bathroom: "",
+        furnishing_status: "",
+      },
     },
     validationSchema,
     onSubmit: async (values) => {
@@ -116,6 +140,12 @@ const Villa = () => {
 
         owner_name: values.owner,
         owner_address: values.address,
+
+        open_parking: Number(values.open_parking),
+        covered_parking: Number(values.covered_parking),
+        interior_age: values.interior_age,
+        interior_spend: values.interior_spend,
+        additional_details: values.additional_details,
 
         user_id: userData?._id,
       };
@@ -332,6 +362,229 @@ const Villa = () => {
                 {touched.areaMesurment && errors.areaMesurment && (
                   <p className="text-red-500 text-sm">{errors.areaMesurment}</p>
                 )}
+              </div>
+            </div>
+
+            <div className="mt-4">
+              <Label className="pb-2 block">Parking</Label>
+
+              <div className="grid grid-cols-2 gap-4">
+                {/* OPEN */}
+                <div className="flex items-center justify-between border rounded-md px-3 py-2">
+                  <span>Open</span>
+                  <div className="flex items-center gap-3">
+                    <Button
+                      className="px-3"
+                      type="button"
+                      variant="outline"
+                      onClick={() =>
+                        formik.setFieldValue(
+                          "open_parking",
+                          Math.max(0, Number(values.open_parking) - 1)
+                        )
+                      }
+                    >
+                      −
+                    </Button>
+                    <span className="min-w-[20px] text-center">
+                      {Number(values.open_parking)}
+                    </span>
+                    <Button
+                      className="px-3"
+                      type="button"
+                      variant="outline"
+                      onClick={() =>
+                        formik.setFieldValue(
+                          "open_parking",
+                          Number(values.open_parking) + 1
+                        )
+                      }
+                    >
+                      +
+                    </Button>
+                  </div>
+                </div>
+
+                {/* COVERED */}
+                <div className="flex items-center justify-between border rounded-md px-3 py-2">
+                  <span>Covered</span>
+                  <div className="flex items-center gap-3">
+                    <Button
+                      className="px-3"
+                      type="button"
+                      variant="outline"
+                      onClick={() =>
+                        formik.setFieldValue(
+                          "covered_parking",
+                          Math.max(0, Number(values.covered_parking) - 1)
+                        )
+                      }
+                    >
+                      −
+                    </Button>
+                    <span className="min-w-[20px] text-center">
+                      {Number(values.covered_parking)}
+                    </span>
+                    <Button
+                      type="button"
+                      className="px-3"
+                      variant="outline"
+                      onClick={() =>
+                        formik.setFieldValue(
+                          "covered_parking",
+                          Number(values.covered_parking) + 1
+                        )
+                      }
+                    >
+                      +
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <Label className="pb-2 block">Interiors</Label>
+
+              <div className="flex flex-wrap gap-3">
+                {[
+                  { label: "Less than 1 yr", value: "<1" },
+                  { label: "1 - 3 yrs", value: "1-3" },
+                  { label: "3 - 5 yrs", value: "3-5" },
+                  { label: "5 - 10 yrs", value: "5-10" },
+                  { label: ">10 yrs", value: ">10" },
+                ].map((item) => (
+                  <button
+                    type="button"
+                    key={item.value}
+                    onClick={() =>
+                      formik.setFieldValue("interior_age", item.value)
+                    }
+                    className={`px-4 py-2 rounded-full border transition ${values.interior_age === item.value
+                      ? "bg-emerald-100 border-emerald-600"
+                      : "bg-white"
+                      }`}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {values.interior_age && (
+              <div className="mt-4">
+                <Label className="pb-2 block">
+                  How much did you spend on it?
+                </Label>
+
+                <Input
+                  name="interior_spend"
+                  value={values.interior_spend}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder="₹ Enter amount"
+                />
+
+                {touched.interior_spend && errors.interior_spend && (
+                  <p className="text-red-500 text-sm">
+                    {errors.interior_spend}
+                  </p>
+                )}
+              </div>
+            )}
+
+
+            <div className="mt-6">
+              <Label className="text-lg font-semibold">Additional Details (Optional)</Label>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
+                {/* Facing */}
+                <div>
+                  <Label>Facing</Label>
+                  <select
+                    name="additional_details.facing"
+                    value={values.additional_details.facing}
+                    onChange={handleChange}
+                    className="border p-2 w-full rounded-md"
+                  >
+                    <option value="">Select</option>
+                    {facingOptions.map((option) => (
+                      <option key={option.value} value={option.value}>{option.label}</option>
+                    ))}
+                  </select>
+                </div>
+                {/* Overlooking */}
+                <div>
+                  <Label>Overlooking</Label>
+                  <select
+                    name="additional_details.overlooking"
+                    value={values.additional_details.overlooking}
+                    onChange={handleChange}
+                    className="border p-2 w-full rounded-md"
+                  >
+                    <option value="">Select</option>
+                    {overlookingOptions.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Possession Status */}
+                <div>
+                  <Label>Possession Status</Label>
+                  <select
+                    name="additional_details.possession_status"
+                    value={values.additional_details.possession_status}
+                    onChange={handleChange}
+                    className="border p-2 w-full rounded-md"
+                  >
+                    <option value="">Select</option>
+                    {possessionStatusOptions.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Bathroom */}
+                <div>
+                  <Label>Bathroom</Label>
+                  <select
+                    name="additional_details.bathroom"
+                    value={values.additional_details.bathroom}
+                    onChange={handleChange}
+                    className="border p-2 w-full rounded-md"
+                  >
+                    <option value="">Select</option>
+                    {bathroomOptions.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Furnishing Status */}
+                <div>
+                  <Label>Furnishing Status</Label>
+                  <select
+                    name="additional_details.furnishing_status"
+                    value={values.additional_details.furnishing_status}
+                    onChange={handleChange}
+                    className="border p-2 w-full rounded-md"
+                  >
+                    <option value="">Select</option>
+                    {furnishingStatusOptions.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
               </div>
             </div>
 

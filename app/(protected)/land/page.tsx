@@ -14,7 +14,7 @@ import { useAuth } from "@/components/authentication/AuthProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SubscriptionModal from "@/app/views/subscription/SubscriptionModal";
-import { areaMeasurementOptions } from "@/lib/constant";
+import { areaMeasurementOptions, facingOptions, plotShapeOptions, } from "@/lib/constant";
 
 const Land = () => {
   const router = useRouter();
@@ -44,6 +44,12 @@ const Land = () => {
       location: "",
       owner: "",
       address: "",
+
+      additional_details: {
+        facing: "",
+        plot_shape: "",
+        road_width: "",
+      },
     },
     validationSchema,
     onSubmit: async (values) => {
@@ -112,6 +118,7 @@ const Land = () => {
         owner_name: values.owner,
         owner_address: values.address,
         user_id: userData?._id,
+        additional_details: values.additional_details,
       };
 
       const res = await nearestLocationReport(data);
@@ -264,6 +271,57 @@ const Land = () => {
                 {touched.location && errors.location && (
                   <p className="text-red-500 text-sm">{errors.location}</p>
                 )}
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <Label className="text-lg font-semibold">Additional Details (Optional)</Label>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
+                {/* Facing */}
+                <div>
+                  <Label>Facing</Label>
+                  <select
+                    name="additional_details.facing"
+                    value={values.additional_details.facing}
+                    onChange={handleChange}
+                    className="border p-2 w-full rounded-md"
+                  >
+                    <option value="">Select</option>
+                    {facingOptions.map((option) => (
+                      <option key={option.value} value={option.value}>{option.label}</option>
+                    ))}
+                  </select>
+                </div>
+                {/* Plot Shape */}
+                <div>
+                  <Label>Plot Shape</Label>
+                  <select
+                    name="additional_details.plot_shape"
+                    value={values.additional_details.plot_shape}
+                    onChange={handleChange}
+                    className="border p-2 w-full rounded-md"
+                  >
+                    <option value="">Select</option>
+                    {plotShapeOptions.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Road Width */}
+                <div>
+                  <Label>Road Width</Label>
+                  <Input
+                    name="additional_details.road_width"
+                    value={values.additional_details.road_width}
+                    onChange={handleChange}
+                    className="border p-2 w-full rounded-md"
+                  />
+                </div>
+
               </div>
             </div>
 

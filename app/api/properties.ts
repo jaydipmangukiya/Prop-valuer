@@ -26,11 +26,12 @@ export interface PropertiesResponse {
 
 export const getProperties = async (
   limit: number = 10,
-  skip: number = 0
+  skip: number = 0,
+  keyword: string = ""
 ): Promise<PropertiesResponse> => {
   try {
     const response = await axiosInstance.get(
-      `/property?limit=${limit}&skip=${skip}`
+      `/property/search?keyword=${keyword}&limit=${limit}&skip=${skip}`
     );
     return response.data;
   } catch (error: any) {

@@ -136,3 +136,44 @@ export const areaMeasurementOptions = [
   { label: "SQMT", value: "sqmt" },
   { label: "Yard Area", value: "yard area" },
 ];
+
+export const facingOptions = [
+  { label: "North", value: "North" },
+  { label: "South", value: "South" },
+  { label: "East", value: "East" },
+  { label: "West", value: "West" },
+];
+
+export const possessionStatusOptions = [
+  { label: "Ready to Move", value: "Ready to Move" },
+  { label: "Under Construction", value: "Under Construction" },
+  { label: "Ongoing", value: "Ongoing" },
+];
+
+export const bathroomOptions = [
+  { label: "1", value: "1" },
+  { label: "2", value: "2" },
+  { label: "3", value: "3" },
+  { label: "4", value: "4" },
+  { label: "5", value: "5" },
+  { label: ">10", value: ">10" },
+  { label: "None", value: "None" },
+];
+
+export const furnishingStatusOptions = [
+  { label: "Furnished", value: "Furnished" },
+  { label: "Semi-Furnished", value: "Semi-Furnished" },
+  { label: "Unfurnished", value: "Unfurnished" },
+];
+
+export const overlookingOptions = [
+  { label: "Garden", value: "Garden" },
+  { label: "Main Road", value: "Main Road" },
+];
+
+export const plotShapeOptions = [
+  { label: "Regular (Square / Rectangle)", value: "Regular" },
+  { label: "Irregular", value: "Irregular" },
+  { label: "Corner Plot", value: "Corner Plot" },
+  { label: "Dead-End Plot", value: "Dead-End Plot" },
+];

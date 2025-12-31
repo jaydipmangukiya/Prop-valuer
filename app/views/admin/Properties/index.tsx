@@ -20,6 +20,7 @@ import {
   MapPin,
   Loader2,
   Pencil,
+  Search,
 } from "lucide-react";
 import {
   deleteProperty,
@@ -34,6 +35,7 @@ import StatusBadge from "@/components/common/StatusBadge";
 import DeleteDialog from "@/components/common/DeleteDialog";
 import { useAuth } from "@/components/authentication/AuthProvider";
 import { hasAccess } from "@/lib/permissions";
+import { Input } from "@/components/ui/input";
 
 // Dynamically import forms to reduce initial bundle size
 const PropertyForm = dynamic(() => import("./Form/PropertyForm"), {
@@ -62,6 +64,7 @@ const PropertiesList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [totalProperties, setTotalProperties] = useState(0);
+  const [searchTerm, setSearchTerm] = useState("");
   const [properties, setProperties] = useState<Properties[]>([]);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [propertiesToDelete, setPropertiesToDelete] = useState<string | null>(
@@ -80,15 +83,15 @@ const PropertiesList = () => {
   const canEdit = hasAccess(perms, PERMISSIONS.PROPERTY.actions.EDIT, role);
 
   useEffect(() => {
-    fetchProperties();
+    setCurrentPage(1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage]);
+  }, [searchTerm]);
 
   const fetchProperties = async () => {
     try {
       setLoading(true);
       const skip = (currentPage - 1) * rowPerPage;
-      const response = await getProperties(rowPerPage, skip);
+      const response = await getProperties(rowPerPage, skip, searchTerm);
       setProperties(response.allProperty);
       setTotalProperties(response.total);
     } catch (err: any) {
@@ -100,6 +103,18 @@ const PropertiesList = () => {
     } finally {
       setTimeout(() => setLoading(false), 400);
     }
+  };
+
+  useEffect(() => {
+    const delayDebounce = setTimeout(() => {
+      fetchProperties();
+    }, 400);
+
+    return () => clearTimeout(delayDebounce);
+  }, [currentPage, searchTerm]);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
   };
 
   const handleDeleteProperty = (userId: string) => {
@@ -130,10 +145,6 @@ const PropertiesList = () => {
       setDeleteDialogOpen(false);
       setPropertiesToDelete(null);
     }
-  };
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
   };
 
   const handleBulkUpload = async () => {
@@ -250,7 +261,7 @@ const PropertiesList = () => {
           <CardTitle>All Properties</CardTitle>
         </CardHeader>
         <CardContent>
-          {/* <div className="flex items-center space-x-4 mb-6">
+          <div className="flex items-center space-x-4 mb-6">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" />
               <Input
@@ -260,7 +271,7 @@ const PropertiesList = () => {
                 className="pl-10"
               />
             </div>
-          </div> */}
+          </div>
 
           {/* Table */}
           <div className="rounded-md border">

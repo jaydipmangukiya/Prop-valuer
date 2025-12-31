@@ -1,12 +1,5 @@
 "use client";
 
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -22,13 +15,8 @@ import {
 } from "@/app/api/auctionProperty";
 import { getStates, getCitiesByState } from "@/lib/locationService";
 import { areaMeasurementOptions, bankOptions, propertyTypeOptions } from "@/lib/constant";
-
-interface AddStaffFormProps {
-  open: boolean;
-  onClose: () => void;
-  onSuccess?: () => void;
-  propertyId?: string | null;
-}
+import { useParams, useRouter } from "next/navigation";
+import { Card } from "@/components/ui/card";
 
 const validationSchema = Yup.object({
   title: Yup.string().required("Title is required"),
@@ -59,20 +47,17 @@ const validationSchema = Yup.object({
     .min(1, "Price must be at least 1"),
 });
 
-const AuctionPropertyForm = ({
-  open,
-  onClose,
-  onSuccess,
-  propertyId,
-}: AddStaffFormProps) => {
+const AuctionPropertyForm = () => {
   const { toast } = useToast();
   const [states, setStates] = useState<any[]>([]);
   const [cities, setCities] = useState<any[]>([]);
   const [images, setImages] = useState<File[]>([]);
+  const router = useRouter();
+  const { id: propertyId } = useParams<{ id: string }>();
+  const isEditMode = !!propertyId;
 
   const [loading, setLoading] = useState(false);
   const [fetching, setFetching] = useState(false);
-  const isEditMode = !!propertyId;
   const [existingImages, setExistingImages] = useState<any[]>([]);
   const [removedImagePublicIds, setRemovedImagePublicIds] = useState<string[]>(
     []
@@ -84,10 +69,8 @@ const AuctionPropertyForm = ({
   const [imageError, setImageError] = useState("");
 
   useEffect(() => {
-    if (open) {
-      setStates(getStates());
-    }
-  }, [open]);
+    setStates(getStates());
+  }, []);
 
   const initialValues = {
     title: "",
@@ -139,12 +122,6 @@ const AuctionPropertyForm = ({
     onSubmit: async (values) => {
       setLoading(true);
       try {
-        // const payload = {
-        //   ...values,
-        //   price: Number(values.price),
-        //   propertyId: values.propertyId,
-        //   ageOfConstruction: Number(values.ageOfConstruction),
-        // };
         const formData = new FormData();
 
         Object.keys(values).forEach((key) => {
@@ -186,13 +163,12 @@ const AuctionPropertyForm = ({
             description: "Auction property added successfully",
           });
         }
-        onSuccess?.();
         setImages([]);
         setExistingImages([]);
         setRemovedImagePublicIds([]);
         setExistingPdf(null);
         setRemoveExistingPdf(false);
-        onClose();
+        router.back();
         formik.resetForm();
       } catch (err: any) {
         toast({
@@ -222,7 +198,7 @@ const AuctionPropertyForm = ({
   } = formik;
 
   useEffect(() => {
-    if (!isEditMode || !propertyId || !open) return;
+    if (!isEditMode || !propertyId || states.length === 0) return;
 
     const loadProperty = async () => {
       setFetching(true);
@@ -289,18 +265,7 @@ const AuctionPropertyForm = ({
     };
     loadProperty();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [propertyId, open]);
-
-  const handleClose = () => {
-    resetForm();
-    setExistingImages([]);
-    setRemovedImagePublicIds([]);
-    setExistingPdf(null);
-    setRemoveExistingPdf(false);
-    setImageError("");
-    setPdfError("");
-    onClose();
-  };
+  }, [propertyId, states]);
 
   const formatDate = (dateString: string) => {
     if (!dateString) return "";
@@ -349,13 +314,16 @@ const AuctionPropertyForm = ({
   };
 
   return (
-    <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="max-w-5xl">
-        <DialogHeader>
-          <DialogTitle className="text-xl font-semibold">
+    <Card>
+      <div className="px-4 py-8">
+        <div className="mb-6">
+          <h1 className="text-2xl font-semibold">
             {isEditMode ? "Edit Auction Property" : "Add Auction Property"}
-          </DialogTitle>
-        </DialogHeader>
+          </h1>
+          <p className="text-sm text-gray-600">
+            Manage auction property details, images, and sale notice PDF.
+          </p>
+        </div>
         {fetching ? (
           <div className="flex items-center justify-center py-12">
             <Loader2 className="h-6 w-6 text-emerald-600 animate-spin mr-2" />
@@ -984,32 +952,35 @@ const AuctionPropertyForm = ({
             </form>
           </div>
         )}
-        <DialogFooter className="pt-4 gap-2">
-          <Button
-            type="submit"
-            form="auctionForm"
-            disabled={loading}
-            className="bg-[#003f32] text-white"
-          >
-            {loading
-              ? isEditMode
-                ? "Updating..."
-                : "Adding..."
-              : isEditMode
-                ? "Update"
-                : "Add"}
-          </Button>
-          <Button
-            type="button"
-            variant="outline"
-            onClick={onClose}
-            disabled={loading}
-          >
-            Cancel
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+        <div className="fixed bottom-0 left-0 right-0 border-t bg-white/90 backdrop-blur px-4 py-3">
+          <div className="max-w-6xl mx-auto flex justify-end gap-2">
+            <Button
+              type="submit"
+              form="auctionForm"
+              disabled={loading}
+              className="bg-[#003f32] text-white"
+            >
+              {loading
+                ? isEditMode
+                  ? "Updating..."
+                  : "Adding..."
+                : isEditMode
+                  ? "Update"
+                  : "Add"}
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => router.back()}
+              disabled={loading}
+            >
+              Cancel
+            </Button>
+          </div>
+        </div>
+      </div>
+    </Card>
+
   );
 };
 

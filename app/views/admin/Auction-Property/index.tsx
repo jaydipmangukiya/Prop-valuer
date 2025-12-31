@@ -18,14 +18,6 @@ import { Pagination } from "@/components/common/Pagination";
 import { PERMISSIONS, rowPerPage } from "@/lib/constant";
 import DeleteDialog from "@/components/common/DeleteDialog";
 
-// Dynamically import AuctionPropertyForm to reduce initial bundle size
-const AuctionPropertyForm = dynamic(
-  () => import("./Form/AuctionPropertyForm"),
-  {
-    loading: () => <div>Loading form...</div>,
-    ssr: false,
-  }
-);
 import {
   AuctionProperty,
   deleteAuctionProperty,
@@ -66,11 +58,7 @@ const AuctionPropertyList = () => {
 
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [propertyToDelete, setPropertyToDelete] = useState<string | null>(null);
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
-  const [selectedPropertyId, setSelectedPropertyId] = useState<string | null>(
-    null
-  );
   const router = useRouter();
 
   useEffect(() => {
@@ -140,7 +128,7 @@ const AuctionPropertyList = () => {
         <Button
           disabled={!canAdd}
           className="bg-emerald-600 hover:bg-emerald-700"
-          onClick={() => setIsAddModalOpen(true)}
+          onClick={() => router.push("/admin/add-edit-auction-property")}
         >
           <Plus className="h-4 w-4 mr-2" />
           Add Auction Property
@@ -209,16 +197,16 @@ const AuctionPropertyList = () => {
                       <TableCell>
                         {properties.auctionDetails?.auctionStart
                           ? new Date(
-                              properties.auctionDetails.auctionStart
-                            ).toLocaleString()
+                            properties.auctionDetails.auctionStart
+                          ).toLocaleString()
                           : "--"}
                       </TableCell>
 
                       <TableCell>
                         {properties.auctionDetails?.auctionEnd
                           ? new Date(
-                              properties.auctionDetails.auctionEnd
-                            ).toLocaleString()
+                            properties.auctionDetails.auctionEnd
+                          ).toLocaleString()
                           : "--"}
                       </TableCell>
                       <TableCell>
@@ -253,9 +241,9 @@ const AuctionPropertyList = () => {
                             disabled={!canEdit}
                             variant="outline"
                             className="h-8 w-8 p-0"
-                            onClick={() => {
-                              setSelectedPropertyId(properties._id);
-                            }}
+                            onClick={() =>
+                              router.push(`/admin/add-edit-auction-property/${properties._id}`)
+                            }
                           >
                             <Pencil className="h-3 w-3" />
                           </Button>
@@ -286,20 +274,6 @@ const AuctionPropertyList = () => {
           />
         </CardContent>
       </Card>
-      {isAddModalOpen && (
-        <AuctionPropertyForm
-          open={isAddModalOpen}
-          onClose={() => setIsAddModalOpen(false)}
-          onSuccess={fetchProperties}
-        />
-      )}
-
-      <AuctionPropertyForm
-        open={!!selectedPropertyId}
-        onClose={() => setSelectedPropertyId(null)}
-        onSuccess={fetchProperties}
-        propertyId={selectedPropertyId}
-      />
 
       <DeleteDialog
         isOpen={deleteDialogOpen}

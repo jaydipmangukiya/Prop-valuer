@@ -19,6 +19,14 @@ type UnitsModalProps = {
   selectType?: string;
 };
 
+
+const PROPERTY_OPTIONS = [
+  { label: "Apartment (Flat)", value: "apartment" },
+  { label: "Commercial", value: "commercial" },
+  { label: "Villa (House)", value: "villa" },
+  { label: "Land (Plot)", value: "land" },
+];
+
 const UnitsModal = ({
   open,
   handleClose,
@@ -65,19 +73,18 @@ const UnitsModal = ({
           Which One Do You Preferred?
         </DialogHeader>
 
-        {["apartment", "commercial", "villa", "land"].map((item) => (
+        {PROPERTY_OPTIONS.map((item) => (
           <div
-            key={item}
+            key={item.value}
             className="flex items-center space-x-2 py-2 cursor-pointer"
-            onClick={() => handleOptionChange(item)}
+            onClick={() => handleOptionChange(item.value)}
           >
             <CheckCircle
-              className={`h-5 w-5 ${
-                selectedOption === item ? "text-emerald-600" : "text-gray-400"
-              }`}
+              className={`h-5 w-5 ${selectedOption === item.value ? "text-emerald-600" : "text-gray-400"
+                }`}
             />
             <label className="text-black capitalize cursor-pointer">
-              {item}
+              {item.label}
             </label>
           </div>
         ))}
