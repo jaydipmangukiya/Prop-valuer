@@ -177,3 +177,22 @@ export const plotShapeOptions = [
   { label: "Corner Plot", value: "Corner Plot" },
   { label: "Dead-End Plot", value: "Dead-End Plot" },
 ];
+
+export const areaClassOptions = ["High", "Middle", "Poor"];
+
+export const areaTypeOptions = ["Urban", "Semi Urban", "Rural"];
+
+export const occupiedByOptions = ["Owner", "Tenant", "Vacant"];
+
+export const yesNoOptions = ["Yes", "No"];
+
+export const civicAmenityOptions = [
+  "School",
+  "Hospital",
+  "Bus Stop",
+  "Market",
+  "Railway Station",
+  "Bank",
+];
+
+export const buildingConditionOptions = ["Excellent", "Good", "Normal", "Poor"];

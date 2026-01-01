@@ -14,7 +14,7 @@ import { useAuth } from "@/components/authentication/AuthProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SubscriptionModal from "@/app/views/subscription/SubscriptionModal";
-import { areaMeasurementOptions, facingOptions, plotShapeOptions, } from "@/lib/constant";
+import { areaMeasurementOptions } from "@/lib/constant";
 
 const Land = () => {
   const router = useRouter();
@@ -46,8 +46,8 @@ const Land = () => {
       address: "",
 
       additional_details: {
-        facing: "",
-        plot_shape: "",
+        land_use_type: "",
+        overlooking: "",
         road_width: "",
       },
     },
@@ -278,36 +278,37 @@ const Land = () => {
               <Label className="text-lg font-semibold">Additional Details (Optional)</Label>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
-                {/* Facing */}
+                {/* Land Use Type */}
                 <div>
-                  <Label>Facing</Label>
+                  <Label>Land Use Type</Label>
                   <select
-                    name="additional_details.facing"
-                    value={values.additional_details.facing}
+                    name="additional_details.land_use_type"
+                    value={values.additional_details.land_use_type}
                     onChange={handleChange}
                     className="border p-2 w-full rounded-md"
                   >
                     <option value="">Select</option>
-                    {facingOptions.map((option) => (
-                      <option key={option.value} value={option.value}>{option.label}</option>
-                    ))}
+                    <option value="Agricultural">Agricultural</option>
+                    <option value="Residential">Residential</option>
+                    <option value="Commercial">Commercial</option>
+                    <option value="Industrial">Industrial</option>
+                    <option value="NA (Non-Agricultural)">NA (Non-Agricultural)</option>
+
                   </select>
                 </div>
-                {/* Plot Shape */}
+                {/* Overlooking */}
                 <div>
-                  <Label>Plot Shape</Label>
+                  <Label>Overlooking</Label>
                   <select
-                    name="additional_details.plot_shape"
-                    value={values.additional_details.plot_shape}
+                    name="additional_details.overlooking"
+                    value={values.additional_details.overlooking}
                     onChange={handleChange}
                     className="border p-2 w-full rounded-md"
                   >
                     <option value="">Select</option>
-                    {plotShapeOptions.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))}
+                    <option value="Road">Road</option>
+                    <option value="Highway">Highway</option>
+                    <option value="Open plot">Open plot</option>
                   </select>
                 </div>
 
@@ -324,8 +325,6 @@ const Land = () => {
 
               </div>
             </div>
-
-            {/* UNIT SIZE */}
 
             <div className="flex justify-center mt-8">
               <Button

@@ -34,6 +34,9 @@ const loadImage = (url: string): Promise<HTMLImageElement> =>
 const format = (value: any) =>
   new Intl.NumberFormat("en-IN").format(Number(value || 0));
 
+const safe = (val: any) =>
+  val === undefined || val === null || val === "" ? "-" : val;
+
 const addCenteredImage = (
   doc: any,
   img: HTMLImageElement,
@@ -179,6 +182,60 @@ export async function generateReportPDF(
       fontStyle: "bold",
     },
   });
+  /** ===============================
+   * ADDITIONAL PROPERTY DETAILS
+   * =============================== */
+  doc.addPage();
+  doc.setFontSize(16);
+  doc.text("Additional Property Details", 14, 20);
+
+  const ad = reportData.additional_details || {};
+
+  autoTable(doc, {
+    startY: 28,
+    head: [["Field", "Details"]],
+    body: [
+      // LOCALITY / BASIC
+      ["Facing", safe(ad.facing)],
+      ["Overlooking", safe(ad.overlooking)],
+      ["Possession Status", safe(ad.possession_status)],
+      ["Bathrooms", safe(ad.bathroom)],
+      ["Furnishing Status", safe(ad.furnishing_status)],
+
+      // AREA / CLASSIFICATION
+      ["Area Classification", safe(ad.area_classification)],
+      ["Area Type", safe(ad.area_type)],
+      ["Tenament No", safe(ad.tenament_no)],
+      ["Occupied By", safe(ad.occupied_by)],
+      ["Land Use Type", safe(ad.land_use_type)],
+
+      // PLOT / ROAD
+      ["Plot Shape", safe(ad.plot_shape)],
+      ["Road Width", safe(ad.road_width)],
+      ["Road Facility", safe(ad.road_facility)],
+
+      // UTILITIES / ENVIRONMENT
+      ["Flooding Possibility", safe(ad.flooding_possibility)],
+      ["Water Potentiality", safe(ad.water_potentiality)],
+      ["Power Supply", safe(ad.power_supply)],
+
+      // BUILDING CONDITION
+      ["Building Exterior Condition", safe(ad.building_exterior)],
+      ["Building Interior Condition", safe(ad.building_interior)],
+
+      [
+        "Civic Amenities",
+        ad.civic_amenities?.length
+          ? ad.civic_amenities.join(", ")
+          : "-",
+      ],
+    ],
+    headStyles: {
+      fillColor: [4, 120, 87],
+      textColor: 255,
+      fontStyle: "bold",
+    },
+  });
 
   doc.addPage();
 
@@ -204,7 +261,7 @@ export async function generateReportPDF(
   doc.addPage();
 
   /** ---------------------------------
-   * PAGE 4 → REMARKS PAGE
+   * PAGE 3 → REMARKS PAGE
    * ---------------------------------- */
   doc.setFontSize(14);
   doc.text("Remarks", 14, 20);
@@ -237,13 +294,4 @@ export async function generateReportPDF(
   });
   addFooter(doc);
   doc.save(`Valuation_Report_${reportData.case_ref_no}.pdf`);
-
-  // return (
-  //   <button
-  //     onClick={generatePDF}
-  //     className="px-5 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700"
-  //   >
-  //     Download PDF
-  //   </button>
-  // );
 }

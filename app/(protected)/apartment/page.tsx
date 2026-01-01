@@ -15,7 +15,7 @@ import { useAuth } from "@/components/authentication/AuthProvider";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SubscriptionModal from "@/app/views/subscription/SubscriptionModal";
-import { areaMeasurementOptions, bathroomOptions, facingOptions, furnishingStatusOptions, overlookingOptions, possessionStatusOptions } from "@/lib/constant";
+import { areaClassOptions, areaMeasurementOptions, areaTypeOptions, bathroomOptions, buildingConditionOptions, civicAmenityOptions, facingOptions, furnishingStatusOptions, occupiedByOptions, overlookingOptions, possessionStatusOptions, yesNoOptions } from "@/lib/constant";
 
 const Apartment = () => {
   const router = useRouter();
@@ -90,6 +90,21 @@ const Apartment = () => {
         possession_status: "",
         bathroom: "",
         furnishing_status: "",
+
+        area_classification: "",
+        area_type: "",
+        tenament_no: "",
+        occupied_by: "",
+
+        flooding_possibility: "",
+        civic_amenities: [] as string[],
+
+        road_facility: "",
+        water_potentiality: "",
+        power_supply: "",
+
+        building_exterior: "",
+        building_interior: ""
       },
     },
     validationSchema,
@@ -652,6 +667,111 @@ const Apartment = () => {
                   </select>
                 </div>
 
+              </div>
+            </div>
+
+            <div className="mt-4">
+              <p className="font-medium text-gray-700 mb-2">Locality & Surroundings</p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <select name="additional_details.area_classification" onChange={handleChange} className="border p-2 rounded-md">
+                  <option value="">Area Classification</option>
+                  {areaClassOptions.map(v => <option key={v}>{v}</option>)}
+                </select>
+
+                <select name="additional_details.area_type" onChange={handleChange} className="border p-2 rounded-md">
+                  <option value="">Area Type</option>
+                  {areaTypeOptions.map(v => <option key={v}>{v}</option>)}
+                </select>
+
+                <Input
+                  name="additional_details.tenament_no"
+                  placeholder="Tenament No"
+                  onChange={handleChange}
+                />
+
+                <select name="additional_details.occupied_by" onChange={handleChange} className="border p-2 rounded-md">
+                  <option value="">Occupied By</option>
+                  {occupiedByOptions.map(v => <option key={v}>{v}</option>)}
+                </select>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <p className="font-medium text-gray-700 mb-2">Infrastructure & Utilities</p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <select name="additional_details.flooding_possibility" onChange={handleChange} className="border p-2 rounded-md">
+                  <option value="">Flooding / Submerging</option>
+                  {yesNoOptions.map(v => <option key={v}>{v}</option>)}
+                </select>
+
+                <select name="additional_details.road_facility" onChange={handleChange} className="border p-2 rounded-md">
+                  <option value="">Road Facilities</option>
+                  {areaClassOptions.map(v => <option key={v}>{v}</option>)}
+                </select>
+
+                <select name="additional_details.water_potentiality" onChange={handleChange} className="border p-2 rounded-md">
+                  <option value="">Water Potentiality</option>
+                  {areaClassOptions.map(v => <option key={v}>{v}</option>)}
+                </select>
+
+                <select name="additional_details.power_supply" onChange={handleChange} className="border p-2 rounded-md">
+                  <option value="">Power Supply Available</option>
+                  {yesNoOptions.map(v => <option key={v}>{v}</option>)}
+                </select>
+              </div>
+
+              {/* Civic Amenities – Multi Select */}
+              <div className="mt-3">
+                <Label>Civic Amenities Nearby</Label>
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {civicAmenityOptions.map((amenity) => (
+                    <button
+                      type="button"
+                      key={amenity}
+                      onClick={() => {
+                        const arr = values.additional_details.civic_amenities as string[];
+                        formik.setFieldValue(
+                          "additional_details.civic_amenities",
+                          arr.includes(amenity)
+                            ? arr.filter((a: string) => a !== amenity)
+                            : [...arr, amenity]
+                        );
+                      }}
+                      className={`px-3 py-1 rounded-full border ${values.additional_details.civic_amenities?.includes(amenity)
+                        ? "bg-emerald-100 border-emerald-600"
+                        : ""
+                        }`}
+                    >
+                      {amenity}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <p className="font-medium text-gray-700 mb-2">Condition of the Building</p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <select
+                  name="additional_details.building_exterior"
+                  onChange={handleChange}
+                  className="border p-2 rounded-md"
+                >
+                  <option value="">Exterior Condition</option>
+                  {buildingConditionOptions.map(v => <option key={v}>{v}</option>)}
+                </select>
+
+                <select
+                  name="additional_details.building_interior"
+                  onChange={handleChange}
+                  className="border p-2 rounded-md"
+                >
+                  <option value="">Interior Condition</option>
+                  {buildingConditionOptions.map(v => <option key={v}>{v}</option>)}
+                </select>
               </div>
             </div>
 

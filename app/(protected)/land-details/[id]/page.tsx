@@ -376,50 +376,6 @@ export default function LandDetailsPage() {
               </Card>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Building className="h-5 w-5 text-blue-700" />
-                    Parking & Interior Details
-                  </CardTitle>
-                </CardHeader>
-
-                <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-                    <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                      <span className="text-sm text-gray-600">Open Parking</span>
-                      <span className="font-semibold">
-                        {reportData.open_parking ?? 0}
-                      </span>
-                    </div>
-
-                    <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                      <span className="text-sm text-gray-600">Covered Parking</span>
-                      <span className="font-semibold">
-                        {reportData.covered_parking ?? 0}
-                      </span>
-                    </div>
-
-                    <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                      <span className="text-sm text-gray-600">Interior Age</span>
-                      <span className="font-semibold">
-                        {reportData.interior_age || "—"}
-                      </span>
-                    </div>
-
-                    <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                      <span className="text-sm text-gray-600">Interior Spend</span>
-                      <span className="font-semibold">
-                        {reportData.interior_spend
-                          ? `₹ ${price(reportData.interior_spend)}`
-                          : "—"}
-                      </span>
-                    </div>
-
-                  </div>
-                </CardContent>
-              </Card>
               {reportData?.additional_details && (
                 <Card>
                   <CardHeader>
@@ -433,13 +389,6 @@ export default function LandDetailsPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                       <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                        <span className="text-sm text-gray-600">Facing</span>
-                        <span className="font-semibold">
-                          {reportData.additional_details.facing || "—"}
-                        </span>
-                      </div>
-
-                      <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
                         <span className="text-sm text-gray-600">Overlooking</span>
                         <span className="font-semibold">
                           {reportData.additional_details.overlooking || "—"}
@@ -447,23 +396,15 @@ export default function LandDetailsPage() {
                       </div>
 
                       <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                        <span className="text-sm text-gray-600">Possession Status</span>
+                        <span className="text-sm text-gray-600">Land Use Type</span>
                         <span className="font-semibold">
-                          {reportData.additional_details.possession_status || "—"}
+                          {reportData.additional_details.land_use_type || "—"}
                         </span>
                       </div>
-
                       <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
-                        <span className="text-sm text-gray-600">Bathrooms</span>
+                        <span className="text-sm text-gray-600">Road Width</span>
                         <span className="font-semibold">
-                          {reportData.additional_details.bathroom || "—"}
-                        </span>
-                      </div>
-
-                      <div className="flex justify-between p-3 bg-gray-50 rounded-lg md:col-span-2">
-                        <span className="text-sm text-gray-600">Furnishing Status</span>
-                        <span className="font-semibold">
-                          {reportData.additional_details.furnishing_status || "—"}
+                          {reportData.additional_details.road_width || "—"}
                         </span>
                       </div>
 

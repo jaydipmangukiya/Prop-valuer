@@ -484,6 +484,41 @@ export default function VillaDetailsPage() {
                         </span>
                       </div>
 
+                      <Detail label="Area Classification" value={reportData.additional_details.area_classification} />
+                      <Detail label="Area Type" value={reportData.additional_details.area_type} />
+                      <Detail label="Tenament No" value={reportData.additional_details.tenament_no} />
+                      <Detail label="Occupied By" value={reportData.additional_details.occupied_by} />
+
+                      {/* ENVIRONMENT */}
+                      <Detail label="Flooding Possibility" value={reportData.additional_details.flooding_possibility} />
+                      <Detail label="Road Facility" value={reportData.additional_details.road_facility} />
+                      <Detail label="Water Potentiality" value={reportData.additional_details.water_potentiality} />
+                      <Detail label="Power Supply" value={reportData.additional_details.power_supply} />
+
+                      {/* BUILDING CONDITION */}
+                      <Detail label="Building Exterior" value={reportData.additional_details.building_exterior} />
+                      <Detail label="Building Interior" value={reportData.additional_details.building_interior} />
+
+                      {/* CIVIC AMENITIES */}
+                      <div className="md:col-span-2 p-3 bg-gray-50 rounded-lg">
+                        <p className="text-sm text-gray-600 mb-2">Civic Amenities</p>
+                        {reportData.additional_details.civic_amenities?.length > 0 ? (
+                          <div className="flex flex-wrap gap-2">
+                            {reportData.additional_details.civic_amenities.map((amenity: string) => (
+                              <span
+                                key={amenity}
+                                className="px-3 py-1 text-sm rounded-full bg-emerald-100 text-emerald-700 border border-emerald-300"
+                              >
+                                {amenity}
+                              </span>
+                            ))}
+                          </div>
+                        ) : (
+                          <span className="font-semibold">—</span>
+                        )}
+                      </div>
+
+
                     </div>
                   </CardContent>
                 </Card>
@@ -496,3 +531,10 @@ export default function VillaDetailsPage() {
     </div>
   );
 }
+
+const Detail = ({ label, value }: { label: string; value?: string }) => (
+  <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
+    <span className="text-sm text-gray-600">{label}</span>
+    <span className="font-semibold">{value || "—"}</span>
+  </div>
+);

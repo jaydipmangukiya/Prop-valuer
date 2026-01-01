@@ -60,6 +60,9 @@ export default function ViewReportModal({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reportId, open]);
 
+  const safe = (val?: any) =>
+    val === undefined || val === null || val === "" ? "—" : val;
+
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl overflow-y-auto max-h-[80vh]">
@@ -231,7 +234,7 @@ export default function ViewReportModal({
             <div className="bg-slate-50 rounded-md p-4 border">
               <h3 className="font-semibold text-slate-700 mb-3 flex items-center gap-2">
                 <Layers className="h-4 w-4 text-indigo-600" />
-                Additional Property Details
+                Property Details
               </h3>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
@@ -281,6 +284,70 @@ export default function ViewReportModal({
                 </p>
               </div>
             </div>
+
+            {report.additional_details && (
+              <div className="bg-slate-50 rounded-md p-4 border">
+                <h3 className="font-semibold text-slate-700 mb-3 flex items-center gap-2">
+                  <Layers className="h-4 w-4 text-indigo-600" />
+                  Additional Property Details
+                </h3>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
+
+                  {/* BASIC */}
+                  <p><span className="font-medium">Facing:</span> {safe(report.additional_details.facing)}</p>
+                  <p><span className="font-medium">Overlooking:</span> {safe(report.additional_details.overlooking)}</p>
+                  <p><span className="font-medium">Possession Status:</span> {safe(report.additional_details.possession_status)}</p>
+                  <p><span className="font-medium">Bathrooms:</span> {safe(report.additional_details.bathroom)}</p>
+                  <p><span className="font-medium">Furnishing Status:</span> {safe(report.additional_details.furnishing_status)}</p>
+
+                  {/* AREA */}
+                  <p><span className="font-medium">Area Classification:</span> {safe(report.additional_details.area_classification)}</p>
+                  <p><span className="font-medium">Area Type:</span> {safe(report.additional_details.area_type)}</p>
+                  <p><span className="font-medium">Tenament No:</span> {safe(report.additional_details.tenament_no)}</p>
+                  <p><span className="font-medium">Occupied By:</span> {safe(report.additional_details.occupied_by)}</p>
+
+                  {/* INFRA / ENV */}
+                  <p><span className="font-medium">Flooding Possibility:</span> {safe(report.additional_details.flooding_possibility)}</p>
+                  <p><span className="font-medium">Road Facility:</span> {safe(report.additional_details.road_facility)}</p>
+                  <p><span className="font-medium">Water Potentiality:</span> {safe(report.additional_details.water_potentiality)}</p>
+                  <p><span className="font-medium">Power Supply:</span> {safe(report.additional_details.power_supply)}</p>
+
+                  <p>
+                    <span className="font-medium">Plot Shape:</span>{" "}
+                    {safe(report.additional_details.plot_shape)}
+                  </p>
+
+                  <p>
+                    <span className="font-medium">Road Width:</span>{" "}
+                    {safe(report.additional_details.road_width)}
+                  </p>
+
+                  <p>
+                    <span className="font-medium">Land Use Type:</span>{" "}
+                    {safe(report.additional_details.land_use_type)}
+                  </p>
+
+                  {/* BUILDING */}
+                  <p><span className="font-medium">Building Exterior:</span> {safe(report.additional_details.building_exterior)}</p>
+                  <p><span className="font-medium">Building Interior:</span> {safe(report.additional_details.building_interior)}</p>
+
+                  {/* AMENITIES */}
+                  <div className="sm:col-span-2">
+                    <span className="font-medium">Civic Amenities:</span>{" "}
+                    {Array.isArray(report.additional_details.civic_amenities) &&
+                      report.additional_details.civic_amenities.length > 0 ? (
+                      <span className="ml-1">
+                        {report.additional_details.civic_amenities.join(", ")}
+                      </span>
+                    ) : (
+                      "—"
+                    )}
+                  </div>
+
+                </div>
+              </div>
+            )}
 
             <DialogFooter>
               <Button variant="outline" onClick={onClose}>
