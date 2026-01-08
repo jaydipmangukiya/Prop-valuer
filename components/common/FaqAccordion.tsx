@@ -41,7 +41,13 @@ export default function FaqAccordion({
               value={`faq-${index}`}
               className="border border-slate-200 rounded-xl px-4 shadow-sm"
             >
-              <AccordionTrigger className="text-left text-lg font-semibold text-slate-800 hover:no-underline">
+              <AccordionTrigger
+                className="text-left text-lg font-semibold text-slate-800 hover:no-underline focus:outline-none
+    focus-visible:ring-0
+    focus-visible:bg-transparent
+    active:bg-transparent
+    data-[state=open]:bg-white"
+              >
                 {faq.question}
               </AccordionTrigger>
               <AccordionContent className="text-slate-600 leading-relaxed pt-2 text-base">
