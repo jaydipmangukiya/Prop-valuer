@@ -6,10 +6,10 @@ const FeatureCards = () => {
     <section className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
+          <h2 className="text-2xl font-bold text-foreground sm:text-4xl">
             Two Pillars of Smart Property Decisions
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="mt-4 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
             Whether you need accurate valuations or seeking investment
             opportunities, we have you covered.
           </p>

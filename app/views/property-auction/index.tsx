@@ -239,7 +239,7 @@ const PropertyauctionList = () => {
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-4 pb-12">
-        <h1 className="text-3xl font-bold text-slate-800 mb-6">
+        <h1 className="text-2xl sm:text-3xl font-bold text-slate-800 mb-6">
           Properties for Sale
         </h1>
 

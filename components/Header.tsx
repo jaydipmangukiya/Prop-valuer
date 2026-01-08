@@ -52,7 +52,7 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center lg:space-x-6 md:space-x-3">
+          <nav className="hidden lg:flex items-center lg:space-x-6 md:space-x-3">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -65,7 +65,7 @@ export function Header() {
           </nav>
 
           {/* Desktop Auth / Profile Menu */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-4">
             {isLoggedIn ? (
               <div className="relative" ref={profileRef}>
                 <button
@@ -118,7 +118,7 @@ export function Header() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <Button
               variant="ghost"
               size="sm"
@@ -136,7 +136,7 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-slate-200">
+          <div className="lg:hidden py-4 border-t border-slate-200">
             <div className="flex flex-col space-y-4">
               {navigation.map((item) => (
                 <Link

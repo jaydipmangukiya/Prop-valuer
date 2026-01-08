@@ -23,12 +23,14 @@ export default function FaqAccordion({
   subtitle = "Quick answers to common questions",
 }: FaqAccordionProps) {
   return (
-    <section className="py-16 bg-white">
+    <section className="pb-8 md:py-16 bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-slate-800 mb-4">{title}</h2>
-          <p className="text-xl text-slate-600">{subtitle}</p>
+          <h2 className="text-2xl sm:text-4xl font-bold text-slate-800 mb-4">
+            {title}
+          </h2>
+          <p className="text-base sm:text-xl text-slate-600">{subtitle}</p>
         </div>
 
         {/* Accordion */}

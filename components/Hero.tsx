@@ -20,10 +20,14 @@ export function Hero() {
           </p> */}
           <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
             Property Valuation +
-            <span className="text-yellow-300 block">Smart Investment Opportunities</span>
+            <span className="text-yellow-300 block">
+              Smart Investment Opportunities
+            </span>
           </h1>
           <p className="text-xl md:text-2xl mb-12 text-white/90 max-w-4xl mx-auto leading-relaxed">
-            Get accurate property valuation and explore auction & bank-seized properties — all from one trusted platform built for investors, banks, and property professionals.
+            Get accurate property valuation and explore auction & bank-seized
+            properties — all from one trusted platform built for investors,
+            banks, and property professionals.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
@@ -48,7 +52,7 @@ export function Hero() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+          {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
             <div className="text-center">
               <div className="bg-white/20 backdrop-blur-sm w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                 <TrendingUp className="h-8 w-8 text-white" />
@@ -72,7 +76,7 @@ export function Hero() {
               <h3 className="text-lg font-semibold mb-2">Instant Results</h3>
               <p className="text-white/80">Get your valuation in seconds</p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
