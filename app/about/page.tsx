@@ -27,11 +27,11 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => {
-              const Icon = stat.icon;
+              // const Icon = stat.icon;
               return (
                 <div key={index} className="text-center">
                   <div className="text-emerald-600 mb-4 flex justify-center">
-                    <Icon className="w-8 h-8" />
+                    {/* <Icon className="w-8 h-8" /> */}
                   </div>
                   <div className="text-3xl font-bold text-slate-800 mb-2">
                     {stat.value}
