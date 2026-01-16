@@ -12,11 +12,11 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL("https://prop-valuer-v3b2.vercel.app"),
   title: {
-    default: "PropValuer – Accurate Property Valuation Platform",
+    default: "Free Property Valuation in India | PropValuer",
     template: "%s | PropValuer",
   },
   description:
-    "Get accurate property valuations and real estate price estimates in India. Free online property valuation tool for apartments, villas, commercial properties, and land with instant market insights.",
+    "Get accurate property valuations and price estimates in India. Free online tool for apartments, villas, and commercial properties.",
   keywords: [
     "property valuation",
     "real estate valuation",
