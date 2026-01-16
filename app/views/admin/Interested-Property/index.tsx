@@ -11,14 +11,18 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Users, Loader2, Pencil } from "lucide-react";
+import { Users, Loader2, Pencil, Trash2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Pagination } from "@/components/common/Pagination";
 import { PERMISSIONS, rowPerPage } from "@/lib/constant";
-import { getPropertyInterests } from "@/app/api/interestedProperty";
+import {
+  deletePropertyInterest,
+  getPropertyInterests,
+} from "@/app/api/interestedProperty";
 import InterestStatusModal from "./Form/InterestStatusModal";
 import { hasAccess } from "@/lib/permissions";
 import { useAuth } from "@/components/authentication/AuthProvider";
+import DeleteDialog from "@/components/common/DeleteDialog";
 
 const InterestedPropertyList = () => {
   const { toast } = useToast();
@@ -32,6 +36,11 @@ const InterestedPropertyList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [openStatusModal, setOpenStatusModal] = useState(false);
   const [selectedInterest, setSelectedInterest] = useState(null);
+
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [interestsToDelete, setInterestsToDelete] = useState<string | null>(
+    null
+  );
 
   const canEdit = hasAccess(
     perms,
@@ -63,6 +72,36 @@ const InterestedPropertyList = () => {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+  };
+
+  const handleDeleteClick = (id: string) => {
+    setInterestsToDelete(id);
+    setDeleteDialogOpen(true);
+  };
+
+  const handleDeleteConfirm = async () => {
+    if (!interestsToDelete) return;
+
+    try {
+      await deletePropertyInterest(interestsToDelete);
+
+      toast({
+        title: "Deleted Successfully ✅",
+        description: "The interest has been deleted.",
+        variant: "default",
+      });
+
+      fetchInterests();
+    } catch (err: any) {
+      toast({
+        title: "Delete Failed ❌",
+        description: err.message,
+        variant: "destructive",
+      });
+    } finally {
+      setDeleteDialogOpen(false);
+      setInterestsToDelete(null);
+    }
   };
 
   return (
@@ -140,6 +179,16 @@ const InterestedPropertyList = () => {
                           >
                             <Pencil className="h-3 w-3" />
                           </Button>
+                          {(role === "SUPER_ADMIN" || role === "ADMIN") && (
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="h-8 w-8 p-0 text-red-600 hover:text-red-700"
+                              onClick={() => handleDeleteClick(item._id)}
+                            >
+                              <Trash2 className="h-3 w-3" />
+                            </Button>
+                          )}
                         </div>
                       </TableCell>
                     </TableRow>
@@ -168,6 +217,14 @@ const InterestedPropertyList = () => {
           }}
         />
       )}
+
+      <DeleteDialog
+        isOpen={deleteDialogOpen}
+        onClose={() => setDeleteDialogOpen(false)}
+        onConfirm={handleDeleteConfirm}
+        title="Are you sure want to Delete?"
+        description="Are you sure want to delete this Interest? This action cannot be undone."
+      />
     </div>
   );
 };

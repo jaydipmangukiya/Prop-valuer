@@ -1,12 +1,58 @@
+import type { Metadata } from "next";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, ArrowRight, FileText, Gavel } from "lucide-react";
-import Image from "next/image";
+import { CheckCircle, ArrowRight } from "lucide-react";
 import SubscriptionPlans from "../views/subscription/SubscriptionPlans";
 import Link from "next/link";
 import { additionalServices, auctionServices } from "@/lib/siteContent";
+
+const title = "Property Valuation & Auction Services | PropValuer";
+const description =
+  "Get professional property valuations, bank auction listings, and real estate insights. Comprehensive services for homebuyers, investors, and financial institutions.";
+
+export const metadata: Metadata = {
+  title,
+  description,
+  alternates: {
+    canonical: "https://prop-valuer-v3b2.vercel.app/services",
+  },
+  keywords: [
+    "property valuation services",
+    "bank auction listings",
+    "real estate valuation",
+    "property investment",
+    "commercial property valuation",
+    "residential property valuation",
+    "auction property services",
+  ],
+  openGraph: {
+    title,
+    description,
+    url: "https://prop-valuer-v3b2.vercel.app/services",
+    type: "website",
+    siteName: "PropValuer",
+    images: [
+      {
+        url: "https://prop-valuer-v3b2.vercel.app/assets/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "PropValuer services preview",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["https://prop-valuer-v3b2.vercel.app/assets/images/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default function ServicesPage() {
   return (
@@ -19,10 +65,6 @@ export default function ServicesPage() {
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
             Our Services
           </h1>
-          {/* <p className="text-xl max-w-3xl mx-auto leading-relaxed">
-            Comprehensive property valuation and real estate services powered by
-            AI and expert analysis
-          </p> */}
           <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
             Comprehensive property intelligence solutions for valuations and
             investment opportunities.
@@ -285,8 +327,6 @@ export default function ServicesPage() {
             Two Powerful Tools. One Smart Property Platform.
           </h2>
           <p className="text-base sm:text-xl mb-8 max-w-2xl mx-auto">
-            {/* Choose the service that best fits your needs and get accurate
-            property valuation today */}
             Get an instant AI-powered property valuation or explore verified
             auction properties with complete insights — choose your next step.
           </p>

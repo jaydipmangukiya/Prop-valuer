@@ -1,11 +1,59 @@
+import type { Metadata } from "next";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
-import { stats, teamMember, features } from "@/lib/siteContent";
-import { ArrowRight, Shield, Target, TrendingUp } from "lucide-react";
+import { stats, teamMember } from "@/lib/siteContent";
+import { ArrowRight, Quote, Shield, Target, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+const title =
+  "About PropValuer – India’s Data-Driven Property Valuation Platform";
+const description =
+  "Learn how PropValuer combines verified data, AI, and valuation expertise to deliver transparent property insights and auction discovery across India.";
+
+export const metadata: Metadata = {
+  title,
+  description,
+  alternates: {
+    canonical: "https://prop-valuer-v3b2.vercel.app/about",
+  },
+  keywords: [
+    "propValuer about",
+    "property valuation platform",
+    "real estate data India",
+    "auction property discovery",
+    "AI property valuation",
+    "transparent real estate insights",
+    "real estate valuation company India",
+  ],
+  openGraph: {
+    title,
+    description,
+    url: "https://prop-valuer-v3b2.vercel.app/about",
+    type: "website",
+    siteName: "PropValuer",
+    images: [
+      {
+        url: "https://prop-valuer-v3b2.vercel.app/assets/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "PropValuer about page preview",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["https://prop-valuer-v3b2.vercel.app/assets/images/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 const values = [
   {
@@ -28,10 +76,48 @@ const values = [
   },
 ];
 
+const testimonials = [
+  {
+    quote:
+      "PropValuer's valuation reports are now our standard for all property assessments. The accuracy and detailed methodology have significantly improved our lending decisions.",
+    author: "Rajesh Sharma",
+    role: "Chief Risk Officer",
+    company: "National Housing Bank",
+  },
+  {
+    quote:
+      "As a real estate investor, finding verified auction properties with reliable valuations was always a challenge. PropValuer solved both problems in one platform.",
+    author: "Priya Mehta",
+    role: "Managing Director",
+    company: "Horizon Real Estate Investments",
+  },
+  {
+    quote:
+      "The transparency in their valuation methodology gives our clients complete confidence. We recommend PropValuer to all our property dispute cases.",
+    author: "Adv. Sunil Kapoor",
+    role: "Senior Partner",
+    company: "Kapoor & Associates Law Firm",
+  },
+];
+
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <Header />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "PropValuer",
+            url: "https://prop-valuer-v3b2.vercel.app",
+            description:
+              "India’s data-driven property valuation and auction discovery platform",
+            sameAs: [],
+          }),
+        }}
+      />
 
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
@@ -231,6 +317,41 @@ export default function AboutPage() {
                   </p>
                   <p className="text-slate-600 text-sm">{member.description}</p>
                 </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* Testimonials Section */}
+      <section className="pt-20 bg-muted/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-4xl font-bold mb-2 sm:mb-6 text-center">
+            What Our Clients Say
+          </h2>
+          <p className="text-base sm:text-xl mb-8 max-w-2xl mx-auto">
+            Trusted by leading banks, investors, and professionals across India
+          </p>
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {testimonials.map((testimonial, index) => (
+              <Card
+                key={index}
+                className="rounded-2xl border border-border p-8 relative shadow-lg"
+              >
+                <Quote className="h-10 w-10 text-emerald-600 absolute top-6 right-6" />
+                <p className="text-muted-foreground mb-6 italic relative z-10">
+                  &ldquo;{testimonial.quote}&rdquo;
+                </p>
+                <div className="border-t border-border pt-4">
+                  <p className="font-semibold text-card-foreground">
+                    {testimonial.author}
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    {testimonial.role}
+                  </p>
+                  <p className="text-sm text-card-foreground">
+                    {testimonial.company}
+                  </p>
+                </div>
               </Card>
             ))}
           </div>
