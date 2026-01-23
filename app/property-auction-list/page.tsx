@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import PropertyauctionList from "@/app/views/property-auction";
 
-const title = "Auction Properties in India | Verified Listings & Valuations";
+const title = "Bank Auction Properties India | Property Auction Listings & Valuations";
 const description =
-  "Browse bank auction properties across India with verified valuations, detailed data, and location filters. Discover residential, commercial, land, and villa auctions.";
+  "Discover verified bank auction properties across India. Browse residential, commercial, land & villa auctions with accurate valuations, location filters & detailed property information.";
 
 export const metadata: Metadata = {
   title,
@@ -12,13 +12,20 @@ export const metadata: Metadata = {
     canonical: "https://prop-valuer-v3b2.vercel.app/property-auction-list",
   },
   keywords: [
+    "property auction",
+    "auction properties",
     "auction properties India",
-    "bank auction property listings",
+    "bank auction properties",
+    "property auction listings",
+    "auction property listings",
+    "residential auction",
+    "commercial auction",
+    "land auction",
+    "villa auction",
     "property auction valuations",
-    "residential auction properties",
-    "commercial auction properties",
-    "land auction India",
-    "villa auction listings",
+    "bank auction listings India",
+    "auction property values",
+    "property auction sites",
   ],
   openGraph: {
     title,
@@ -48,5 +55,81 @@ export const metadata: Metadata = {
 };
 
 export default function PropertyAuctionListPage() {
-  return <PropertyauctionList />;
+  return (
+    <div className="w-full">
+      {/* Structured Data for Organization */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "PropValuer",
+            url: "https://prop-valuer-v3b2.vercel.app",
+            logo: "https://prop-valuer-v3b2.vercel.app/assets/logo.png",
+            description: "Free property auction listings and valuations across India",
+          }),
+        }}
+      />
+
+      {/* Structured Data for Auction Property Listings */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: "Auction Property Listings",
+            description: "Bank auction properties across India with verified valuations",
+            url: "https://prop-valuer-v3b2.vercel.app/property-auction-list",
+            mainEntity: {
+              "@type": "ItemList",
+              name: "Auction Properties",
+              itemListElement: [
+                {
+                  "@type": "RealEstateAgent",
+                  name: "Property Auction Listings",
+                  url: "https://prop-valuer-v3b2.vercel.app/property-auction-list",
+                },
+              ],
+            },
+          }),
+        }}
+      />
+
+      {/* Breadcrumb Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://prop-valuer-v3b2.vercel.app",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Services",
+                item: "https://prop-valuer-v3b2.vercel.app/services",
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: "Auction Properties",
+                item: "https://prop-valuer-v3b2.vercel.app/property-auction-list",
+              },
+            ],
+          }),
+        }}
+      />
+
+      <h1 className="sr-only">Bank Auction Properties in India - Property Auction Listings & Valuations</h1>
+      <PropertyauctionList />
+    </div>
+  );
 }
