@@ -8,7 +8,7 @@ import SubscriptionPlans from "../views/subscription/SubscriptionPlans";
 import Link from "next/link";
 import { additionalServices, auctionServices } from "@/lib/siteContent";
 
-const title = "Property Valuation & Auction Services | PropValuer";
+const title = "Property Valuation & Auction Services | Asstory";
 const description =
   "Get professional property valuations, bank auction listings, and real estate insights. Comprehensive services for homebuyers, investors, and financial institutions.";
 
@@ -32,13 +32,13 @@ export const metadata: Metadata = {
     description,
     url: "https://prop-valuer-v3b2.vercel.app/services",
     type: "website",
-    siteName: "PropValuer",
+    siteName: "Asstory",
     images: [
       {
         url: "https://prop-valuer-v3b2.vercel.app/assets/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "PropValuer services preview",
+        alt: "Asstory services preview",
       },
     ],
   },

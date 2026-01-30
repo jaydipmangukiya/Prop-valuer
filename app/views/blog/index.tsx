@@ -53,7 +53,7 @@ export default function BlogView() {
         <section className="py-20 bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
-              PropValuer Blog
+              Asstory Blog
             </h1>
             <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
               Stay informed with expert takes on valuation, market movement, and

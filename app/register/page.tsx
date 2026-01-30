@@ -50,12 +50,12 @@ export default function RegisterPage() {
 
         toast({
           title: "Account Created Successfully ✅",
-          description: "Welcome to PropValuer!",
+          description: "Welcome to Asstory!",
         });
 
         globalThis?.window?.localStorage?.setItem(
           "registeredEmail",
-          values.email
+          values.email,
         );
 
         if (res) {
@@ -82,7 +82,7 @@ export default function RegisterPage() {
             className="inline-flex items-center space-x-2 text-2xl font-bold text-slate-800"
           >
             <Building2 className="h-8 w-8 text-emerald-600" />
-            <span>PropValuer</span>
+            <span>Asstory</span>
           </Link>
         </div>
 
