@@ -15,7 +15,7 @@ Disallow: /*.json
 Disallow: /private/*
 
 # Sitemap location
-Sitemap: https://prop-valuer-v3b2.vercel.app/sitemap.xml
+Sitemap: https://asstory.vercel.app/sitemap.xml
 
 # Crawl delay
 Crawl-delay: 1

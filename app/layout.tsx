@@ -10,7 +10,7 @@ import NavigationInitializer from "@/components/navigation/NavigationInitializer
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://prop-valuer-v3b2.vercel.app"),
+  metadataBase: new URL("https://asstory.vercel.app"),
   title: {
     default: "Property Valuation in India – Instant Price Estimates | Asstory",
     template: "%s | Asstory",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://prop-valuer-v3b2.vercel.app",
+    canonical: "https://asstory.vercel.app",
   },
   viewport: {
     width: "device-width",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     title: "Asstory – Accurate Property Valuation",
     description:
       "Instant property valuation reports powered by real market data and analytics.",
-    url: "https://prop-valuer-v3b2.vercel.app",
+    url: "https://asstory.vercel.app",
     siteName: "Asstory",
     images: [
       {
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
     title: "Asstory | Free Property Valuation in India",
     description:
       "Get accurate property valuations and real estate price estimates instantly.",
-    images: ["https://prop-valuer-v3b2.vercel.app/og-image.png"],
+    images: ["https://asstory.vercel.app/og-image.png"],
   },
   // Theme color
   themeColor: [
@@ -111,8 +111,8 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "Asstory",
-              url: "https://prop-valuer-v3b2.vercel.app",
-              logo: "https://prop-valuer-v3b2.vercel.app/logo.png",
+              url: "https://asstory.vercel.app",
+              logo: "https://asstory.vercel.app/logo.png",
               description:
                 "Free online property valuation and real estate price estimation platform in India",
               sameAs: [
@@ -137,13 +137,13 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "Asstory",
-              url: "https://prop-valuer-v3b2.vercel.app",
+              url: "https://asstory.vercel.app",
               potentialAction: {
                 "@type": "SearchAction",
                 target: {
                   "@type": "EntryPoint",
                   urlTemplate:
-                    "https://prop-valuer-v3b2.vercel.app/search?q={search_term_string}",
+                    "https://asstory.vercel.app/search?q={search_term_string}",
                 },
                 "query-input": "required name=search_term_string",
               },
@@ -159,10 +159,10 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               name: "Asstory",
-              url: "https://prop-valuer-v3b2.vercel.app",
+              url: "https://asstory.vercel.app",
               description:
                 "Professional property valuation and real estate pricing platform",
-              image: "https://prop-valuer-v3b2.vercel.app/og-image.png",
+              image: "https://asstory.vercel.app/og-image.png",
               areaServed: "IN",
               serviceType: "Property Valuation Service",
             }),

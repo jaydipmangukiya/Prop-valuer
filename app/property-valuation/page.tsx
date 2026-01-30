@@ -19,8 +19,8 @@ export default function PropertyValuationPage() {
             "@context": "https://schema.org",
             "@type": "Organization",
             name: "Asstory",
-            url: "https://prop-valuer-v3b2.vercel.app",
-            logo: "https://prop-valuer-v3b2.vercel.app/assets/logo.png",
+            url: "https://asstory.vercel.app",
+            logo: "https://asstory.vercel.app/assets/logo.png",
             description:
               "Free property valuation and auction property listings in India",
             contactPoint: {
@@ -47,7 +47,7 @@ export default function PropertyValuationPage() {
             provider: {
               "@type": "Organization",
               name: "Asstory",
-              url: "https://prop-valuer-v3b2.vercel.app",
+              url: "https://asstory.vercel.app",
             },
             description:
               "Free online property valuation tool for accurate market value estimation",
@@ -61,7 +61,7 @@ export default function PropertyValuationPage() {
               price: "0",
               priceCurrency: "INR",
               availability: "https://schema.org/InStock",
-              url: "https://prop-valuer-v3b2.vercel.app/property-valuation",
+              url: "https://asstory.vercel.app/property-valuation",
             },
             aggregateRating: {
               "@type": "AggregateRating",
@@ -86,19 +86,19 @@ export default function PropertyValuationPage() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Home",
-                item: "https://prop-valuer-v3b2.vercel.app",
+                item: "https://asstory.vercel.app",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Services",
-                item: "https://prop-valuer-v3b2.vercel.app/services",
+                item: "https://asstory.vercel.app/services",
               },
               {
                 "@type": "ListItem",
                 position: 3,
                 name: "Property Valuation",
-                item: "https://prop-valuer-v3b2.vercel.app/property-valuation",
+                item: "https://asstory.vercel.app/property-valuation",
               },
             ],
           }),

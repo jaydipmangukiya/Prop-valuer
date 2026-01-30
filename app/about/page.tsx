@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: {
-    canonical: "https://prop-valuer-v3b2.vercel.app/about",
+    canonical: "https://asstory.vercel.app/about",
   },
   keywords: [
     "asstory about",
@@ -30,12 +30,12 @@ export const metadata: Metadata = {
   openGraph: {
     title,
     description,
-    url: "https://prop-valuer-v3b2.vercel.app/about",
+    url: "https://asstory.vercel.app/about",
     type: "website",
     siteName: "Asstory",
     images: [
       {
-        url: "https://prop-valuer-v3b2.vercel.app/assets/images/og-image.png",
+        url: "https://asstory.vercel.app/assets/images/og-image.png",
         width: 1200,
         height: 630,
         alt: "Asstory about page preview",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["https://prop-valuer-v3b2.vercel.app/assets/images/og-image.png"],
+    images: ["https://asstory.vercel.app/assets/images/og-image.png"],
   },
   robots: {
     index: true,
@@ -110,7 +110,7 @@ export default function AboutPage() {
             "@context": "https://schema.org",
             "@type": "Organization",
             name: "Asstory",
-            url: "https://prop-valuer-v3b2.vercel.app",
+            url: "https://asstory.vercel.app",
             description:
               "India’s data-driven property valuation and auction discovery platform",
             sameAs: [],

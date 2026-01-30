@@ -26,12 +26,12 @@ const contactStructuredData = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
   name: "Contact Asstory",
-  url: "https://prop-valuer-v3b2.vercel.app/contact",
+  url: "https://asstory.vercel.app/contact",
   description:
     "Get in touch with Asstory for property valuation support, demos, and partnerships in India.",
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": "https://prop-valuer-v3b2.vercel.app/contact",
+    "@id": "https://asstory.vercel.app/contact",
   },
   potentialAction: {
     "@type": "CommunicateAction",

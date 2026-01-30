@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: {
-    canonical: "https://prop-valuer-v3b2.vercel.app/property-valuation",
+    canonical: "https://asstory.vercel.app/property-valuation",
   },
   keywords: [
     "property valuation",
@@ -30,12 +30,12 @@ export const metadata: Metadata = {
   openGraph: {
     title,
     description,
-    url: "https://prop-valuer-v3b2.vercel.app/property-valuation",
+    url: "https://asstory.vercel.app/property-valuation",
     type: "website",
     siteName: "Asstory",
     images: [
       {
-        url: "https://prop-valuer-v3b2.vercel.app/assets/images/og-valuation.png",
+        url: "https://asstory.vercel.app/assets/images/og-valuation.png",
         width: 1200,
         height: 630,
         alt: "Free Property Valuation Tool",
@@ -46,9 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: [
-      "https://prop-valuer-v3b2.vercel.app/assets/images/og-valuation.png",
-    ],
+    images: ["https://asstory.vercel.app/assets/images/og-valuation.png"],
   },
   robots: {
     index: true,

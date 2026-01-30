@@ -4,4 +4,4 @@ Disallow: /admin/
 Disallow: /api/
 Disallow: /private/
 
-Sitemap: https://prop-valuer-v3b2.vercel.app/sitemap.xml
+Sitemap: https://asstory.vercel.app/sitemap.xml

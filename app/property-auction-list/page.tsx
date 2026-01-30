@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: {
-    canonical: "https://prop-valuer-v3b2.vercel.app/property-auction-list",
+    canonical: "https://asstory.vercel.app/property-auction-list",
   },
   keywords: [
     "property auction",
@@ -31,12 +31,12 @@ export const metadata: Metadata = {
   openGraph: {
     title,
     description,
-    url: "https://prop-valuer-v3b2.vercel.app/property-auction-list",
+    url: "https://asstory.vercel.app/property-auction-list",
     type: "website",
     siteName: "Asstory",
     images: [
       {
-        url: "https://prop-valuer-v3b2.vercel.app/assets/images/og-image.png",
+        url: "https://asstory.vercel.app/assets/images/og-image.png",
         width: 1200,
         height: 630,
         alt: "Asstory auction property listings",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["https://prop-valuer-v3b2.vercel.app/assets/images/og-image.png"],
+    images: ["https://asstory.vercel.app/assets/images/og-image.png"],
   },
   robots: {
     index: true,
@@ -66,8 +66,8 @@ export default function PropertyAuctionListPage() {
             "@context": "https://schema.org",
             "@type": "Organization",
             name: "Asstory",
-            url: "https://prop-valuer-v3b2.vercel.app",
-            logo: "https://prop-valuer-v3b2.vercel.app/assets/logo.png",
+            url: "https://asstory.vercel.app",
+            logo: "https://asstory.vercel.app/assets/logo.png",
             description:
               "Free property auction listings and valuations across India",
           }),
@@ -84,7 +84,7 @@ export default function PropertyAuctionListPage() {
             name: "Auction Property Listings",
             description:
               "Bank auction properties across India with verified valuations",
-            url: "https://prop-valuer-v3b2.vercel.app/property-auction-list",
+            url: "https://asstory.vercel.app/property-auction-list",
             mainEntity: {
               "@type": "ItemList",
               name: "Auction Properties",
@@ -92,7 +92,7 @@ export default function PropertyAuctionListPage() {
                 {
                   "@type": "RealEstateAgent",
                   name: "Property Auction Listings",
-                  url: "https://prop-valuer-v3b2.vercel.app/property-auction-list",
+                  url: "https://asstory.vercel.app/property-auction-list",
                 },
               ],
             },
@@ -112,19 +112,19 @@ export default function PropertyAuctionListPage() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Home",
-                item: "https://prop-valuer-v3b2.vercel.app",
+                item: "https://asstory.vercel.app",
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Services",
-                item: "https://prop-valuer-v3b2.vercel.app/services",
+                item: "https://asstory.vercel.app/services",
               },
               {
                 "@type": "ListItem",
                 position: 3,
                 name: "Auction Properties",
-                item: "https://prop-valuer-v3b2.vercel.app/property-auction-list",
+                item: "https://asstory.vercel.app/property-auction-list",
               },
             ],
           }),
