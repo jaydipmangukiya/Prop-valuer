@@ -3,9 +3,9 @@ import Header from "@/components/Header";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Cookie Policy | PropValuer",
+  title: "Cookie Policy | Asstory",
   description:
-    "Learn about how PropValuer uses cookies and how to manage your cookie preferences.",
+    "Learn about how Asstory uses cookies and how to manage your cookie preferences.",
 };
 
 export default function CookiePolicyPage() {
@@ -29,8 +29,8 @@ export default function CookiePolicyPage() {
                   1. Introduction
                 </h2>
                 <p>
-                  PropValuer (&quot;we,&quot; &quot;us,&quot; &quot;our,&quot;
-                  or &quot;Company&quot;) uses cookies and similar tracking
+                  Asstory (&quot;we,&quot; &quot;us,&quot; &quot;our,&quot; or
+                  &quot;Company&quot;) uses cookies and similar tracking
                   technologies on our website to enhance your browsing
                   experience, analyze how you use our site, and deliver
                   personalized content and advertisements.
@@ -233,10 +233,10 @@ export default function CookiePolicyPage() {
                   <p>
                     <strong>Email:</strong>{" "}
                     <a
-                      href="mailto:info@propvaluer.com"
+                      href="mailto:info@asstory.com"
                       className="text-emerald-600 hover:text-emerald-700"
                     >
-                      info@propvaluer.com
+                      info@asstory.com
                     </a>
                   </p>
                   <p className="mt-2">

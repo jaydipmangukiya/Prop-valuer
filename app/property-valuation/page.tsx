@@ -18,7 +18,7 @@ export default function PropertyValuationPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            name: "PropValuer",
+            name: "Asstory",
             url: "https://prop-valuer-v3b2.vercel.app",
             logo: "https://prop-valuer-v3b2.vercel.app/assets/logo.png",
             description:
@@ -46,7 +46,7 @@ export default function PropertyValuationPage() {
             name: "Property Valuation Service",
             provider: {
               "@type": "Organization",
-              name: "PropValuer",
+              name: "Asstory",
               url: "https://prop-valuer-v3b2.vercel.app",
             },
             description:

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
-const title = "Support Center | PropValuer - Get Help with Property Valuation";
+const title = "Support Center | Asstory - Get Help with Property Valuation";
 const description =
-  "Get expert support for property valuation services. Contact PropValuer team for technical help, billing queries, account issues, and general assistance.";
+  "Get expert support for property valuation services. Contact Asstory team for technical help, billing queries, account issues, and general assistance.";
 
 export const metadata: Metadata = {
   title,
@@ -11,12 +11,12 @@ export const metadata: Metadata = {
     canonical: "https://prop-valuer-v3b2.vercel.app/support",
   },
   keywords: [
-    "PropValuer support",
+    "Asstory support",
     "property valuation help",
     "customer support",
     "technical support",
     "valuation service help",
-    "PropValuer contact",
+    "Asstory contact",
     "property valuation queries",
     "billing support",
     "account help",
@@ -26,13 +26,13 @@ export const metadata: Metadata = {
     description,
     url: "https://prop-valuer-v3b2.vercel.app/support",
     type: "website",
-    siteName: "PropValuer",
+    siteName: "Asstory",
     images: [
       {
         url: "https://prop-valuer-v3b2.vercel.app/assets/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "PropValuer support center preview",
+        alt: "Asstory support center preview",
       },
     ],
   },

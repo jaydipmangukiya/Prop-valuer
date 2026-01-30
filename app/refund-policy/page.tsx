@@ -11,9 +11,9 @@ import {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const title = "Refund Policy | PropValuer";
+const title = "Refund Policy | Asstory";
 const description =
-  "Learn how PropValuer handles refund requests for property valuation services, including eligibility, timelines, and contact information.";
+  "Learn how Asstory handles refund requests for property valuation services, including eligibility, timelines, and contact information.";
 
 export const metadata: Metadata = {
   title,
@@ -22,24 +22,24 @@ export const metadata: Metadata = {
     canonical: "https://prop-valuer-v3b2.vercel.app/refund-policy",
   },
   keywords: [
-    "propValuer refund policy",
+    "asstory refund policy",
     "property valuation refund",
     "refund process",
     "valuation service terms",
-    "propValuer support",
+    "asstory support",
   ],
   openGraph: {
     title,
     description,
     url: "https://prop-valuer-v3b2.vercel.app/refund-policy",
     type: "article",
-    siteName: "PropValuer",
+    siteName: "Asstory",
     images: [
       {
         url: "https://prop-valuer-v3b2.vercel.app/assets/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "PropValuer refund policy preview",
+        alt: "Asstory refund policy preview",
       },
     ],
   },
@@ -118,10 +118,10 @@ export default function RefundPolicyPage() {
           <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
             <CardContent className="p-8">
               <p className="text-lg text-slate-700 leading-relaxed mb-6">
-                At PropValuer, we are committed to providing accurate and
-                reliable property valuation services. This Refund Policy
-                outlines the terms and conditions under which refunds may be
-                processed for our premium valuation services.
+                At Asstory, we are committed to providing accurate and reliable
+                property valuation services. This Refund Policy outlines the
+                terms and conditions under which refunds may be processed for
+                our premium valuation services.
               </p>
               <p className="text-lg text-slate-700 leading-relaxed">
                 Please read this policy carefully before making any payment for
@@ -230,7 +230,7 @@ export default function RefundPolicyPage() {
                     delivery
                   </li>
                   <li>
-                    • All refund decisions are final and at PropValuer&#39;s
+                    • All refund decisions are final and at Asstory&#39;s
                     discretion
                   </li>
                 </ul>
@@ -264,7 +264,7 @@ export default function RefundPolicyPage() {
                   </h4>
                   <div className="space-y-2 text-slate-700">
                     <p>
-                      <strong>Email:</strong> refunds@propvaluer.com
+                      <strong>Email:</strong> refunds@asstory.com
                     </p>
                     <p>
                       <strong>Phone:</strong> +91 98765 43210

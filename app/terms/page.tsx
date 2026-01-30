@@ -10,16 +10,16 @@ export default function TermsPage() {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "PropValuer",
-    url: "https://propvaluer.com",
-    logo: "https://propvaluer.com/logo.png",
+    name: "Asstory",
+    url: "https://asstory.com",
+    logo: "https://asstory.com/logo.png",
     description:
       "Free property valuation and auction service platform in India",
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+91-98765-43210",
       contactType: "Customer Service",
-      email: "support@propvaluer.com",
+      email: "support@asstory.com",
     },
   };
 
@@ -28,15 +28,14 @@ export default function TermsPage() {
     "@context": "https://schema.org",
     "@type": "WebPage",
     name: "Terms & Conditions",
-    description:
-      "Terms and conditions for PropValuer property valuation services",
-    url: "https://propvaluer.com/terms",
+    description: "Terms and conditions for Asstory property valuation services",
+    url: "https://asstory.com/terms",
     publisher: {
       "@type": "Organization",
-      name: "PropValuer",
+      name: "Asstory",
       logo: {
         "@type": "ImageObject",
-        url: "https://propvaluer.com/logo.png",
+        url: "https://asstory.com/logo.png",
       },
     },
   };
@@ -50,13 +49,13 @@ export default function TermsPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://propvaluer.com",
+        item: "https://asstory.com",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Terms & Conditions",
-        item: "https://propvaluer.com/terms",
+        item: "https://asstory.com/terms",
       },
     ],
   };
@@ -105,7 +104,7 @@ export default function TermsPage() {
 
       {/* Hidden H1 for SEO */}
       <h1 className="sr-only">
-        Terms and Conditions - Property Valuation Service Agreement | PropValuer
+        Terms and Conditions - Property Valuation Service Agreement | Asstory
       </h1>
 
       {/* Introduction */}
@@ -117,7 +116,7 @@ export default function TermsPage() {
           <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
             <CardContent className="p-8">
               <p className="text-lg text-slate-700 leading-relaxed mb-6">
-                Welcome to PropValuer. These Terms and Conditions
+                Welcome to Asstory. These Terms and Conditions
                 (&quot;Terms&quot;) govern your use of our website and property
                 valuation services. By accessing or using our services, you
                 agree to be bound by these Terms and our Privacy Policy.
@@ -263,7 +262,7 @@ export default function TermsPage() {
                 <p>
                   <strong>Contact for Legal Matters:</strong>
                 </p>
-                <p>Email: legal@propvaluer.com</p>
+                <p>Email: legal@asstory.com</p>
                 <p>Address: Surat, Gujarat, 395003, India</p>
               </div>
             </CardContent>

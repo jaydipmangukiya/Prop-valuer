@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title:
-    "Property Valuation | Instant Real Estate Price Estimate | Prop Valuer",
+  title: "Property Valuation | Instant Real Estate Price Estimate | Asstory",
   description:
     "Get instant property valuation and real estate price estimates for apartments, villas, commercial properties, and land in India. Free, accurate, and professional property assessment.",
   alternates: {
@@ -13,7 +12,7 @@ export const metadata: Metadata = {
     description:
       "Instant property valuations for apartments, villas, land, and commercial properties across India.",
     url: "https://prop-valuer-v3b2.vercel.app/property-valuation",
-    siteName: "Prop Valuer",
+    siteName: "Asstory",
     type: "website",
     images: [
       {

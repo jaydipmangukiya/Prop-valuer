@@ -12,9 +12,8 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL("https://prop-valuer-v3b2.vercel.app"),
   title: {
-    default:
-      "Property Valuation in India – Instant Price Estimates | PropValuer",
-    template: "%s | PropValuer",
+    default: "Property Valuation in India – Instant Price Estimates | Asstory",
+    template: "%s | Asstory",
   },
   description:
     "Get accurate property valuations and price estimates in India. Free online tool for apartments, villas, and commercial properties.",
@@ -55,17 +54,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    title: "PropValuer – Accurate Property Valuation",
+    title: "Asstory – Accurate Property Valuation",
     description:
       "Instant property valuation reports powered by real market data and analytics.",
     url: "https://prop-valuer-v3b2.vercel.app",
-    siteName: "PropValuer",
+    siteName: "Asstory",
     images: [
       {
         url: "/assets/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "PropValuer Property Valuation Platform",
+        alt: "Asstory Property Valuation Platform",
       },
     ],
   },
@@ -75,7 +74,7 @@ export const metadata: Metadata = {
   // Twitter Card
   twitter: {
     card: "summary_large_image",
-    title: "Prop Valuer | Free Property Valuation in India",
+    title: "Asstory | Free Property Valuation in India",
     description:
       "Get accurate property valuations and real estate price estimates instantly.",
     images: ["https://prop-valuer-v3b2.vercel.app/og-image.png"],
@@ -86,9 +85,9 @@ export const metadata: Metadata = {
     { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
   ],
   category: "Real Estate",
-  authors: [{ name: "Prop Valuer Team" }],
-  creator: "Prop Valuer",
-  publisher: "Prop Valuer",
+  authors: [{ name: "Asstory Team" }],
+  creator: "Asstory",
+  publisher: "Asstory",
   formatDetection: {
     email: false,
     telephone: false,
@@ -111,15 +110,15 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "Prop Valuer",
+              name: "Asstory",
               url: "https://prop-valuer-v3b2.vercel.app",
               logo: "https://prop-valuer-v3b2.vercel.app/logo.png",
               description:
                 "Free online property valuation and real estate price estimation platform in India",
               sameAs: [
-                "https://www.facebook.com/propvaluer",
-                "https://www.twitter.com/propvaluer",
-                "https://www.linkedin.com/company/propvaluer",
+                "https://www.facebook.com/asstory",
+                "https://www.twitter.com/asstory",
+                "https://www.linkedin.com/company/asstory",
               ],
               contactPoint: {
                 "@type": "ContactPoint",
@@ -137,7 +136,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              name: "Prop Valuer",
+              name: "Asstory",
               url: "https://prop-valuer-v3b2.vercel.app",
               potentialAction: {
                 "@type": "SearchAction",
@@ -159,7 +158,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
-              name: "Prop Valuer",
+              name: "Asstory",
               url: "https://prop-valuer-v3b2.vercel.app",
               description:
                 "Professional property valuation and real estate pricing platform",

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const title = "PropValuer Blog | Property Valuation Insights & Market Updates";
+const title = "Asstory Blog | Property Valuation Insights & Market Updates";
 const description =
   "Expert insights on property valuation, real estate market trends, investment strategies, and auction property updates tailored for Indian real estate professionals.";
 
@@ -23,13 +23,13 @@ export const metadata: Metadata = {
     description,
     url: "https://prop-valuer-v3b2.vercel.app/blog",
     type: "website",
-    siteName: "PropValuer",
+    siteName: "Asstory",
     images: [
       {
         url: "https://prop-valuer-v3b2.vercel.app/assets/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "PropValuer blog preview",
+        alt: "Asstory blog preview",
       },
     ],
   },

@@ -155,11 +155,7 @@ export const contactInfo = [
   {
     icon: Mail,
     title: "Email Addresses",
-    details: [
-      "info@propvaluer.com",
-      "support@propvaluer.com",
-      "sales@propvaluer.com",
-    ],
+    details: ["info@asstory.com", "support@asstory.com", "sales@asstory.com"],
     colorClass: "text-orange-600",
   },
   {
@@ -300,7 +296,7 @@ export const ourProcess = [
 export const additionalServices = [
   {
     icon: FileText,
-    title: "Prop Valuer Market Reports",
+    title: "Asstory Market Reports",
     description:
       "Quick and accurate property valuation based on market data analysis and comparable properties.",
   },
@@ -510,7 +506,7 @@ export const termsSections = [
     title: "Intellectual Property",
     colorClass: "text-orange-600",
     content: [
-      "All content, algorithms, and technology are proprietary to PropValuer.",
+      "All content, algorithms, and technology are proprietary to Asstory.",
       "Users may not copy, distribute, or reproduce our valuation reports for commercial purposes.",
       "Our trademarks, logos, and brand elements are protected intellectual property.",
       "User-generated content remains the property of the user but grants us usage rights.",
@@ -522,7 +518,7 @@ export const termsSections = [
     title: "Liability and Disclaimers",
     colorClass: "text-red-600",
     content: [
-      "PropValuer is not liable for decisions made based on our valuation reports.",
+      "Asstory is not liable for decisions made based on our valuation reports.",
       "We disclaim all warranties, express or implied, regarding service accuracy.",
       "Our liability is limited to the amount paid for the specific service.",
       "We are not responsible for losses due to market fluctuations or external factors.",

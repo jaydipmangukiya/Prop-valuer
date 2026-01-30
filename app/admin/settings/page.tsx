@@ -1,29 +1,29 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Switch } from '@/components/ui/switch';
-import { Settings, Save, Globe, Shield, Bell, Database } from 'lucide-react';
-import { useState } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+import { Settings, Save, Globe, Shield, Bell, Database } from "lucide-react";
+import { useState } from "react";
 
 export default function SettingsPage() {
   const [settings, setSettings] = useState({
-    siteName: 'PropValuer',
-    siteDescription: 'Property Valuation Platform',
-    contactEmail: 'info@propvaluer.com',
-    supportEmail: 'support@propvaluer.com',
+    siteName: "Asstory",
+    siteDescription: "Property Valuation Platform",
+    contactEmail: "info@asstory.com",
+    supportEmail: "support@asstory.com",
     enableRegistration: true,
     enableNotifications: true,
     maintenanceMode: false,
-    apiRateLimit: '1000',
-    maxFileSize: '10',
-    enableAnalytics: true
+    apiRateLimit: "1000",
+    maxFileSize: "10",
+    enableAnalytics: true,
   });
 
   const handleSave = () => {
-    console.log('Saving settings:', settings);
+    console.log("Saving settings:", settings);
     // Handle save logic here
   };
 
@@ -32,9 +32,14 @@ export default function SettingsPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-slate-800">Settings</h1>
-          <p className="text-slate-600">Manage system settings and configuration</p>
+          <p className="text-slate-600">
+            Manage system settings and configuration
+          </p>
         </div>
-        <Button onClick={handleSave} className="bg-emerald-600 hover:bg-emerald-700">
+        <Button
+          onClick={handleSave}
+          className="bg-emerald-600 hover:bg-emerald-700"
+        >
           <Save className="h-4 w-4 mr-2" />
           Save Changes
         </Button>
@@ -55,7 +60,9 @@ export default function SettingsPage() {
               <Input
                 id="siteName"
                 value={settings.siteName}
-                onChange={(e) => setSettings(prev => ({ ...prev, siteName: e.target.value }))}
+                onChange={(e) =>
+                  setSettings((prev) => ({ ...prev, siteName: e.target.value }))
+                }
                 className="mt-1"
               />
             </div>
@@ -64,7 +71,12 @@ export default function SettingsPage() {
               <Input
                 id="siteDescription"
                 value={settings.siteDescription}
-                onChange={(e) => setSettings(prev => ({ ...prev, siteDescription: e.target.value }))}
+                onChange={(e) =>
+                  setSettings((prev) => ({
+                    ...prev,
+                    siteDescription: e.target.value,
+                  }))
+                }
                 className="mt-1"
               />
             </div>
@@ -74,7 +86,12 @@ export default function SettingsPage() {
                 id="contactEmail"
                 type="email"
                 value={settings.contactEmail}
-                onChange={(e) => setSettings(prev => ({ ...prev, contactEmail: e.target.value }))}
+                onChange={(e) =>
+                  setSettings((prev) => ({
+                    ...prev,
+                    contactEmail: e.target.value,
+                  }))
+                }
                 className="mt-1"
               />
             </div>
@@ -84,7 +101,12 @@ export default function SettingsPage() {
                 id="supportEmail"
                 type="email"
                 value={settings.supportEmail}
-                onChange={(e) => setSettings(prev => ({ ...prev, supportEmail: e.target.value }))}
+                onChange={(e) =>
+                  setSettings((prev) => ({
+                    ...prev,
+                    supportEmail: e.target.value,
+                  }))
+                }
                 className="mt-1"
               />
             </div>
@@ -103,21 +125,32 @@ export default function SettingsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <Label>Enable User Registration</Label>
-                <p className="text-sm text-slate-600">Allow new users to register</p>
+                <p className="text-sm text-slate-600">
+                  Allow new users to register
+                </p>
               </div>
               <Switch
                 checked={settings.enableRegistration}
-                onCheckedChange={(checked) => setSettings(prev => ({ ...prev, enableRegistration: checked }))}
+                onCheckedChange={(checked) =>
+                  setSettings((prev) => ({
+                    ...prev,
+                    enableRegistration: checked,
+                  }))
+                }
               />
             </div>
             <div className="flex items-center justify-between">
               <div>
                 <Label>Maintenance Mode</Label>
-                <p className="text-sm text-slate-600">Put site in maintenance mode</p>
+                <p className="text-sm text-slate-600">
+                  Put site in maintenance mode
+                </p>
               </div>
               <Switch
                 checked={settings.maintenanceMode}
-                onCheckedChange={(checked) => setSettings(prev => ({ ...prev, maintenanceMode: checked }))}
+                onCheckedChange={(checked) =>
+                  setSettings((prev) => ({ ...prev, maintenanceMode: checked }))
+                }
               />
             </div>
             <div>
@@ -126,7 +159,12 @@ export default function SettingsPage() {
                 id="apiRateLimit"
                 type="number"
                 value={settings.apiRateLimit}
-                onChange={(e) => setSettings(prev => ({ ...prev, apiRateLimit: e.target.value }))}
+                onChange={(e) =>
+                  setSettings((prev) => ({
+                    ...prev,
+                    apiRateLimit: e.target.value,
+                  }))
+                }
                 className="mt-1"
               />
             </div>
@@ -136,7 +174,12 @@ export default function SettingsPage() {
                 id="maxFileSize"
                 type="number"
                 value={settings.maxFileSize}
-                onChange={(e) => setSettings(prev => ({ ...prev, maxFileSize: e.target.value }))}
+                onChange={(e) =>
+                  setSettings((prev) => ({
+                    ...prev,
+                    maxFileSize: e.target.value,
+                  }))
+                }
                 className="mt-1"
               />
             </div>
@@ -155,11 +198,18 @@ export default function SettingsPage() {
             <div className="flex items-center justify-between">
               <div>
                 <Label>Enable Notifications</Label>
-                <p className="text-sm text-slate-600">Send email notifications</p>
+                <p className="text-sm text-slate-600">
+                  Send email notifications
+                </p>
               </div>
               <Switch
                 checked={settings.enableNotifications}
-                onCheckedChange={(checked) => setSettings(prev => ({ ...prev, enableNotifications: checked }))}
+                onCheckedChange={(checked) =>
+                  setSettings((prev) => ({
+                    ...prev,
+                    enableNotifications: checked,
+                  }))
+                }
               />
             </div>
             <div className="flex items-center justify-between">
@@ -169,7 +219,9 @@ export default function SettingsPage() {
               </div>
               <Switch
                 checked={settings.enableAnalytics}
-                onCheckedChange={(checked) => setSettings(prev => ({ ...prev, enableAnalytics: checked }))}
+                onCheckedChange={(checked) =>
+                  setSettings((prev) => ({ ...prev, enableAnalytics: checked }))
+                }
               />
             </div>
           </CardContent>
@@ -185,7 +237,9 @@ export default function SettingsPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="p-4 bg-slate-50 rounded-lg">
-              <h4 className="font-medium text-slate-800 mb-2">Database Status</h4>
+              <h4 className="font-medium text-slate-800 mb-2">
+                Database Status
+              </h4>
               <div className="flex items-center space-x-2">
                 <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
                 <span className="text-sm text-slate-600">Connected</span>
@@ -215,7 +269,7 @@ export default function SettingsPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <h4 className="font-medium text-slate-800 mb-2">Version</h4>
-              <p className="text-slate-600">PropValuer v2.1.0</p>
+              <p className="text-slate-600">Asstory v2.1.0</p>
             </div>
             <div>
               <h4 className="font-medium text-slate-800 mb-2">Last Updated</h4>

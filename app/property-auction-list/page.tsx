@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import PropertyauctionList from "@/app/views/property-auction";
 
-const title = "Bank Auction Properties India | Property Auction Listings & Valuations";
+const title =
+  "Bank Auction Properties India | Property Auction Listings & Valuations";
 const description =
   "Discover verified bank auction properties across India. Browse residential, commercial, land & villa auctions with accurate valuations, location filters & detailed property information.";
 
@@ -32,13 +33,13 @@ export const metadata: Metadata = {
     description,
     url: "https://prop-valuer-v3b2.vercel.app/property-auction-list",
     type: "website",
-    siteName: "PropValuer",
+    siteName: "Asstory",
     images: [
       {
         url: "https://prop-valuer-v3b2.vercel.app/assets/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "PropValuer auction property listings",
+        alt: "Asstory auction property listings",
       },
     ],
   },
@@ -64,10 +65,11 @@ export default function PropertyAuctionListPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            name: "PropValuer",
+            name: "Asstory",
             url: "https://prop-valuer-v3b2.vercel.app",
             logo: "https://prop-valuer-v3b2.vercel.app/assets/logo.png",
-            description: "Free property auction listings and valuations across India",
+            description:
+              "Free property auction listings and valuations across India",
           }),
         }}
       />
@@ -80,7 +82,8 @@ export default function PropertyAuctionListPage() {
             "@context": "https://schema.org",
             "@type": "CollectionPage",
             name: "Auction Property Listings",
-            description: "Bank auction properties across India with verified valuations",
+            description:
+              "Bank auction properties across India with verified valuations",
             url: "https://prop-valuer-v3b2.vercel.app/property-auction-list",
             mainEntity: {
               "@type": "ItemList",
@@ -128,7 +131,10 @@ export default function PropertyAuctionListPage() {
         }}
       />
 
-      <h1 className="sr-only">Bank Auction Properties in India - Property Auction Listings & Valuations</h1>
+      <h1 className="sr-only">
+        Bank Auction Properties in India - Property Auction Listings &
+        Valuations
+      </h1>
       <PropertyauctionList />
     </div>
   );

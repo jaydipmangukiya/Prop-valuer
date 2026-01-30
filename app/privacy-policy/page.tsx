@@ -10,16 +10,16 @@ export default function PrivacyPolicyPage() {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "PropValuer",
-    url: "https://propvaluer.com",
-    logo: "https://propvaluer.com/logo.png",
+    name: "Asstory",
+    url: "https://asstory.com",
+    logo: "https://asstory.com/logo.png",
     description:
       "Free property valuation and auction service platform in India",
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+91-98765-43210",
       contactType: "Customer Service",
-      email: "privacy@propvaluer.com",
+      email: "privacy@asstory.com",
     },
   };
 
@@ -29,14 +29,14 @@ export default function PrivacyPolicyPage() {
     "@type": "WebPage",
     name: "Privacy Policy",
     description:
-      "Privacy policy explaining how PropValuer collects, uses, and protects your personal data",
-    url: "https://propvaluer.com/privacy-policy",
+      "Privacy policy explaining how Asstory collects, uses, and protects your personal data",
+    url: "https://asstory.com/privacy-policy",
     publisher: {
       "@type": "Organization",
-      name: "PropValuer",
+      name: "Asstory",
       logo: {
         "@type": "ImageObject",
-        url: "https://propvaluer.com/logo.png",
+        url: "https://asstory.com/logo.png",
       },
     },
   };
@@ -50,13 +50,13 @@ export default function PrivacyPolicyPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://propvaluer.com",
+        item: "https://asstory.com",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Privacy Policy",
-        item: "https://propvaluer.com/privacy-policy",
+        item: "https://asstory.com/privacy-policy",
       },
     ],
   };
@@ -105,8 +105,7 @@ export default function PrivacyPolicyPage() {
 
       {/* Hidden H1 for SEO */}
       <h1 className="sr-only">
-        Privacy Policy - How PropValuer Protects Your Data and Personal
-        Information
+        Privacy Policy - How Asstory Protects Your Data and Personal Information
       </h1>
 
       {/* Introduction */}
@@ -115,7 +114,7 @@ export default function PrivacyPolicyPage() {
           <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
             <CardContent className="p-8">
               <p className="text-lg text-slate-700 leading-relaxed mb-6">
-                At PropValuer, we are committed to protecting your privacy and
+                At Asstory, we are committed to protecting your privacy and
                 ensuring the security of your personal information. This Privacy
                 Policy explains how we collect, use, disclose, and safeguard
                 your information when you visit our website or use our property
@@ -231,7 +230,7 @@ export default function PrivacyPolicyPage() {
               </p>
               <div className="space-y-2 text-slate-700">
                 <p>
-                  <strong>Email:</strong> privacy@propvaluer.com
+                  <strong>Email:</strong> privacy@asstory.com
                 </p>
                 <p>
                   <strong>Phone:</strong> +91 98765 43210

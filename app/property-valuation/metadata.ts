@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     description,
     url: "https://prop-valuer-v3b2.vercel.app/property-valuation",
     type: "website",
-    siteName: "PropValuer",
+    siteName: "Asstory",
     images: [
       {
         url: "https://prop-valuer-v3b2.vercel.app/assets/images/og-valuation.png",

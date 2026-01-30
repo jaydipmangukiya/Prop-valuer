@@ -8,10 +8,9 @@ import { stats, teamMember } from "@/lib/siteContent";
 import { ArrowRight, Quote, Shield, Target, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const title =
-  "About PropValuer – India’s Data-Driven Property Valuation Platform";
+const title = "About Asstory – India’s Data-Driven Property Valuation Platform";
 const description =
-  "Learn how PropValuer combines verified data, AI, and valuation expertise to deliver transparent property insights and auction discovery across India.";
+  "Learn how Asstory combines verified data, AI, and valuation expertise to deliver transparent property insights and auction discovery across India.";
 
 export const metadata: Metadata = {
   title,
@@ -20,7 +19,7 @@ export const metadata: Metadata = {
     canonical: "https://prop-valuer-v3b2.vercel.app/about",
   },
   keywords: [
-    "propValuer about",
+    "asstory about",
     "property valuation platform",
     "real estate data India",
     "auction property discovery",
@@ -33,13 +32,13 @@ export const metadata: Metadata = {
     description,
     url: "https://prop-valuer-v3b2.vercel.app/about",
     type: "website",
-    siteName: "PropValuer",
+    siteName: "Asstory",
     images: [
       {
         url: "https://prop-valuer-v3b2.vercel.app/assets/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "PropValuer about page preview",
+        alt: "Asstory about page preview",
       },
     ],
   },
@@ -79,21 +78,21 @@ const values = [
 const testimonials = [
   {
     quote:
-      "PropValuer's valuation reports are now our standard for all property assessments. The accuracy and detailed methodology have significantly improved our lending decisions.",
+      "Asstory's valuation reports are now our standard for all property assessments. The accuracy and detailed methodology have significantly improved our lending decisions.",
     author: "Rajesh Sharma",
     role: "Chief Risk Officer",
     company: "National Housing Bank",
   },
   {
     quote:
-      "As a real estate investor, finding verified auction properties with reliable valuations was always a challenge. PropValuer solved both problems in one platform.",
+      "As a real estate investor, finding verified auction properties with reliable valuations was always a challenge. Asstory solved both problems in one platform.",
     author: "Priya Mehta",
     role: "Managing Director",
     company: "Horizon Real Estate Investments",
   },
   {
     quote:
-      "The transparency in their valuation methodology gives our clients complete confidence. We recommend PropValuer to all our property dispute cases.",
+      "The transparency in their valuation methodology gives our clients complete confidence. We recommend Asstory to all our property dispute cases.",
     author: "Adv. Sunil Kapoor",
     role: "Senior Partner",
     company: "Kapoor & Associates Law Firm",
@@ -110,7 +109,7 @@ export default function AboutPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            name: "PropValuer",
+            name: "Asstory",
             url: "https://prop-valuer-v3b2.vercel.app",
             description:
               "India’s data-driven property valuation and auction discovery platform",
@@ -123,7 +122,7 @@ export default function AboutPage() {
       <section className="py-20 bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
-            About PropValuer
+            About Asstory
           </h1>
           <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
             {/* We&#39;re revolutionizing property valuation in India with
@@ -144,7 +143,7 @@ export default function AboutPage() {
                 One Platform. Two Powerful Capabilities.
               </h2>
               <p className="text-muted-foreground mb-4">
-                PropValuer began as India&apos;s trusted property valuation
+                Asstory began as India&apos;s trusted property valuation
                 platform. Today, we&apos;ve evolved into a comprehensive real
                 estate intelligence solution that combines AI-powered valuations
                 with verified auction property discovery.
@@ -247,7 +246,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-slate-800 mb-4">
-              Why Choose PropValuer?
+              Why Choose Asstory?
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               We combine technology, data, and expertise to deliver the most

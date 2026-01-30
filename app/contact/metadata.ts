@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
-const title = "Contact PropValuer | Talk to Property Valuation Experts";
+const title = "Contact Asstory | Talk to Property Valuation Experts";
 const description =
-  "Contact PropValuer for property valuation support, demos, partnerships, and sales inquiries. Call, email, or book a consultation with our team.";
+  "Contact Asstory for property valuation support, demos, partnerships, and sales inquiries. Call, email, or book a consultation with our team.";
 
 export const metadata: Metadata = {
   title,
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     canonical: "https://prop-valuer-v3b2.vercel.app/contact",
   },
   keywords: [
-    "contact propvaluer",
+    "contact asstory",
     "property valuation services india",
     "real estate valuation experts",
     "property valuation consultation",
@@ -26,13 +26,13 @@ export const metadata: Metadata = {
     description,
     url: "https://prop-valuer-v3b2.vercel.app/contact",
     type: "website",
-    siteName: "PropValuer",
+    siteName: "Asstory",
     images: [
       {
         url: "https://prop-valuer-v3b2.vercel.app/assets/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "PropValuer contact page preview",
+        alt: "Asstory contact page preview",
       },
     ],
   },

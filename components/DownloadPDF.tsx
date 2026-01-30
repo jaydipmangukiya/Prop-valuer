@@ -42,7 +42,7 @@ const addCenteredImage = (
   img: HTMLImageElement,
   startY: number,
   maxWidth: number,
-  maxHeight: number
+  maxHeight: number,
 ) => {
   const imgWidth = img.width;
   const imgHeight = img.height;
@@ -73,10 +73,10 @@ const addFooter = (doc: any) => {
     doc.setTextColor(120);
 
     doc.text(
-      "info@propvaluer.com  |  +91 78945 64444  |  propvaluer.com",
+      "info@asstory.com  |  +91 78945 64444  |  asstory.com",
       pageWidth / 2,
       pageHeight - 14,
-      { align: "center" }
+      { align: "center" },
     );
 
     // Page Number
@@ -88,7 +88,7 @@ const addFooter = (doc: any) => {
 
 export async function generateReportPDF(
   reportData: any,
-  mapUrls?: { normal: string; satellite: string }
+  mapUrls?: { normal: string; satellite: string },
 ) {
   const doc = new jsPDF("p", "mm", "a4");
 
@@ -225,9 +225,7 @@ export async function generateReportPDF(
 
       [
         "Civic Amenities",
-        ad.civic_amenities?.length
-          ? ad.civic_amenities.join(", ")
-          : "-",
+        ad.civic_amenities?.length ? ad.civic_amenities.join(", ") : "-",
       ],
     ],
     headStyles: {

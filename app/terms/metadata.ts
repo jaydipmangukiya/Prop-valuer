@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
-const title = "Terms & Conditions | Property Valuation Services | PropValuer";
+const title = "Terms & Conditions | Property Valuation Services | Asstory";
 const description =
-  "Read our comprehensive Terms & Conditions for property valuation services. Understand usage agreements, liability, and user responsibilities at PropValuer.";
+  "Read our comprehensive Terms & Conditions for property valuation services. Understand usage agreements, liability, and user responsibilities at Asstory.";
 
 export const metadata: Metadata = {
   title,
@@ -19,16 +19,16 @@ export const metadata: Metadata = {
     "valuation service terms",
     "website terms",
     "privacy terms",
-    "terms PropValuer",
+    "terms Asstory",
     "service agreement",
     "user terms",
   ],
   openGraph: {
     type: "website",
-    url: "https://propvaluer.com/terms",
+    url: "https://asstory.com/terms",
     title,
     description,
-    siteName: "PropValuer",
+    siteName: "Asstory",
   },
   twitter: {
     card: "summary_large_image",
@@ -43,6 +43,6 @@ export const metadata: Metadata = {
     "max-video-preview": -1,
   },
   alternates: {
-    canonical: "https://propvaluer.com/terms",
+    canonical: "https://asstory.com/terms",
   },
 };

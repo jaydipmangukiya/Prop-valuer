@@ -25,18 +25,18 @@ import Script from "next/script";
 const contactStructuredData = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
-  name: "Contact PropValuer",
+  name: "Contact Asstory",
   url: "https://prop-valuer-v3b2.vercel.app/contact",
   description:
-    "Get in touch with PropValuer for property valuation support, demos, and partnerships in India.",
+    "Get in touch with Asstory for property valuation support, demos, and partnerships in India.",
   mainEntityOfPage: {
     "@type": "WebPage",
     "@id": "https://prop-valuer-v3b2.vercel.app/contact",
   },
   potentialAction: {
     "@type": "CommunicateAction",
-    target: "mailto:info@propvaluer.com",
-    name: "Send an email to PropValuer",
+    target: "mailto:info@asstory.com",
+    name: "Send an email to Asstory",
   },
   contactPoint: [
     {
@@ -45,7 +45,7 @@ const contactStructuredData = {
       contactType: "customer support",
       areaServed: "IN",
       availableLanguage: ["en", "hi"],
-      email: "support@propvaluer.com",
+      email: "support@asstory.com",
     },
   ],
 };
@@ -63,7 +63,7 @@ export default function ContactView() {
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setForm({ ...form, [e.target.id]: e.target.value });
   };
@@ -347,7 +347,7 @@ export default function ContactView() {
                         if (option.type === "calendly") {
                           window.open(
                             "https://calendly.com/solutionkmitjaydip/30min",
-                            "_blank"
+                            "_blank",
                           );
                         }
                         if (option.type === "call" && option.phone) {

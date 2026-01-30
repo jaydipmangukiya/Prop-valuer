@@ -84,7 +84,7 @@ export function MarketInsights() {
         <div className="mt-12 text-center">
           <div className="bg-gray-50 rounded-lg p-8">
             <h3 className="text-xl font-semibold text-gray-900 mb-4">
-              Why Choose PropValuer?
+              Why Choose Asstory?
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
               <div>

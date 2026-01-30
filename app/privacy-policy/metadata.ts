@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 
-const title =
-  "Privacy Policy | Data Protection & Your Information | PropValuer";
+const title = "Privacy Policy | Data Protection & Your Information | Asstory";
 const description =
-  "Our Privacy Policy explains how PropValuer collects, uses, and protects your personal data. Learn about your privacy rights and how we safeguard your information.";
+  "Our Privacy Policy explains how Asstory collects, uses, and protects your personal data. Learn about your privacy rights and how we safeguard your information.";
 
 export const metadata: Metadata = {
   title,
@@ -26,10 +25,10 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "website",
-    url: "https://propvaluer.com/privacy-policy",
+    url: "https://asstory.com/privacy-policy",
     title,
     description,
-    siteName: "PropValuer",
+    siteName: "Asstory",
   },
   twitter: {
     card: "summary_large_image",
@@ -44,6 +43,6 @@ export const metadata: Metadata = {
     "max-video-preview": -1,
   },
   alternates: {
-    canonical: "https://propvaluer.com/privacy-policy",
+    canonical: "https://asstory.com/privacy-policy",
   },
 };
