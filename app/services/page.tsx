@@ -8,6 +8,8 @@ import SubscriptionPlans from "../views/subscription/SubscriptionPlans";
 import Link from "next/link";
 import { additionalServices, auctionServices } from "@/lib/siteContent";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.asstory.in";
+
 const title = "Property Valuation & Auction Services | Asstory";
 const description =
   "Get professional property valuations, bank auction listings, and real estate insights. Comprehensive services for homebuyers, investors, and financial institutions.";
@@ -16,7 +18,7 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: {
-    canonical: "https://asstory.vercel.app/services",
+    canonical: `${SITE_URL}/services`,
   },
   keywords: [
     "property valuation services",
@@ -30,12 +32,12 @@ export const metadata: Metadata = {
   openGraph: {
     title,
     description,
-    url: "https://asstory.vercel.app/services",
+    url: `${SITE_URL}/services`,
     type: "website",
     siteName: "Asstory",
     images: [
       {
-        url: "https://asstory.vercel.app/assets/images/og-image.png",
+        url: `${SITE_URL}/assets/images/og-image.png`,
         width: 1200,
         height: 630,
         alt: "Asstory services preview",
@@ -46,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["https://asstory.vercel.app/assets/images/og-image.png"],
+    images: [`${SITE_URL}/assets/images/og-image.png`],
   },
   robots: {
     index: true,

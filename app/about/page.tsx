@@ -8,6 +8,8 @@ import { stats, teamMember } from "@/lib/siteContent";
 import { ArrowRight, Quote, Shield, Target, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.asstory.in";
+
 const title = "About Asstory – Data-Driven Real Estate Intelligence Platform";
 const description =
   "Learn how Asstory combines verified data, AI, and valuation expertise to deliver transparent property insights and auction discovery across India.";
@@ -16,7 +18,7 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: {
-    canonical: "https://asstory.vercel.app/about",
+    canonical: `${SITE_URL}/about`,
   },
   keywords: [
     "asstory about",
@@ -30,12 +32,12 @@ export const metadata: Metadata = {
   openGraph: {
     title,
     description,
-    url: "https://asstory.vercel.app/about",
+    url: `${SITE_URL}/about`,
     type: "website",
     siteName: "Asstory",
     images: [
       {
-        url: "https://asstory.vercel.app/assets/images/og-image.png",
+        url: `${SITE_URL}/assets/images/og-image.png`,
         width: 1200,
         height: 630,
         alt: "Asstory about page preview",
@@ -46,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["https://asstory.vercel.app/assets/images/og-image.png"],
+    images: [`${SITE_URL}/assets/images/og-image.png`],
   },
   robots: {
     index: true,
@@ -110,7 +112,7 @@ export default function AboutPage() {
             "@context": "https://schema.org",
             "@type": "Organization",
             name: "Asstory",
-            url: "https://asstory.vercel.app",
+            url: `${SITE_URL}`,
             description:
               "India’s data-driven real estate intelligence platform for transparent property valuation and verified market insights",
             areaServed: {

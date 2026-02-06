@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.asstory.in";
+
 const title =
   "Terms & Conditions | Valuation & Auction Property Services | Asstory";
 const description =
@@ -25,7 +27,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "website",
-    url: "https://asstory.com/terms",
+    url: `${SITE_URL}/terms`,
     title,
     description,
     siteName: "Asstory",
@@ -43,6 +45,6 @@ export const metadata: Metadata = {
     "max-video-preview": -1,
   },
   alternates: {
-    canonical: "https://asstory.com/terms",
+    canonical: `${SITE_URL}/terms`,
   },
 };

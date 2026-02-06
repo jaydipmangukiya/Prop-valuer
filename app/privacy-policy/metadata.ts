@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.asstory.in";
+
 const title = "Privacy Policy | Asstory";
 const description =
   "Learn how Asstory collects, uses, and protects your personal data when you use our property valuation and auction discovery platform.";
@@ -25,7 +27,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "website",
-    url: "https://asstory.com/privacy-policy",
+    url: `${SITE_URL}/privacy-policy`,
     title,
     description,
     siteName: "Asstory",
@@ -43,6 +45,6 @@ export const metadata: Metadata = {
     "max-video-preview": -1,
   },
   alternates: {
-    canonical: "https://asstory.com/privacy-policy",
+    canonical: `${SITE_URL}/privacy-policy`,
   },
 };

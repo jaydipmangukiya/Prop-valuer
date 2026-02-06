@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.asstory.in";
+
 const title = "Contact Asstory | Property Valuation & Auction Property Experts";
 const description =
   "Contact Asstory for property valuation support, verified auction property inquiries, demos, partnerships, and sales. Speak with our real estate experts today.";
@@ -8,7 +10,7 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: {
-    canonical: "https://asstory.vercel.app/contact",
+    canonical: `${SITE_URL}/contact`,
   },
   keywords: [
     "contact asstory",
@@ -27,12 +29,12 @@ export const metadata: Metadata = {
   openGraph: {
     title,
     description,
-    url: "https://asstory.vercel.app/contact",
+    url: `${SITE_URL}/contact`,
     type: "website",
     siteName: "Asstory",
     images: [
       {
-        url: "https://asstory.vercel.app/assets/images/og-image.png",
+        url: `${SITE_URL}/assets/images/og-image.png`,
         width: 1200,
         height: 630,
         alt: "Asstory contact page preview",
@@ -43,7 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["https://asstory.vercel.app/assets/images/og-image.png"],
+    images: [`${SITE_URL}/assets/images/og-image.png`],
   },
   robots: {
     index: true,

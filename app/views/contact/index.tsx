@@ -22,16 +22,18 @@ import { sendContactMessage } from "@/app/api/contact";
 import { contactInfo, supportOptions } from "@/lib/siteContent";
 import Script from "next/script";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.asstory.in";
+
 const contactStructuredData = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
   name: "Contact Asstory",
-  url: "https://asstory.vercel.app/contact",
+  url: `${SITE_URL}/contact`,
   description:
     "Get in touch with Asstory for property valuation and auction property support, demos, and partnerships in India.",
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": "https://asstory.vercel.app/contact",
+    "@id": `${SITE_URL}/contact`,
   },
   potentialAction: {
     "@type": "CommunicateAction",

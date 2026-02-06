@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.asstory.in";
+
 const title = "Asstory Blog – Real Estate Insights, Valuation & Market Trends";
 const description =
   "Expert insights on property valuation, real estate market trends, investment strategies, and auction property updates tailored for Indian real estate professionals.";
@@ -8,7 +10,7 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: {
-    canonical: "https://asstory.vercel.app/blog",
+    canonical: `${SITE_URL}/blog`,
   },
   keywords: [
     "Asstory blog",
@@ -22,12 +24,12 @@ export const metadata: Metadata = {
   openGraph: {
     title,
     description,
-    url: "https://asstory.vercel.app/blog",
+    url: `${SITE_URL}/blog`,
     type: "website",
     siteName: "Asstory",
     images: [
       {
-        url: "https://asstory.vercel.app/assets/images/og-image.png",
+        url: `${SITE_URL}/assets/images/og-image.png`,
         width: 1200,
         height: 630,
         alt: "Asstory blog preview",
@@ -38,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["https://asstory.vercel.app/assets/images/og-image.png"],
+    images: [`${SITE_URL}/assets/images/og-image.png`],
   },
   robots: {
     index: true,

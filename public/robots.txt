@@ -15,7 +15,7 @@ Disallow: /*.json
 Disallow: /private/*
 
 # Sitemap location
-Sitemap: https://asstory.vercel.app/sitemap.xml
+Sitemap: https://www.asstory.in/sitemap.xml
 
 # Crawl delay
 Crawl-delay: 1

@@ -11,6 +11,8 @@ import {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.asstory.in";
+
 const title = "Refund Policy | Asstory";
 const description =
   "Learn how Asstory handles refund requests for paid services, including property valuation and auction discovery features, with eligibility, timelines, and contact details.";
@@ -19,7 +21,7 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: {
-    canonical: "https://asstory.vercel.app/refund-policy",
+    canonical: `${SITE_URL}/refund-policy`,
   },
   keywords: [
     "Asstory refund policy",
@@ -31,12 +33,12 @@ export const metadata: Metadata = {
   openGraph: {
     title,
     description,
-    url: "https://asstory.vercel.app/refund-policy",
+    url: `${SITE_URL}/refund-policy`,
     type: "article",
     siteName: "Asstory",
     images: [
       {
-        url: "https://asstory.vercel.app/assets/images/og-image.png",
+        url: `${SITE_URL}/assets/images/og-image.png`,
         width: 1200,
         height: 630,
         alt: "Asstory refund policy preview",
@@ -47,7 +49,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["https://asstory.vercel.app/assets/images/og-image.png"],
+    images: [`${SITE_URL}/assets/images/og-image.png`],
   },
   robots: {
     index: true,

@@ -4,4 +4,4 @@ Disallow: /admin/
 Disallow: /api/
 Disallow: /private/
 
-Sitemap: https://asstory.vercel.app/sitemap.xml
+Sitemap: https://www.asstory.in/sitemap.xml

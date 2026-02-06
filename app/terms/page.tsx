@@ -5,14 +5,16 @@ import { FileText, Gavel } from "lucide-react";
 import { termsSections } from "@/lib/siteContent";
 import Head from "next/head";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.asstory.in";
+
 export default function TermsPage() {
   // Structured Data - Organization Schema
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Asstory",
-    url: "https://asstory.com",
-    logo: "https://asstory.com/logo.png",
+    url: SITE_URL,
+    logo: `${SITE_URL}/logo.png`,
     description: "Property valuation and auction discovery platform in India",
     contactPoint: {
       "@type": "ContactPoint",
@@ -29,13 +31,13 @@ export default function TermsPage() {
     name: "Terms & Conditions",
     description:
       "Terms and conditions governing the use of Asstory property valuation and auction discovery services",
-    url: "https://asstory.com/terms",
+    url: `${SITE_URL}/terms`,
     publisher: {
       "@type": "Organization",
       name: "Asstory",
       logo: {
         "@type": "ImageObject",
-        url: "https://asstory.com/logo.png",
+        url: `${SITE_URL}/logo.png`,
       },
     },
   };
@@ -49,13 +51,13 @@ export default function TermsPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://asstory.com",
+        item: SITE_URL,
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Terms & Conditions",
-        item: "https://asstory.com/terms",
+        item: `${SITE_URL}/terms`,
       },
     ],
   };

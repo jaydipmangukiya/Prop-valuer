@@ -8,6 +8,8 @@ import BenefitsValuationService from "@/components/BenefitsValuationService";
 import ValuationTypes from "@/components/ValuationTypes";
 import HowItWorks from "@/components/HowItWorks";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.asstory.in";
+
 export default function PropertyValuationPage() {
   return (
     <div className="w-full">
@@ -19,8 +21,8 @@ export default function PropertyValuationPage() {
             "@context": "https://schema.org",
             "@type": "Organization",
             name: "Asstory",
-            url: "https://asstory.vercel.app",
-            logo: "https://asstory.vercel.app/assets/logo.png",
+            url: `${SITE_URL}`,
+            logo: `${SITE_URL}/assets/logo.png`,
             description:
               "Property valuation and real estate intelligence platform in India",
             contactPoint: {
@@ -52,7 +54,7 @@ export default function PropertyValuationPage() {
             provider: {
               "@type": "Organization",
               name: "Asstory",
-              url: "https://asstory.vercel.app",
+              url: `${SITE_URL}`,
             },
             description:
               "Online property valuation service providing data-driven market value estimates for residential and commercial properties in India",
@@ -66,7 +68,7 @@ export default function PropertyValuationPage() {
               price: "0",
               priceCurrency: "INR",
               availability: "https://schema.org/InStock",
-              url: "https://asstory.vercel.app/property-valuation",
+              url: `${SITE_URL}/property-valuation`,
             },
             aggregateRating: {
               "@type": "AggregateRating",
@@ -91,19 +93,19 @@ export default function PropertyValuationPage() {
                 "@type": "ListItem",
                 position: 1,
                 name: "Home",
-                item: "https://asstory.vercel.app",
+                item: `${SITE_URL}`,
               },
               {
                 "@type": "ListItem",
                 position: 2,
                 name: "Services",
-                item: "https://asstory.vercel.app/services",
+                item: `${SITE_URL}/services`,
               },
               {
                 "@type": "ListItem",
                 position: 3,
                 name: "Property Valuation",
-                item: "https://asstory.vercel.app/property-valuation",
+                item: `${SITE_URL}/property-valuation`,
               },
             ],
           }),

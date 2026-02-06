@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.asstory.in";
+
 const title = "Property Valuation Tool | Accurate Property Values in India";
 const description =
   "Get instant property valuations for residential, commercial, land & villa properties in India. Our AI-powered tool provides accurate market values using location, size & condition.";
@@ -8,7 +10,7 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: {
-    canonical: "https://asstory.vercel.app/property-valuation",
+    canonical: `${SITE_URL}/property-valuation`,
   },
   keywords: [
     "property valuation",
@@ -28,12 +30,12 @@ export const metadata: Metadata = {
   openGraph: {
     title,
     description,
-    url: "https://asstory.vercel.app/property-valuation",
+    url: `${SITE_URL}/property-valuation`,
     type: "website",
     siteName: "Asstory",
     images: [
       {
-        url: "https://asstory.vercel.app/assets/images/og-valuation.png",
+        url: `${SITE_URL}/assets/images/og-valuation.png`,
         width: 1200,
         height: 630,
         alt: "Property Valuation Tool",
@@ -44,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["https://asstory.vercel.app/assets/images/og-valuation.png"],
+    images: [`${SITE_URL}/assets/images/og-valuation.png`],
   },
   robots: {
     index: true,

@@ -5,14 +5,16 @@ import { Shield, TriangleAlert as AlertTriangle } from "lucide-react";
 import { privacySections } from "@/lib/siteContent";
 import Head from "next/head";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.asstory.in";
+
 export default function PrivacyPolicyPage() {
   // Structured Data - Organization Schema
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Asstory",
-    url: "https://asstory.com",
-    logo: "https://asstory.com/logo.png",
+    url: SITE_URL,
+    logo: `${SITE_URL}/logo.png`,
     description: "Property valuation and auction discovery platform in India",
     contactPoint: {
       "@type": "ContactPoint",
@@ -29,13 +31,13 @@ export default function PrivacyPolicyPage() {
     name: "Privacy Policy",
     description:
       "Privacy policy explaining how Asstory collects, uses, and protects your personal data",
-    url: "https://asstory.com/privacy-policy",
+    url: `${SITE_URL}/privacy-policy`,
     publisher: {
       "@type": "Organization",
       name: "Asstory",
       logo: {
         "@type": "ImageObject",
-        url: "https://asstory.com/logo.png",
+        url: `${SITE_URL}/logo.png`,
       },
     },
   };
@@ -49,13 +51,13 @@ export default function PrivacyPolicyPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://asstory.com",
+        item: SITE_URL,
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Privacy Policy",
-        item: "https://asstory.com/privacy-policy",
+        item: `${SITE_URL}/privacy-policy`,
       },
     ],
   };
