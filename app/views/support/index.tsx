@@ -371,7 +371,7 @@ export default function SupportView() {
                 <div>
                   <Phone className="h-8 w-8 text-blue-600 mx-auto mb-3" />
                   <h4 className="font-semibold text-slate-800 mb-2">Call Us</h4>
-                  <p className="text-slate-600">+91 98765 43210</p>
+                  <p className="text-slate-600">+91 78782 83414</p>
                 </div>
                 <div>
                   <Users className="h-8 w-8 text-orange-600 mx-auto mb-3" />
