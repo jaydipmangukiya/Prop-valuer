@@ -188,7 +188,7 @@ export const supportOptions = [
     action: "Call Now",
     colorClass: "text-blue-600",
     type: "call",
-    phone: "+919876543210",
+    phone: "+91 78782 83414",
   },
   {
     icon: FileText,
