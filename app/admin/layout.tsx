@@ -7,7 +7,6 @@ import {
   Building2,
   Users,
   FileText,
-  Settings,
   ChartBar as BarChart3,
   Shield,
   LogOut,
@@ -17,6 +16,7 @@ import {
   EyeOff,
   HandshakeIcon,
   Hammer,
+  Cookie,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LogoutButton } from "@/components/authentication/LogoutButton";
@@ -60,7 +60,7 @@ export default function AdminLayout({
       href: "/admin/support-queries",
       icon: HandshakeIcon,
     },
-    { name: "Settings", href: "/admin/settings", icon: Settings },
+    { name: "Cookie Analytics", href: "/admin/cookie-analytics", icon: Cookie },
   ];
 
   const navigation = useMemo(() => {
