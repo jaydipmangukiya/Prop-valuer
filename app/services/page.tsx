@@ -133,9 +133,9 @@ export default function ServicesPage() {
                 <ul className="space-y-2">
                   {[
                     "95% accuracy backed by AI and market data",
-                    "Accepted by 500+ financial institutions",
+                    "Trusted by 5+ financial institutions",
                     "Instant digital reports with professional formatting",
-                    "Compliance-ready for RBI and legal requirements",
+                    "Built to support regulatory and legal documentation requirements",
                   ].map((item, i) => (
                     <li
                       key={i}

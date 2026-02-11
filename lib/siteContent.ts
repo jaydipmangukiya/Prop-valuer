@@ -412,11 +412,11 @@ export const stats = [
     label: "Accuracy Rate",
   },
   {
-    value: "30+",
+    value: "5+",
     label: "Partner Institutions",
   },
   {
-    value: "5+",
+    value: "3+",
     label: "Years Experience",
   },
 ];

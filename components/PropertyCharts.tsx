@@ -49,6 +49,7 @@ export default function PropertyCharts() {
   });
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const fetchAndProcessData = async () => {
@@ -164,6 +165,17 @@ export default function PropertyCharts() {
     fetchAndProcessData();
   }, [toast]);
 
+  useEffect(() => {
+    const checkScreen = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
+
   if (loading) {
     return (
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
@@ -191,18 +203,21 @@ export default function PropertyCharts() {
         </CardHeader>
         <CardContent>
           {chartData.propertyTypeData.length > 0 ? (
-            <ResponsiveContainer width="100%" height={340}>
+            <ResponsiveContainer width="100%" height={isMobile ? 420 : 340}>
               <PieChart margin={{ top: 8, right: 32, left: 8, bottom: 8 }}>
                 <Pie
                   data={chartData.propertyTypeData}
                   cx="45%"
-                  cy="50%"
+                  cy={isMobile ? "40%" : "50%"}
                   innerRadius={50}
-                  outerRadius={110}
+                  outerRadius={isMobile ? 80 : 110}
                   paddingAngle={2}
                   labelLine={false}
-                  label={({ name, value, percent }) =>
-                    percent >= 0.05 ? `${name}: ${value}` : ""
+                  label={
+                    !isMobile
+                      ? ({ name, value, percent }) =>
+                          percent >= 0.05 ? `${name}: ${value}` : ""
+                      : false
                   }
                   dataKey="count"
                 >
@@ -215,9 +230,13 @@ export default function PropertyCharts() {
                 </Pie>
                 <Tooltip formatter={(val: number) => val.toLocaleString()} />
                 <Legend
-                  layout="vertical"
-                  align="right"
-                  verticalAlign="middle"
+                  layout={isMobile ? "horizontal" : "vertical"}
+                  verticalAlign={isMobile ? "bottom" : "middle"}
+                  align={isMobile ? "center" : "right"}
+                  wrapperStyle={{
+                    fontSize: isMobile ? 12 : 14,
+                    paddingTop: isMobile ? 20 : 0,
+                  }}
                 />
               </PieChart>
             </ResponsiveContainer>

@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
 import ValuationTrust from "./ValuationTrust";
+import Link from "next/link";
 
 interface Suggestion {
   description: string;
@@ -69,7 +70,7 @@ export function SearchBar() {
 
   return (
     <div className="mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-gradient-to-br from-emerald-600 via-teal-700 to-blue-800 text-white">
-      <div className="max-w-4xl mx-auto relative z-50">
+      <div className="max-w-4xl mx-auto relative z-40">
         <Card className="p-8 shadow-2xl border-0 bg-white/80 backdrop-blur-sm">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-slate-800 mb-4">
@@ -118,6 +119,16 @@ export function SearchBar() {
               </div>
             )}
           </div>
+          <Link
+            href="/sample-report.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center mt-2"
+          >
+            <Button className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white">
+              Download Sample Report
+            </Button>
+          </Link>
         </Card>
         <p className="mt-4 text-sm text-white text-center">
           Most accurate estimate in just 1 min
