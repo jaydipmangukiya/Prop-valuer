@@ -68,8 +68,10 @@ export default function ServicesPage() {
             Our Services
           </h1>
           <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-            Comprehensive property intelligence solutions for valuations and
-            investment opportunities.
+            {/* Comprehensive property intelligence solutions for valuations and
+            investment opportunities. */}
+            Comprehensive property valuation and real estate services powered by
+            AI and expert analysis
           </p>
         </div>
       </section>
@@ -162,7 +164,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Auction Services Section */}
-      <section className="py-12">
+      {/* <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-8 text-center">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-800 mb-1">
@@ -228,7 +230,7 @@ export default function ServicesPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Process Section */}
       {/* <section className="py-16">
@@ -326,11 +328,14 @@ export default function ServicesPage() {
       <section className="pb-10">
         <div className="bg-gradient-to-br from-emerald-600 via-teal-700 to-blue-800 text-white text-center max-w-7xl mx-auto py-12 rounded-2xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl sm:text-4xl font-bold mb-6">
-            Two Powerful Tools. One Smart Property Platform.
+            {/* Two Powerful Tools. One Smart Property Platform. */}
+            Ready to Get Started?
           </h2>
           <p className="text-base sm:text-xl mb-8 max-w-2xl mx-auto">
-            Get an instant AI-powered property valuation or explore verified
-            auction properties with complete insights — choose your next step.
+            {/* Get an instant AI-powered property valuation or explore verified
+            auction properties with complete insights — choose your next step. */}
+            Choose the service that best fits your needs and get accurate
+            property valuation today
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/property-valuation">
@@ -341,7 +346,7 @@ export default function ServicesPage() {
                 Start Valuation
               </Button>
             </Link>
-            <Link href="/property-auction-list">
+            {/* <Link href="/property-auction-list">
               <Button
                 size="lg"
                 variant="outline"
@@ -349,7 +354,7 @@ export default function ServicesPage() {
               >
                 Auction Property
               </Button>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </section>

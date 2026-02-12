@@ -95,8 +95,10 @@ export default function TermsPage() {
             </h1>
           </div>
           <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+            {/* Please read these terms carefully before using our property
+            valuation and auction discovery services. */}
             Please read these terms carefully before using our property
-            valuation and auction discovery services.
+            valuation services.
           </p>
           <p className="text-base sm:text-lg md:text-xl mt-4 opacity-90">
             Last updated: January 15, 2024
@@ -118,13 +120,21 @@ export default function TermsPage() {
           <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
             <CardContent className="p-8">
               <p className="text-lg text-slate-700 leading-relaxed mb-6">
-                Welcome to Assetory. These Terms and Conditions
+                {/* Welcome to Assetory. These Terms and Conditions
                 (&quot;Terms&quot;) govern your use of our website, property
                 valuation services and auction property discovery features. By
                 accessing or using our services, you agree to be bound by these
-                Terms and our Privacy Policy.
+                Terms and our Privacy Policy. */}
+                Welcome to Assetory. These Terms and Conditions
+                (&quot;Terms&quot;) govern your use of our website and property
+                valuation services. By accessing or using our services, you
+                agree to be bound by these Terms and our Privacy Policy.
               </p>
               <p className="text-lg text-slate-700 leading-relaxed">
+                {/* If you do not agree with any part of these terms, please do not
+                use our services. We reserve the right to update these Terms at
+                any time, and continued use of our services constitutes
+                acceptance of any changes. */}
                 If you do not agree with any part of these terms, please do not
                 use our services. We reserve the right to update these Terms at
                 any time, and continued use of our services constitutes

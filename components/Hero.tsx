@@ -9,7 +9,7 @@ export function Hero() {
       <div className="absolute inset-0 bg-black/10"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <div className="text-center relative z-10">
-          {/* <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
             Discover Your Property&#39;s
             <span className="text-yellow-300 block">True Market Value</span>
           </h1>
@@ -17,8 +17,8 @@ export function Hero() {
             India&#39;s most trusted property valuation platform. Get instant,
             accurate valuations powered by AI and comprehensive market data
             analysis.
-          </p> */}
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+          </p>
+          {/* <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
             Property Valuation +
             <span className="text-yellow-300 block">
               Smart Investment Opportunities
@@ -28,7 +28,7 @@ export function Hero() {
             Get accurate property valuation and explore auction & bank-seized
             properties — all from one trusted platform built for investors,
             banks, and property professionals.
-          </p>
+          </p> */}
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <Link href="/property-valuation">
@@ -40,7 +40,7 @@ export function Hero() {
                 Start Valuation
               </Button>
             </Link>
-            <Link href="/property-auction-list">
+            {/* <Link href="/property-auction-list">
               <Button
                 size="lg"
                 variant="outline"
@@ -49,7 +49,7 @@ export function Hero() {
                 <Gavel className="h-5 w-5 mr-2" />
                 Explore Auction Properties
               </Button>
-            </Link>
+            </Link> */}
           </div>
 
           {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">

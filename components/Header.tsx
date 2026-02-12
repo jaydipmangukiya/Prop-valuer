@@ -20,7 +20,7 @@ export function Header() {
   const navigation = [
     { name: "Home", href: "/" },
     { name: "Property Valuation", href: "/property-valuation" },
-    { name: "Auction Property", href: "/property-auction-list" },
+    // { name: "Auction Property", href: "/property-auction-list" },
     { name: "Services", href: "/services" },
     { name: "About Us", href: "/about" },
     { name: "Blog", href: "/blog" },

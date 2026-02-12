@@ -107,15 +107,31 @@ export const marketInsightsData = [
     icon: MapPin,
   },
   {
-    type: "auction",
+    type: "valuation",
     location: "Mota Varachha",
-    icon: Gavel,
+    avgPrice: "₹5000",
+    trend: "+12%",
+    trendUp: true,
+    icon: TrendingUp,
   },
   {
-    type: "auction",
+    type: "valuation",
     location: "Pal",
+    avgPrice: "₹5,600",
+    trend: "+6%",
+    trendUp: true,
     icon: BarChart3,
   },
+  // {
+  //   type: "auction",
+  //   location: "Mota Varachha",
+  //   icon: Gavel,
+  // },
+  // {
+  //   type: "auction",
+  //   location: "Pal",
+  //   icon: BarChart3,
+  // },
 ];
 
 // ============================================================================
@@ -128,16 +144,16 @@ export const contactFaqs = [
     answer:
       "Our AI-powered valuations have a 95% accuracy rate, validated against actual market transactions and expert assessments.",
   },
-  {
-    question: "Do you provide auction property details and analysis?",
-    answer:
-      "Yes. Assetory provides verified auction property listings along with insights to help buyers evaluate risks and opportunities before bidding.",
-  },
-  {
-    question: "Is auction property valuation different from normal valuation?",
-    answer:
-      "Yes. Auction properties require additional checks such as legal status, reserve price, and risk assessment, which Assetory helps you understand clearly.",
-  },
+  // {
+  //   question: "Do you provide auction property details and analysis?",
+  //   answer:
+  //     "Yes. Assetory provides verified auction property listings along with insights to help buyers evaluate risks and opportunities before bidding.",
+  // },
+  // {
+  //   question: "Is auction property valuation different from normal valuation?",
+  //   answer:
+  //     "Yes. Auction properties require additional checks such as legal status, reserve price, and risk assessment, which Assetory helps you understand clearly.",
+  // },
   {
     question: "How long does it take to get a valuation report?",
     answer:
@@ -243,16 +259,16 @@ export const faqs = [
     answer:
       "Yes, all valuation reports are available as downloadable PDFs with detailed analysis, comparable properties, and market insights.",
   },
-  {
-    question: "Do you provide support for auction properties?",
-    answer:
-      "Yes. Assetory helps users discover verified auction properties and provides guidance on auction listings, risks, and valuation insights.",
-  },
-  {
-    question: "Does Assetory verify auction property listings?",
-    answer:
-      "We source auction listings from trusted public and institutional channels. While legal due diligence should be done by buyers, we ensure data accuracy and transparency.",
-  },
+  // {
+  //   question: "Do you provide support for auction properties?",
+  //   answer:
+  //     "Yes. Assetory helps users discover verified auction properties and provides guidance on auction listings, risks, and valuation insights.",
+  // },
+  // {
+  //   question: "Does Assetory verify auction property listings?",
+  //   answer:
+  //     "We source auction listings from trusted public and institutional channels. While legal due diligence should be done by buyers, we ensure data accuracy and transparency.",
+  // },
 ];
 
 // ============================================================================
@@ -508,35 +524,59 @@ export const termsSections = [
     icon: Users,
     title: "User Responsibilities",
     colorClass: "text-emerald-600",
+    // content: [
+    //   "Provide accurate and complete property information for valuation or auction-related purposes.",
+    //   "Use the service only for legitimate property valuation and auction discovery needs.",
+    //   "Conduct independent legal, financial, and technical due diligence before purchasing or bidding on any property.",
+    //   "Maintain the confidentiality of your account credentials.",
+    //   "Comply with all applicable laws and regulations when using our services.",
+    //   "Not attempt to reverse engineer, manipulate, or misuse our valuation models or auction data.",
+    // ],
     content: [
-      "Provide accurate and complete property information for valuation or auction-related purposes.",
-      "Use the service only for legitimate property valuation and auction discovery needs.",
+      "Provide accurate and complete property information for valuation purposes.",
+      "Use the service only for legitimate property valuation needs.",
       "Conduct independent legal, financial, and technical due diligence before purchasing or bidding on any property.",
       "Maintain the confidentiality of your account credentials.",
       "Comply with all applicable laws and regulations when using our services.",
-      "Not attempt to reverse engineer, manipulate, or misuse our valuation models or auction data.",
     ],
   },
   {
     icon: Shield,
     title: "Service Limitations",
     colorClass: "text-blue-600",
+    // content: [
+    //   "Valuations are estimates based on available data, algorithms, and market analysis.",
+    //   "Auction property information is provided for informational purposes only and may change without notice.",
+    //   "We do not guarantee the accuracy, completeness, or legal status of third-party or auction data sources.",
+    //   "Property values and auction conditions may fluctuate due to market forces, regulatory changes, or seller actions.",
+    //   "Our services do not replace professional appraisal, legal advice, or independent verification.",
+    //   "We reserve the right to refuse, modify, or discontinue services for any property, listing, or location.",
+    // ],
     content: [
       "Valuations are estimates based on available data, algorithms, and market analysis.",
-      "Auction property information is provided for informational purposes only and may change without notice.",
-      "We do not guarantee the accuracy, completeness, or legal status of third-party or auction data sources.",
-      "Property values and auction conditions may fluctuate due to market forces, regulatory changes, or seller actions.",
       "Our services do not replace professional appraisal, legal advice, or independent verification.",
       "We reserve the right to refuse, modify, or discontinue services for any property, listing, or location.",
     ],
   },
+  // {
+  //   icon: Scale,
+  //   title: "Intellectual Property",
+  //   colorClass: "text-orange-600",
+  //   content: [
+  //     "All content, algorithms, and technology are proprietary to Assetory.",
+  //     "Users may not copy, scrape, redistribute, or commercially exploit valuation reports or auction data without written permission.",
+  //     "Our trademarks, logos, and brand elements are protected intellectual property.",
+  //     "User-generated content remains the property of the user but grants us usage rights.",
+  //     "We respect third-party intellectual property rights and expect users to do the same.",
+  //   ],
+  // },
   {
     icon: Scale,
     title: "Intellectual Property",
     colorClass: "text-orange-600",
     content: [
       "All content, algorithms, and technology are proprietary to Assetory.",
-      "Users may not copy, scrape, redistribute, or commercially exploit valuation reports or auction data without written permission.",
+      "Users may not copy, distribute, or reproduce our valuation reports for commercial purposes.",
       "Our trademarks, logos, and brand elements are protected intellectual property.",
       "User-generated content remains the property of the user but grants us usage rights.",
       "We respect third-party intellectual property rights and expect users to do the same.",
@@ -546,10 +586,18 @@ export const termsSections = [
     icon: AlertTriangle,
     title: "Liability and Disclaimers",
     colorClass: "text-red-600",
+    // content: [
+    //   "Assetory provides valuation insights and auction property information for informational purposes only.",
+    //   "We are not liable for decisions, bids, purchases, or investments made based on valuation reports or auction listings.",
+    //   "We do not guarantee auction outcomes, property title clearance, possession status, or legal compliance.",
+    //   "All services are provided on an 'as-is' and 'as-available' basis without warranties of any kind.",
+    //   "Our total liability, if any, is limited to the amount paid for the specific service used.",
+    //   "Users assume full responsibility for property-related decisions, risks, and outcomes.",
+    // ],
     content: [
-      "Assetory provides valuation insights and auction property information for informational purposes only.",
-      "We are not liable for decisions, bids, purchases, or investments made based on valuation reports or auction listings.",
-      "We do not guarantee auction outcomes, property title clearance, possession status, or legal compliance.",
+      "Assetory provides valuation insights information for informational purposes only.",
+      "We are not liable for decisions, bids, purchases, or investments made based on valuation reports.",
+      "We are not responsible for losses due to market fluctuations or external factors.",
       "All services are provided on an 'as-is' and 'as-available' basis without warranties of any kind.",
       "Our total liability, if any, is limited to the amount paid for the specific service used.",
       "Users assume full responsibility for property-related decisions, risks, and outcomes.",

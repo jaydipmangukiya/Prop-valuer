@@ -87,7 +87,7 @@ export default function RefundPolicyPage() {
         "User error in providing incorrect property information",
         "Change of mind after report generation",
         "Market fluctuations affecting property values",
-        "Access to auction listings or auction-related insights once provided",
+        // "Access to auction listings or auction-related insights once provided",
       ],
     },
   ];
@@ -121,10 +121,14 @@ export default function RefundPolicyPage() {
           <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
             <CardContent className="p-8">
               <p className="text-lg text-slate-700 leading-relaxed mb-6">
-                At Assetory, we are committed to providing accurate and reliable
+                {/* At Assetory, we are committed to providing accurate and reliable
                 property valuation services auction discovery features. This
                 Refund Policy outlines the terms and conditions under which
-                refunds may be processed for our premium valuation services.
+                refunds may be processed for our premium valuation services. */}
+                At Assetory, we are committed to providing accurate and reliable
+                property valuation services features. This Refund Policy
+                outlines the terms and conditions under which refunds may be
+                processed for our premium valuation services.
               </p>
               <p className="text-lg text-slate-700 leading-relaxed">
                 Please read this policy carefully before making any payment for

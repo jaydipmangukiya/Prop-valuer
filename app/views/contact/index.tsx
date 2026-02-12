@@ -127,8 +127,10 @@ export default function ContactView() {
             Contact Us
           </h1>
           <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-            Have questions about property valuation or auction properties? We’re
-            here to help you make informed real estate decisions.
+            {/* Have questions about property valuation or auction properties? We’re
+            here to help you make informed real estate decisions. */}
+            Have questions about property valuation? We&apos;re here to help you
+            make informed real estate decisions.
           </p>
         </div>
       </section>
@@ -220,9 +222,9 @@ export default function ContactView() {
                         <SelectItem value="valuation">
                           Property Valuation
                         </SelectItem>
-                        <SelectItem value="auction">
+                        {/* <SelectItem value="auction">
                           Auction Property
-                        </SelectItem>
+                        </SelectItem> */}
                         <SelectItem value="support">
                           Technical Support
                         </SelectItem>
@@ -268,9 +270,12 @@ export default function ContactView() {
                   Get in Touch
                 </h2>
                 <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-                  Whether you need help with property valuation, auction
+                  {/* Whether you need help with property valuation, auction
                   properties, have technical questions, or want to explore
-                  business opportunities, our team is ready to assist you.
+                  business opportunities, our team is ready to assist you. */}
+                  Whether you need help with property valuation, have technical
+                  questions, or want to explore business opportunities, our team
+                  is ready to assist you.
                 </p>
               </div>
 

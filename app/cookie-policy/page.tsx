@@ -29,12 +29,17 @@ export default function CookiePolicyPage() {
                   1. Introduction
                 </h2>
                 <p>
-                  Assetory (&quot;we,&quot; &quot;us,&quot; &quot;our,&quot; or
+                  {/* Assetory (&quot;we,&quot; &quot;us,&quot; &quot;our,&quot; or
                   &quot;Company&quot;) uses cookies and similar tracking
                   technologies on our website to enhance your browsing
                   experience, analyze how you use our site, support property
                   valuation tools, auction property discovery, and deliver
-                  relevant content.
+                  relevant content. */}
+                  Assetory (&quot;we,&quot; &quot;us,&quot; &quot;our,&quot; or
+                  &quot;Company&quot;) uses cookies and similar tracking
+                  technologies on our website to enhance your browsing
+                  experience, analyze how you use our site, support property
+                  valuation tools, and deliver relevant content.
                 </p>
                 <p className="mt-3">
                   This Cookie Policy explains what cookies are, how we use them,
@@ -178,7 +183,7 @@ export default function CookiePolicyPage() {
               </section>
 
               {/* Third-Party Cookies */}
-              <section>
+              {/* <section>
                 <h2 className="text-2xl font-semibold text-gray-900 mb-4">
                   6. Third-Party Cookies
                 </h2>
@@ -197,7 +202,7 @@ export default function CookiePolicyPage() {
                   property or auction data unless explicitly required for
                   service delivery.
                 </p>
-              </section>
+              </section> */}
 
               {/* Data Protection */}
               <section>

@@ -85,9 +85,16 @@ const testimonials = [
     role: "Residential Seller",
     company: "Surat, Gujarat",
   },
+  // {
+  //   quote:
+  //     "Finding auction properties with proper value clarity was difficult earlier. Assetory made the process much simpler for local investments.",
+  //   author: "Local Investor",
+  //   role: "Real Estate Investor",
+  //   company: "Surat",
+  // },
   {
     quote:
-      "Finding auction properties with proper value clarity was difficult earlier. Assetory made the process much simpler for local investments.",
+      "Understanding true property value was challenging earlier. Assetory gave me the clarity and confidence I needed before investing.",
     author: "Local Investor",
     role: "Real Estate Investor",
     company: "Surat",
@@ -137,8 +144,11 @@ export default function AboutPage() {
             About Assetory
           </h1>
           <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-            India&apos;s most trusted property intelligence platform, helping
-            professionals make data-driven valuation and auction decisions.
+            {/* India&apos;s most trusted property intelligence platform, helping
+            professionals make data-driven valuation and auction decisions. */}
+            We&apos;re revolutionizing property valuation in India with
+            cutting-edge technology, comprehensive market data, and years of
+            real estate expertise.
           </p>
         </div>
       </section>
@@ -149,25 +159,37 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-6">
-                One Platform. Two Powerful Capabilities.
+                {/* One Platform. Two Powerful Capabilities. */}
+                One Platform. Smarter Property Intelligence.
               </h2>
               <p className="text-muted-foreground mb-4">
-                Assetory began as India&apos;s trusted property valuation
+                {/* Assetory began as India&apos;s trusted property valuation
                 platform. Today, we&apos;ve evolved into a comprehensive real
                 estate intelligence solution that combines AI-powered valuations
-                with verified auction property discovery.
+                with verified auction property discovery. */}
+                Assetory began as India’s trusted property valuation platform.
+                Today, it has evolved into a comprehensive real estate
+                intelligence solution powered by advanced data and technology.
               </p>
               <p className="text-muted-foreground mb-4">
-                This isn&apos;t two separate products — it&apos;s a unified
+                {/* This isn&apos;t two separate products — it&apos;s a unified
                 platform designed for anyone who needs accurate property
                 insights: homebuyers seeking fair prices, investors identifying
                 opportunities, banks assessing collateral, and legal
-                professionals requiring reliable documentation.
+                professionals requiring reliable documentation. */}
+                This isn’t multiple services stitched together — it’s a unified
+                platform built for anyone who needs accurate property insights:
+                homebuyers seeking fair prices, investors evaluating
+                opportunities, financial institutions assessing assets, and
+                professionals requiring dependable reports.
               </p>
               <p className="text-muted-foreground">
-                Our technology-driven approach ensures every valuation is
+                {/* Our technology-driven approach ensures every valuation is
                 data-backed, every listing is verified, and every decision you
-                make is informed.
+                make is informed. */}
+                Our technology-driven approach ensures every valuation is
+                data-backed and every decision you make is informed with clarity
+                and confidence.
               </p>
             </div>
             <div className="bg-gradient-to-br from-emerald-600/10 to-accentyellowish/10 rounded-2xl p-8">
@@ -224,18 +246,26 @@ export default function AboutPage() {
                 Our Mission
               </h2>
               <p className="text-base sm:text-lg text-slate-600 mb-6 leading-relaxed">
-                We&apos;re building the infrastructure for transparent,
+                {/* We&apos;re building the infrastructure for transparent,
                 data-driven property decisions in India. Our goal is simple:
                 give every stakeholder — from first-time homebuyers to
                 institutional investors — access to the same quality of property
                 intelligence, including fair valuations and verified auction
-                opportunities.
+                opportunities. */}
+                To democratize property valuation in India by making accurate,
+                instant, and affordable property assessments accessible to
+                everyone. We believe that every property owner, buyer, and
+                investor deserves transparent and reliable valuation data.
               </p>
               <p className="text-lg text-slate-600 leading-relaxed">
-                As we grow, we&apos;re expanding our data coverage, refining our
+                {/* As we grow, we&apos;re expanding our data coverage, refining our
                 algorithms, and adding new capabilities. But our core commitment
                 remains unchanged: accuracy, transparency, and reliability in
-                every insight we deliver.
+                every insight we deliver. */}
+                Our platform combines advanced machine learning algorithms with
+                comprehensive market data to provide valuations that are not
+                just accurate, but also actionable for your real estate
+                decisions.
               </p>
             </div>
             <div className="relative">
@@ -373,8 +403,10 @@ export default function AboutPage() {
             Ready to Get Started?
           </h2>
           <p className="text-base sm:text-xl mb-8 max-w-2xl mx-auto">
-            Whether you need a property valuation or want to explore auction
-            opportunities, we&apos;re here to help.
+            {/* Whether you need a property valuation or want to explore auction
+            opportunities, we&apos;re here to help. */}
+            Join thousands of property owners who trust Assetory for accurate,
+            instant valuations
           </p>
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/property-valuation">
@@ -387,7 +419,7 @@ export default function AboutPage() {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-            <Link href="/property-auction-list">
+            {/* <Link href="/property-auction-list">
               <Button
                 size="lg"
                 className="w-full justify-start bg-accentyellowish hover:bg-accentyellowish/90 shadow-lg hover:shadow-xl transition-all duration-300"
@@ -395,7 +427,7 @@ export default function AboutPage() {
                 Explore Auction Properties
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </section>

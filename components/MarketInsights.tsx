@@ -8,11 +8,13 @@ export function MarketInsights() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-4 sm:text-4xl">
-            Market Value & Investment Opportunities
+            {/* Market Value & Investment Opportunities */}Market Insights
           </h2>
           <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto">
-            Understand accurate market valuation and discover auction &
-            bank-seized properties with real investment potential.
+            {/* Understand accurate market valuation and discover auction &
+            bank-seized properties with real investment potential. */}
+            Stay informed with real-time market trends and pricing data across
+            major cities
           </p>
         </div>
 
@@ -86,7 +88,7 @@ export function MarketInsights() {
             <h3 className="text-xl font-semibold text-gray-900 mb-4">
               Why Choose Assetory?
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
               <div>
                 <div className="text-3xl font-bold text-slate-800 mb-2">
                   50K+
@@ -101,6 +103,12 @@ export function MarketInsights() {
               </div>
               <div>
                 <div className="text-3xl font-bold text-orange-700 mb-2">
+                  24/7
+                </div>
+                <p className="text-gray-600">Available Service</p>
+              </div>
+              {/* <div>
+                <div className="text-3xl font-bold text-orange-700 mb-2">
                   Valuation
                 </div>
                 <p className="text-gray-600">Bank-Grade Reports</p>
@@ -110,7 +118,7 @@ export function MarketInsights() {
                   Auctions
                 </div>
                 <p className="text-gray-600">Seized & Distressed Assets</p>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

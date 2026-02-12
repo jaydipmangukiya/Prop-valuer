@@ -116,16 +116,24 @@ export default function PrivacyPolicyPage() {
           <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
             <CardContent className="p-8">
               <p className="text-lg text-slate-700 leading-relaxed mb-6">
+                {/* At Assetory, we are committed to protecting your privacy and
+                ensuring the security of your personal information. This Privacy
+                Policy explains how we collect, use, disclose, and safeguard
+                your information when you visit our website or use our property
+                valuation and auction property services. */}
                 At Assetory, we are committed to protecting your privacy and
                 ensuring the security of your personal information. This Privacy
                 Policy explains how we collect, use, disclose, and safeguard
                 your information when you visit our website or use our property
-                valuation and auction property services.
+                valuation services.
               </p>
               <p className="text-lg text-slate-700 leading-relaxed">
+                {/* By using our services, you agree to the collection and use of
+                information in accordance with this policy. If you do not agree
+                with our policies and practices, please do not use our services. */}
                 By using our services, you agree to the collection and use of
                 information in accordance with this policy. If you do not agree
-                with our policies and practices, please do not use our services.
+                with our policies and practices, please do not use our services
               </p>
             </CardContent>
           </Card>
