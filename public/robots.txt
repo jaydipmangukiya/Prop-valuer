@@ -2,7 +2,7 @@
 User-agent: *
 Allow: /
 Allow: /property-valuation
-Allow: /property-auction-list
+Allow: /property-list
 Allow: /services
 Allow: /blog
 Allow: /about

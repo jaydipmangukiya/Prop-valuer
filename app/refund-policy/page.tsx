@@ -15,7 +15,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.assetory.in";
 
 const title = "Refund Policy | Assetory";
 const description =
-  "Learn how Assetory handles refund requests for paid services, including property valuation and auction discovery features, with eligibility, timelines, and contact details.";
+  "Learn how Assetory handles refund requests for paid services, including property valuation and bank-seized property discovery features, with eligibility, timelines, and contact details.";
 
 export const metadata: Metadata = {
   title,
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   keywords: [
     "Assetory refund policy",
     "property valuation refund",
-    "auction service refund",
+    "bank-seized property refund",
     "paid service refunds",
     "refund terms Assetory",
   ],
@@ -87,7 +87,7 @@ export default function RefundPolicyPage() {
         "User error in providing incorrect property information",
         "Change of mind after report generation",
         "Market fluctuations affecting property values",
-        // "Access to auction listings or auction-related insights once provided",
+        "Access to recovery property listings or investment insights once provided",
       ],
     },
   ];
@@ -121,14 +121,15 @@ export default function RefundPolicyPage() {
           <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
             <CardContent className="p-8">
               <p className="text-lg text-slate-700 leading-relaxed mb-6">
-                {/* At Assetory, we are committed to providing accurate and reliable
-                property valuation services auction discovery features. This
-                Refund Policy outlines the terms and conditions under which
-                refunds may be processed for our premium valuation services. */}
                 At Assetory, we are committed to providing accurate and reliable
+                property valuation services bank-seized property discovery
+                features. This Refund Policy outlines the terms and conditions
+                under which refunds may be processed for our premium valuation
+                services.
+                {/* At Assetory, we are committed to providing accurate and reliable
                 property valuation services features. This Refund Policy
                 outlines the terms and conditions under which refunds may be
-                processed for our premium valuation services.
+                processed for our premium valuation services. */}
               </p>
               <p className="text-lg text-slate-700 leading-relaxed">
                 Please read this policy carefully before making any payment for

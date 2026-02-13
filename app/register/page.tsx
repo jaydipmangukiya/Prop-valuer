@@ -92,8 +92,8 @@ export default function RegisterPage() {
               Create Your Account
             </CardTitle>
             <p className="text-slate-600 mt-2">
-              {/* Access smart property valuation & auction insights */}
-              Join thousands of property owners
+              Access smart property valuation & bank-seized property insights
+              {/* Join thousands of property owners */}
             </p>
           </CardHeader>
 

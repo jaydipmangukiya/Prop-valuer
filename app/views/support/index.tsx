@@ -93,10 +93,10 @@ export default function SupportView() {
             </h1>
           </div>
           <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-            {/* We&#39;re here to help you with any questions about property
-            valuation, auction properties, and our services. */}
             We&#39;re here to help you with any questions about property
-            valuation and our services.
+            valuation, bank-seized properties, and our services.
+            {/* We&#39;re here to help you with any questions about property
+            valuation and our services. */}
           </p>
         </div>
       </section>
@@ -257,12 +257,12 @@ export default function SupportView() {
                       <SelectItem value="Property Valuation Help">
                         Property Valuation Help
                       </SelectItem>
-                      {/* <SelectItem value="Auction Property Help">
-                        Auction Property Help
+                      <SelectItem value="Bank-Seized Property Help">
+                        Bank-Seized Property Help
                       </SelectItem>
-                      <SelectItem value="Auction Listing Issue">
-                        Auction Listing Issue
-                      </SelectItem> */}
+                      <SelectItem value="Bank-Seized Property Listing Issue">
+                        Bank-Seized Property Listing Issue
+                      </SelectItem>
                       <SelectItem value="Technical Support">
                         Technical Support
                       </SelectItem>

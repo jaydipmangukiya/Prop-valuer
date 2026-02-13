@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Cookie Policy | Assetory",
   description:
-    "Learn how Assetory uses cookies for property valuation, auction discovery, analytics, and how to manage your cookie preferences.",
+    "Learn how Assetory uses cookies for property valuation, bank-seized property discovery, analytics, and how to manage your cookie preferences.",
 };
 
 export default function CookiePolicyPage() {
@@ -29,17 +29,17 @@ export default function CookiePolicyPage() {
                   1. Introduction
                 </h2>
                 <p>
-                  {/* Assetory (&quot;we,&quot; &quot;us,&quot; &quot;our,&quot; or
-                  &quot;Company&quot;) uses cookies and similar tracking
-                  technologies on our website to enhance your browsing
-                  experience, analyze how you use our site, support property
-                  valuation tools, auction property discovery, and deliver
-                  relevant content. */}
                   Assetory (&quot;we,&quot; &quot;us,&quot; &quot;our,&quot; or
                   &quot;Company&quot;) uses cookies and similar tracking
                   technologies on our website to enhance your browsing
                   experience, analyze how you use our site, support property
-                  valuation tools, and deliver relevant content.
+                  valuation tools, bank-seized property discovery, and deliver
+                  relevant content.
+                  {/* Assetory (&quot;we,&quot; &quot;us,&quot; &quot;our,&quot; or
+                  &quot;Company&quot;) uses cookies and similar tracking
+                  technologies on our website to enhance your browsing
+                  experience, analyze how you use our site, support property
+                  valuation tools, and deliver relevant content. */}
                 </p>
                 <p className="mt-3">
                   This Cookie Policy explains what cookies are, how we use them,
@@ -183,7 +183,7 @@ export default function CookiePolicyPage() {
               </section>
 
               {/* Third-Party Cookies */}
-              {/* <section>
+              <section>
                 <h2 className="text-2xl font-semibold text-gray-900 mb-4">
                   6. Third-Party Cookies
                 </h2>
@@ -199,10 +199,10 @@ export default function CookiePolicyPage() {
                 </ul>
                 <p className="mt-3">
                   These third parties do not receive personally identifiable
-                  property or auction data unless explicitly required for
-                  service delivery.
+                  property or bank-seized property data unless explicitly
+                  required for service delivery.
                 </p>
-              </section> */}
+              </section>
 
               {/* Data Protection */}
               <section>

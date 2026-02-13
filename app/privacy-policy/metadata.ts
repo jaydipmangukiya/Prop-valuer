@@ -4,7 +4,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.assetory.in";
 
 const title = "Privacy Policy | Assetory";
 const description =
-  "Learn how Assetory collects, uses, and protects your personal data when you use our property valuation and auction discovery platform.";
+  "Learn how Assetory collects, uses, and protects your personal data when you use our property valuation and  bank-seized property discovery platform.";
 
 export const metadata: Metadata = {
   title,

@@ -4,7 +4,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.assetory.in";
 
 const title = "Assetory Blog – Real Estate Insights, Valuation & Market Trends";
 const description =
-  "Expert insights on property valuation, real estate market trends, investment strategies, and auction property updates tailored for Indian real estate professionals.";
+  "Expert insights on property valuation, real estate market trends, investment strategies, and bank-seized property updates tailored for Indian real estate professionals.";
 
 export const metadata: Metadata = {
   title,
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "property valuation blog",
     "real estate market insights",
     "property investment tips",
-    "auction property updates",
+    "bank-seized property updates",
     "real estate news India",
     "valuation methodology",
   ],

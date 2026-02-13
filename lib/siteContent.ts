@@ -106,32 +106,32 @@ export const marketInsightsData = [
     trendUp: true,
     icon: MapPin,
   },
-  {
-    type: "valuation",
-    location: "Mota Varachha",
-    avgPrice: "₹5000",
-    trend: "+12%",
-    trendUp: true,
-    icon: TrendingUp,
-  },
-  {
-    type: "valuation",
-    location: "Pal",
-    avgPrice: "₹5,600",
-    trend: "+6%",
-    trendUp: true,
-    icon: BarChart3,
-  },
   // {
-  //   type: "auction",
+  //   type: "valuation",
   //   location: "Mota Varachha",
-  //   icon: Gavel,
+  //   avgPrice: "₹5000",
+  //   trend: "+12%",
+  //   trendUp: true,
+  //   icon: TrendingUp,
   // },
   // {
-  //   type: "auction",
+  //   type: "valuation",
   //   location: "Pal",
+  //   avgPrice: "₹5,600",
+  //   trend: "+6%",
+  //   trendUp: true,
   //   icon: BarChart3,
   // },
+  {
+    type: "auction",
+    location: "Mota Varachha",
+    icon: Gavel,
+  },
+  {
+    type: "auction",
+    location: "Pal",
+    icon: BarChart3,
+  },
 ];
 
 // ============================================================================
@@ -144,16 +144,17 @@ export const contactFaqs = [
     answer:
       "Our AI-powered valuations have a 95% accuracy rate, validated against actual market transactions and expert assessments.",
   },
-  // {
-  //   question: "Do you provide auction property details and analysis?",
-  //   answer:
-  //     "Yes. Assetory provides verified auction property listings along with insights to help buyers evaluate risks and opportunities before bidding.",
-  // },
-  // {
-  //   question: "Is auction property valuation different from normal valuation?",
-  //   answer:
-  //     "Yes. Auction properties require additional checks such as legal status, reserve price, and risk assessment, which Assetory helps you understand clearly.",
-  // },
+  {
+    question: "Do you provide bank-seized property details and analysis?",
+    answer:
+      "Yes. Assetory provides verified bank-seized property listings along with insights to help buyers evaluate risks and opportunities before bidding.",
+  },
+  {
+    question:
+      "Is bank-seized property valuation different from normal valuation?",
+    answer:
+      "Yes. Bank-seized properties require additional checks such as legal status, reserve price, and risk assessment, which Assetory helps you understand clearly.",
+  },
   {
     question: "How long does it take to get a valuation report?",
     answer:
@@ -359,21 +360,21 @@ export const additionalServices = [
 export const auctionServices = [
   {
     icon: Gavel,
-    title: "Bank Auction Discovery",
+    title: "Bank-Seized Discovery",
     description:
-      "Access to curated bank auction properties with verified documentation and ownership details.",
+      "Access to curated bank-seized properties with verified documentation and ownership details.",
   },
   {
     icon: Search,
     title: "Seized Asset Listings",
     description:
-      "Browse distressed and bank-seized properties with transparent auction schedules.",
+      "Browse verified distressed properties with transparent listing details.",
   },
   {
     icon: TrendingUp,
     title: "Valuation Comparison",
     description:
-      "Compare auction reserve prices against market valuations to identify opportunities.",
+      "Compare bank-seized reserve prices against market valuations to identify opportunities.",
   },
   {
     icon: Shield,

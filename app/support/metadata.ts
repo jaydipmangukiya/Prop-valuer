@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.assetory.in";
 
-const title = "Support Center | Assetory – Valuation & Auction Property Help";
+const title =
+  "Support Center | Assetory – Valuation &  Bank-Seized Property Help";
 const description =
-  "Get expert support for property valuation and verified auction property services. Contact Assetory for technical help, billing queries, account issues, and general assistance.";
+  "Get expert support for property valuation and verified bank-seized property services. Contact Assetory for technical help, billing queries, account issues, and general assistance.";
 
 export const metadata: Metadata = {
   title,
@@ -15,8 +16,8 @@ export const metadata: Metadata = {
   keywords: [
     "Assetory support",
     "property valuation support",
-    "auction property support",
-    "auction listing help",
+    "bank-seized property support",
+    "bank-seized listing help",
     "customer support",
     "technical support",
     "valuation service help",

@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.assetory.in";
 
 const title =
-  "Contact Assetory | Property Valuation & Auction Property Experts";
+  "Contact Assetory | Property Valuation &  Bank-Seized Property Experts";
 const description =
-  "Contact Assetory for property valuation support, verified auction property inquiries, demos, partnerships, and sales. Speak with our real estate experts today.";
+  "Contact Assetory for property valuation support, verified bank-seized property inquiries, demos, partnerships, and sales. Speak with our real estate experts today.";
 
 export const metadata: Metadata = {
   title,
@@ -16,13 +16,13 @@ export const metadata: Metadata = {
   keywords: [
     "contact assetory",
     "property valuation services india",
-    "auction property support",
-    "auction property consultation",
+    "bank-seized property support",
+    "bank-seized property consultation",
     "real estate valuation experts",
     "property valuation consultation",
     "property valuation support",
     "property valuation demo",
-    "verified auction properties india",
+    "verified bank-seized properties india",
     "commercial property valuation",
     "residential property valuation",
     "real estate valuation company",

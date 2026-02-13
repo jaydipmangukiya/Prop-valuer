@@ -16,22 +16,22 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL || "https://www.assetory.in"),
   title: {
     default:
-      "Property Valuation & Bank Auction Properties in India | Market Value | Assetory",
+      "Property Valuation & Bank-Seized Properties in India | Market Value | Assetory",
     template: "%s | Assetory",
   },
   description:
-    "Get accurate property valuations and discover verified auction properties in India. Explore bank-seized properties, market value insights, and data-driven analysis for apartments, villas, land, and commercial real estate.",
+    "Get accurate property valuations and discover verified bank-seized properties in India. Explore bank-seized properties, market value insights, and data-driven analysis for apartments, villas, land, and commercial real estate.",
   keywords: [
     "property valuation",
     "real estate valuation",
     "property price estimate",
-    "auction property",
-    "property auction India",
-    "bank auction property",
-    "distressed property auction",
-    "auction property valuation",
-    "India real estate auction",
-    "commercial property auction",
+    "bank-seized property",
+    "property bank-seized India",
+    "bank-seized property India",
+    "distressed property bank-seized",
+    "bank-seized property valuation",
+    "India real estate bank-seized",
+    "commercial property bank-seized",
     "India property valuation",
     "apartment valuation",
     "villa valuation",
@@ -65,9 +65,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     title:
-      "Assetory – Property Valuation & Bank Auction Properties | Market Value",
+      "Assetory – Property Valuation & Bank-Seized Properties | Market Value",
     description:
-      "Accurate property valuations and verified bank auction & bank-seized property discovery powered by real market data and analytics.",
+      "Accurate property valuations and verified bank-seized property discovery powered by real market data and analytics.",
     url: SITE_URL,
     siteName: "Assetory",
     images: [
@@ -85,9 +85,9 @@ export const metadata: Metadata = {
   // Twitter Card
   twitter: {
     card: "summary_large_image",
-    title: "Assetory | Property Valuation & Bank Auction Properties in India",
+    title: "Assetory | Property Valuation & Bank-Seized Properties in India",
     description:
-      "Get accurate valuations and explore bank auction, bank-seized properties with market value insights across India.",
+      "Get accurate valuations and explore bank-seized properties with market value insights across India.",
     images: [`${SITE_URL}/assets/images/og-image.png`],
   },
   // Theme color
@@ -125,7 +125,7 @@ export default function RootLayout({
               url: SITE_URL,
               logo: `${SITE_URL}/assets/images/logo.svg`,
               description:
-                "Property valuation and auction property discovery platform for Indian real estate",
+                "Property valuation and bank-seized property discovery platform for Indian real estate",
               sameAs: [
                 "https://www.facebook.com/assetory",
                 "https://www.twitter.com/assetory",
@@ -172,12 +172,12 @@ export default function RootLayout({
               name: "Assetory",
               url: SITE_URL,
               description:
-                "Professional property valuation, bank auction discovery, and market value analysis platform for Indian real estate",
+                "Professional property valuation, bank-seized property discovery, and market value analysis platform for Indian real estate",
               image: `${SITE_URL}/assets/images/og-image.png`,
               areaServed: "IN",
               serviceType: [
                 "Property Valuation",
-                "Bank Auction Discovery",
+                "Bank-Seized Property Discovery",
                 "Bank-Seized Property Search",
                 "Market Value Analysis",
               ],

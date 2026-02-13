@@ -10,9 +10,9 @@ import { additionalServices, auctionServices } from "@/lib/siteContent";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.assetory.in";
 
-const title = "Property Valuation & Auction Services | Assetory";
+const title = "Property Valuation & Bank-Seized Services | Assetory";
 const description =
-  "Get professional property valuations, bank auction listings, and real estate insights. Comprehensive services for homebuyers, investors, and financial institutions.";
+  "Get professional property valuations, bank-seized listings, and real estate insights. Comprehensive services for homebuyers, investors, and financial institutions.";
 
 export const metadata: Metadata = {
   title,
@@ -22,12 +22,12 @@ export const metadata: Metadata = {
   },
   keywords: [
     "property valuation services",
-    "bank auction listings",
+    "bank-seized listings",
     "real estate valuation",
     "property investment",
     "commercial property valuation",
     "residential property valuation",
-    "auction property services",
+    "bank-seized property services",
   ],
   openGraph: {
     title,
@@ -68,10 +68,10 @@ export default function ServicesPage() {
             Our Services
           </h1>
           <p className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-            {/* Comprehensive property intelligence solutions for valuations and
-            investment opportunities. */}
-            Comprehensive property valuation and real estate services powered by
-            AI and expert analysis
+            Comprehensive property intelligence solutions for valuations and
+            investment opportunities.
+            {/* Comprehensive property valuation and real estate services powered by
+            AI and expert analysis */}
           </p>
         </div>
       </section>
@@ -163,12 +163,12 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Auction Services Section */}
-      {/* <section className="py-12">
+      {/* Bank-Seized Services Section */}
+      <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-8 text-center">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-800 mb-1">
-              Auction & Distressed Property Intelligence
+              Bank-Seized & Distressed Property Intelligence
             </h2>
             <p className="text-base sm:text-xl text-slate-600">
               Discover smart investment opportunities
@@ -202,9 +202,9 @@ export default function ServicesPage() {
                 </h3>
                 <ul className="space-y-2">
                   {[
-                    "Curated bank auction properties",
+                    "Curated bank-seized properties",
                     "Valuation comparison for every listing",
-                    "Real-time auction schedule updates",
+                    "Real-time bank-seized schedule updates",
                     "Investment analysis and insights",
                   ].map((item, i) => (
                     <li
@@ -217,20 +217,20 @@ export default function ServicesPage() {
                   ))}
                 </ul>
               </div>
-              <Link href="/property-auction-list">
+              <Link href="/property-list">
                 <Button
                   size="lg"
                   variant="default"
                   className="w-full justify-start bg-accentyellowish"
                 >
-                  Explore Auctions
+                  Explore Bank-Seized Properties
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
 
       {/* Process Section */}
       {/* <section className="py-16">
@@ -328,14 +328,15 @@ export default function ServicesPage() {
       <section className="pb-10">
         <div className="bg-gradient-to-br from-emerald-600 via-teal-700 to-blue-800 text-white text-center max-w-7xl mx-auto py-12 rounded-2xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl sm:text-4xl font-bold mb-6">
-            {/* Two Powerful Tools. One Smart Property Platform. */}
-            Ready to Get Started?
+            Two Powerful Tools. One Smart Property Platform.
+            {/* Ready to Get Started? */}
           </h2>
           <p className="text-base sm:text-xl mb-8 max-w-2xl mx-auto">
-            {/* Get an instant AI-powered property valuation or explore verified
-            auction properties with complete insights — choose your next step. */}
-            Choose the service that best fits your needs and get accurate
-            property valuation today
+            Get an instant AI-powered property valuation or explore verified
+            bank-seized properties with complete insights — choose your next
+            step.
+            {/* Choose the service that best fits your needs and get accurate
+            property valuation today */}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/property-valuation">
@@ -346,15 +347,15 @@ export default function ServicesPage() {
                 Start Valuation
               </Button>
             </Link>
-            {/* <Link href="/property-auction-list">
+            <Link href="/property-list">
               <Button
                 size="lg"
                 variant="outline"
                 className="border-2 border-white text-slate-800 hover:bg-white hover:text-slate-800 font-semibold px-8 py-4 rounded-xl transition-all duration-300"
               >
-                Auction Property
+                Bank-Seized Property
               </Button>
-            </Link> */}
+            </Link>
           </div>
         </div>
       </section>

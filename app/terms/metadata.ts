@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.assetory.in";
 
 const title =
-  "Terms & Conditions | Valuation & Auction Property Services | Assetory";
+  "Terms & Conditions | Valuation &  Bank-Seized Property Services | Assetory";
 const description =
-  "Read Assetory’s Terms & Conditions governing the use of our property valuation and auction property discovery services, including user responsibilities, limitations, and legal terms.";
+  "Read Assetory’s Terms & Conditions governing the use of our property valuation and bank-seized property discovery services, including user responsibilities, limitations, and legal terms.";
 
 export const metadata: Metadata = {
   title,
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   keywords: [
     "terms and conditions",
     "terms of service",
-    "auction property terms",
+    "bank-seized property terms",
     "property valuation terms",
     "service terms",
     "user agreement",

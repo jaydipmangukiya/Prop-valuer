@@ -118,8 +118,8 @@ export default function PropertyCard({ data }: any) {
                 <button
                   className="p-2 rounded-full border border-slate-200 hover:bg-slate-100"
                   onClick={async () => {
-                    // const shareUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/property-auction-list/${data._id}`;
-                    const shareUrl = `/property-auction-list/${data._id}`;
+                    // const shareUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/property-list/${data._id}`;
+                    const shareUrl = `/property-list/${data._id}`;
 
                     if (navigator.share) {
                       try {
@@ -184,12 +184,12 @@ export default function PropertyCard({ data }: any) {
                 icon={<MapPin />}
               />
               <Info
-                label="Auction Start"
+                label="Availability Start"
                 value={formatDate(data?.auctionDetails?.auctionStart)}
                 icon={<Calendar />}
               />
               <Info
-                label="Auction End"
+                label="Availability End"
                 value={formatDate(data?.auctionDetails?.auctionEnd)}
                 icon={<Calendar />}
               />
@@ -211,9 +211,7 @@ export default function PropertyCard({ data }: any) {
 
             <div className="flex flex-wrap gap-4 mt-2">
               <Button
-                onClick={() =>
-                  router.push(`/property-auction-list/${data._id}`)
-                }
+                onClick={() => router.push(`/property-list/${data._id}`)}
                 className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl shadow-sm"
               >
                 View Details

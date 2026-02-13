@@ -14,12 +14,12 @@ export function Footer() {
               <span className="text-2xl font-bold">Assetory</span>
             </div>
             <p className="text-gray-400 md:max-w-md md:mb-6 mb-3">
-              {/* Your trusted partner for data-driven property insights. We provide
-              accurate property valuations and verified auction property
-              discovery powered by advanced market analysis and real-time data. */}
-              Your trusted partner for accurate property valuations. We provide
+              Your trusted partner for data-driven property insights. We provide
+              accurate property valuations and verified bank-seized property
+              discovery powered by advanced market analysis and real-time data.
+              {/* Your trusted partner for accurate property valuations. We provide
               instant, reliable property estimates powered by advanced market
-              analysis and real-time data.
+              analysis and real-time data. */}
             </p>
           </div>
 
@@ -35,14 +35,14 @@ export function Footer() {
                   Property Valuation
                 </Link>
               </li>
-              {/* <li>
+              <li>
                 <Link
-                  href="/property-auction-list"
+                  href="/property-list"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Auction Properties
+                  Properties
                 </Link>
-              </li> */}
+              </li>
               <li>
                 <Link
                   href="/about"

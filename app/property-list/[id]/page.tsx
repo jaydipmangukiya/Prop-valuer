@@ -66,7 +66,7 @@ export default function PropertyDetailsPage({ params }: any) {
   };
   const hasImages = property?.images && property.images.length > 0;
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-  const propertyUrl = `${baseUrl}/property-auction-list/${id}`;
+  const propertyUrl = `${baseUrl}/property-list/${id}`;
 
   const handleModalTouchStart = (e: React.TouchEvent) => {
     setTouchEndX(null);
@@ -86,12 +86,12 @@ export default function PropertyDetailsPage({ params }: any) {
     if (distance > minSwipeDistance) {
       // swipe left → next
       setModalIndex((prev) =>
-        prev === property.images.length - 1 ? 0 : prev + 1
+        prev === property.images.length - 1 ? 0 : prev + 1,
       );
     } else if (distance < -minSwipeDistance) {
       // swipe right → previous
       setModalIndex((prev) =>
-        prev === 0 ? property.images.length - 1 : prev - 1
+        prev === 0 ? property.images.length - 1 : prev - 1,
       );
     }
   };
@@ -157,8 +157,8 @@ export default function PropertyDetailsPage({ params }: any) {
                       <button
                         className="p-2 rounded-full border border-slate-200 hover:bg-slate-100"
                         onClick={async () => {
-                          // const shareUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/property-auction-list/${data._id}`;
-                          const shareUrl = `/property-auction-list/${property._id}`;
+                          // const shareUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/property-list/${data._id}`;
+                          const shareUrl = `/property-list/${property._id}`;
 
                           if (navigator.share) {
                             try {
@@ -229,12 +229,12 @@ export default function PropertyDetailsPage({ params }: any) {
                       icon={<MapPin />}
                     />
                     <Info
-                      label="Auction Start"
+                      label="Availability Start"
                       value={formatDate(property?.auctionDetails?.auctionStart)}
                       icon={<Calendar />}
                     />
                     <Info
-                      label="Auction End"
+                      label="Availability End"
                       value={formatDate(property?.auctionDetails?.auctionEnd)}
                       icon={<Calendar />}
                     />
@@ -350,17 +350,17 @@ export default function PropertyDetailsPage({ params }: any) {
 
               {/* RIGHT SIDE – AUCTION DETAILS */}
               <div className="space-y-6">
-                <Section title="Auction Details">
+                <Section title="Bank-Seized Details">
                   <Details
-                    label="Auction ID"
+                    label="Bank-Seized ID"
                     value={property?.auctionDetails?.auctionId}
                   />
                   <Details
-                    label="Auction Start"
+                    label="Availability Start"
                     value={formatDate(property?.auctionDetails?.auctionStart)}
                   />
                   <Details
-                    label="Auction End"
+                    label="Availability End"
                     value={formatDate(property?.auctionDetails?.auctionStart)}
                   />
                   <Details
@@ -432,7 +432,7 @@ export default function PropertyDetailsPage({ params }: any) {
                 <button
                   onClick={() =>
                     setModalIndex((prev) =>
-                      prev === 0 ? property.images.length - 1 : prev - 1
+                      prev === 0 ? property.images.length - 1 : prev - 1,
                     )
                   }
                   className="absolute left-4 top-1/2 -translate-y-1/2 bg-black  text-white backdrop-blur-sm h-10 w-10 rounded-full flex items-center justify-center"
@@ -446,7 +446,7 @@ export default function PropertyDetailsPage({ params }: any) {
                 <button
                   onClick={() =>
                     setModalIndex((prev) =>
-                      prev === property.images.length - 1 ? 0 : prev + 1
+                      prev === property.images.length - 1 ? 0 : prev + 1,
                     )
                   }
                   className="absolute right-4 top-1/2 -translate-y-1/2 bg-black text-white backdrop-blur-sm h-10 w-10 rounded-full flex items-center justify-center"
